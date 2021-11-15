@@ -58,8 +58,7 @@
                   <input hidden="rol" name="rol" id="rol" value="cliente"/>
                   <input hidden="memoria" name="memoria" id="memoria" value="1000000"/>
                   <input name="nuevoUsuario" id="nuevoUsuario" class="btn btn-block login-btn mb-4" type="submit" value="Aceptar">
-                  <input name="cancelar" id="cancelar" class="btn btn-block login-btn mb-4" type="button" value="Cancelar">
-                  
+                  <a href="../index.jsp" ><input name="cancelar" id="cancelar" class="btn btn-block login-btn mb-4" type="button" value="Cancelar"></a>
                 </form>
              
             </div>
