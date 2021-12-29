@@ -3,41 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function ValidarDatos(){
+var formulario = document.getElementById("formlogin");
+var errorMensaje = document.getElementById("error");
 
-var usuario = document.getElementById("usuario");
-var password = document.getElementById("password");
-var error = document.getElementById("error");
-var form = document.getElementById("formulario");
-//error.style.color = "red";
+formulario.addEventListener('submit', function (e) {
+
+    e.preventDefault();
+    console.log("le has dado a enviar")
+
+    var datos = new FormData(formulario);
+    console.log(datos)
+    console.log(datos.get('usuario'));
+    console.log(datos.get('clave'));
+
+        fetch('postLogin.php', {
+            method: 'POST',
+            body: datos
+        })
+    .then(data => {
+                if (data === 'camposVacios') {
+                    errorMensaje.innerHTML = `
+                        < div class="alert alert-danger" role = "alert" >
+                            Debe rellenar todos los campos
+                        </div > 
+                    `
+                }
+            }) 
+    if (datos.get('usuario') === "" || datos.get('clave') === "") {
+        errorMensaje.innerHTML = `
+                         Debe rellenar todos los campos
+                     ` 
+   }else{
+
+   }
+
+});
 
 
-
-function verificar(){
-    var usuario = document.getElementById("usuario");
-    var password = document.getElementById("password");
-    var error = document.getElementById("error");
-    
-    console.log(usuario.value);
-    
-    var mensajesError = [];
-    
-    if(usuario.value === null || usuario.value === ""){
-       mensajesError.push("Ingresa tu usuario"); 
-    }
-    
-    if(password.value === null || password.value === ""){
-       mensajesError.push("Ingresa tu password"); 
-    }
-    
-    
-    if(mensajesError.length > 0){
-        error.innerHtml = mensajesError.join(", ");
-    }else{
-        document.getElementById("formulario").submit();
-    }
-    
-    
-    
-    return false;
 }
-
