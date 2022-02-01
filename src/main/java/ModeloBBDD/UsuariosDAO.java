@@ -1,4 +1,4 @@
-package Modelo;
+package ModeloBBDD;
 
 
 import java.sql.Connection;
@@ -11,6 +11,7 @@ import java.util.List;
 import com.mysql.cj.xdevapi.Statement;
 
 import Controlador.Conexion;
+import Modelo.Usuarios;
 
 public class UsuariosDAO {
     

@@ -100,9 +100,17 @@
 						<div class="col-md-6">
 							<div class="recent-game-item">
 								<div class="rgi-thumb set-bg" data-setbg="img/recent-game/1.jpg">
-									<div class="cata new">racing</div>
 								</div>
 								<div class="rgi-content">
+										<c:forEach var="blog" items="${listaBlog}">
+
+										<h5><c:out value="${articulo.titulo}"/></h5>
+										<p><c:out value="${articulo.descripcion}"/> </p>
+											
+										</c:forEach>
+
+
+
 									<h5>Suspendisse ut justo tem por, rutrum</h5>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet, consectetur elit. </p>
 									<a href="#" class="comment">3 Comments</a>

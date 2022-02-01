@@ -12,15 +12,17 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import Modelo.Blog;
 import Modelo.Usuarios;
-import Modelo.UsuariosDAO;
+import ModeloBBDD.BlogDAO;
+import ModeloBBDD.UsuariosDAO;
 
 //@WebServlet("/usuarios")
 public class RdyControllerUsuarios extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	UsuariosDAO usuariosDao;
+	BlogDAO blogDao;
 
 	public void init() {
 		System.out.println("Estoy en el init del servlet");
@@ -30,6 +32,7 @@ public class RdyControllerUsuarios extends HttpServlet {
 		try {
 
 			usuariosDao = new UsuariosDAO(jdbcURL, jdbcUsername, jdbcPassword);
+			blogDao = new BlogDAO(jdbcURL, jdbcUsername, jdbcPassword);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -65,6 +68,9 @@ public class RdyControllerUsuarios extends HttpServlet {
 				break;
 			case "mostrar":
 				mostrar(request, response);
+				break;
+			case "mostrarBlog":
+				mostrarBlog(request, response);
 				break;
 			case "showedit":
 				showEditar(request, response);
@@ -136,6 +142,15 @@ public class RdyControllerUsuarios extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/mostrar.jsp");
 		List<Usuarios> listaUsuarioss = usuariosDao.listarUsuarios();
 		request.setAttribute("lista", listaUsuarioss);
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarBlog(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ESTILOS/principal/categories.html");
+		List<Blog> listaBlog = blogDao.listarBlog();
+		request.setAttribute("lista", listaBlog);
+		System.out.println(listaBlog);                                                        
 		dispatcher.forward(request, response);
 	}
 
