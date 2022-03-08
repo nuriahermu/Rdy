@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.awt.Image;
+import java.io.InputStream;
 import java.sql.Blob;
 
 public class Blog {
@@ -10,13 +11,18 @@ public class Blog {
 	private String descripcion;
 	private Blob imagen;
 	private Image imagenConvert;
+	private InputStream foto;
 
-	public Blog(int id2, String titulo2, String descripcion2, Image imagenConvertida) {
+	public Blog() {
+	}
+
+	
+	public Blog(int id2, String titulo2, String descripcion2, Blob imagen) {
 		// TODO Auto-generated constructor stub
 		this.id = id2;
 		this.titulo = titulo2;
 		this.descripcion = descripcion2;
-		this.imagenConvert = imagenConvertida;
+		this.imagen = imagen;
 	}
 
 	public int getId() {
@@ -58,11 +64,21 @@ public class Blog {
 	public void setImagenConvert(Image imagenConvert) {
 		this.imagenConvert = imagenConvert;
 	}
+	
+
+	public InputStream getFoto() {
+		return foto;
+	}
+
+
+	public void setFoto(InputStream foto) {
+		this.foto = foto;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Blog [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", imagen=" + imagen
-				+ ", imagenConvert=" + imagenConvert + "]";
+		return "Blog [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", imagen=" + imagen + "]";
 	}
 
 }

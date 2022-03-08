@@ -21,24 +21,22 @@
 	href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="ESTILOS/login/css/login.css">
+<link rel="stylesheet" href="VISTAS/ESTILOS/login/css/login.css">
 
 </head>
 <body>
-	<a href="VISTAS/index.html">Vistas</a>
-
 	<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
 		<div class="container">
 			<div class="card login-card">
 				<div class="row no-gutters">
 					<div class="col-md-5">
-						<img src="ESTILOS/login/images/login2.jpg" alt="login"
+						<img src="VISTAS/ESTILOS/login/images/login2.jpg" alt="login"
 							class="login-card-img">
 					</div>
 					<div class="col-md-7">
 						<div class="card-body">
 							<div class="brand-wrapper">
-								<img src="ESTILOS/login/images/logo1.svg" alt="logo"
+								<img src="VISTAS/ESTILOS/login/images/logo1.svg" alt="logo"
 									class="logo" style="width: 500px; height: 200px;">
 							</div>
 							<div style="padding-left: 100px;">
@@ -46,18 +44,18 @@
 								<p class="login-card-description">Iniciar sesi&oacute;n en su
 									cuenta</p>
 								<div id="error" style=" margin-bottom: 15px; color: red; font-family: monospace;"></div>
-								<form action="rdyControllerUsuarios?action=index" method="post"
+								<form action="rdyController?action=index" method="post"
 									id="formlogin">
 									
 										<div class="form-group">
 											<label for="usuario" class="sr-only">Usuario</label> <input
 												type="text" name="usuario" id="usuario" class="form-control"
-												placeholder="Usuario">
+												placeholder="Usuario" value="admin">
 										</div>
 										<div class="form-group mb-4">
 											<label for="clave" class="sr-only">Clave</label> <input
 												type="password" name="clave" id="clave" class="form-control"
-												placeholder="Clave">
+												placeholder="Clave" value="123">
 										</div> <input name="login" id="login"
 										class="btn btn-block login-btn mb-4" type="submit"
 										value="Acceder">

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Game Warrior Template</title>
+	<title>RDY</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Game Warrior Template">
-	<meta name="keywords" content="warrior, game, creative, html">
+	<meta name="description" content="RDY portal de videojuegos">
+	<meta name="keywords" content="rdy, jeugos, creativo, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->   
 	<link href="ESTILOS/principal/img/favicon.ico" rel="shortcut icon"/>
@@ -19,6 +19,11 @@
 	<link rel="stylesheet" href="ESTILOS/principal/css/style.css"/>
 	<link rel="stylesheet" href="ESTILOS/principal/css/animate.css"/>
 
+	<script>
+		console.log("Usuario "+"${user}"+Request);
+	</script>
+	
+
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -31,10 +36,11 @@
 		<div class="container">
 			<!-- logo -->
 			<a class="site-logo" href="index.html">
-				<img src="ESTILOS/principal/img/logo.png" alt="">
+				<img src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel">
-				<a href="#">Login</a>  /  <a href="../indexpppppppp.html">Register</a>
+				Bienvenido de vuelta, 
+				
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
@@ -43,11 +49,21 @@
 			<!-- site menu -->
 			<nav class="main-menu">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="review.html">Games</a></li>
-					<li><a href="categories.html">Blog</a></li>
-					<li><a href="community.html">Forums</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="ESTILOS/principal/single-blog.html">CATEGORIAS</a></li>
+					<li><a href="ESTILOS/principal/review.html">PLATAFORMAS</a></li>
+					<li><a href="ESTILOS/principal/community.html">prueba</a></li>
+					<li> <select name="select">
+					  <option value="value1">Value 1</option>
+					  <option value="value2" selected>Value 2</option>
+					  <option value="value3">Value 3</option>
+					</select></li>
+					<form action="rdyControllerUsuarios?action=mostrarBlog" method="post">  
+					<li>
+					 <input name="blog" id="blog" type="submit" value="BLOG">
+
+					</li>
+					</form>
+					<li><a href="ESTILOS/principal/contact.html">CONTACTO</a></li>
 				</ul>
 			</nav>
 		</div>
