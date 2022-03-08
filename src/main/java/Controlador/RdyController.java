@@ -69,8 +69,8 @@ public class RdyController extends HttpServlet {
 			case "register":
 				registrar(request, response);
 				break;
-			case "mostrar":
-				mostrar(request, response);
+			case "mostrarNoticia":
+				mostrarUnaNoticia(request, response);
 				break;
 			case "mostrarBlog":
 				mostrarBlog(request, response);
@@ -125,7 +125,7 @@ public class RdyController extends HttpServlet {
 			try {
 				dispatcher.forward(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				// Auto-generated catch block
 				e.printStackTrace();
 			} 
 	}
@@ -145,11 +145,16 @@ public class RdyController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void mostrar(HttpServletRequest request, HttpServletResponse response)
+
+	private void mostrarUnaNoticia(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/mostrar.jsp");
-		List<Usuarios> listaUsuarioss = usuariosDao.listarUsuarios();
-		request.setAttribute("lista", listaUsuarioss);
+		//TODO
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/pagina-blog.jsp");
+		Blog b = new Blog(Integer.parseInt(request.getParameter("id")));
+		
+		
+		
+		
 		dispatcher.forward(request, response);
 	}
 	

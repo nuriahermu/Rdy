@@ -15,13 +15,13 @@
   </context-param>
   
    <servlet>
-        <servlet-name>rdyControllerUsuarios</servlet-name>
-		<servlet-class>Controlador.RdyControllerUsuarios</servlet-class>
+        <servlet-name>rdyController</servlet-name>
+		<servlet-class>Controlador.RdyController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-	    <servlet-name>rdyControllerUsuarios</servlet-name>
-	    <url-pattern>/rdyControllerUsuarios</url-pattern>
+	    <servlet-name>rdyController</servlet-name>
+	    <url-pattern>/rdyController</url-pattern>
     </servlet-mapping>
     
 </web-app>

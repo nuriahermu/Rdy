@@ -1,7 +1,7 @@
+<%@page import="java.sql.*"%>
 <%@page import="ModeloBBDD.BlogDAO"%>
 <%@page import="Modelo.Blog"%>
-<%@page import="java.util.LinkedList"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -40,14 +40,14 @@
 		<div class="container">
 			<!-- logo -->
 			<a class="site-logo" href="index.html"> <img
-				src="ESTILOS/login/images/logo1blancosmall.png"
-				alt="logo RDY">
+				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
-			<div class="user-panel-index" style="width: 80px;height: 66px;top: 55px;left: 450px;">
+			<div class="user-panel-index"
+				style="width: 80px; height: 50px; top: 65px; left: 450px;">
 				<div>
 					<form action="../rdyController?action=inicio" method="post">
 						<input name="inicio" id="inicio" type="submit" value="INICIO"
-						style="margin-top: 20px; margin-left: 8px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
+							style="margin-top: 12px; margin-left: 10px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
 					</form>
 				</div>
 			</div>
@@ -76,9 +76,20 @@
 		<div class="ln-title">¡ÚLTIMAS NOTICIAS!</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
-				<div class="nt-item"><span class="new">Noticias</span>Qué queda por comprar en la industria del videojuego: así está el panorama tras la ola de adquisiciones. </div>
-				<div class="nt-item"><span class="strategy">Estrategia</span>Gwent, el juego de cartas de The Witcher, recibirá a finales de 2022 una nueva entrega independiente para un solo jugador. </div>
-				<div class="nt-item"><span class="racing">Racing</span>Playstation mantiene la esperanza de Gran Turismo 7, ¿necesitaré dar el salto a la nueva generación? </div>
+				<div class="nt-item">
+					<span class="new">Noticias</span>Qué queda por comprar en la
+					industria del videojuego: así está el panorama tras la ola de
+					adquisiciones.
+				</div>
+				<div class="nt-item">
+					<span class="strategy">Estrategia</span>Gwent, el juego de cartas
+					de The Witcher, recibirá a finales de 2022 una nueva entrega
+					independiente para un solo jugador.
+				</div>
+				<div class="nt-item">
+					<span class="racing">Racing</span>Playstation mantiene la esperanza
+					de Gran Turismo 7, ¿necesitaré dar el salto a la nueva generación?
+				</div>
 			</div>
 		</div>
 	</div>
@@ -127,7 +138,7 @@
 												<td>TITULO</td>
 												<td>DESCRIPCION</td>
 												<td>IMAGEN</td>
-												<td colspan=2>ACCIONES</td>
+												<td colspan=2>ACCION</td>
 											</tr>
 										</thead>
 										<tbody>
@@ -139,7 +150,7 @@
 												out.print("<td><h5>" + b.getTitulo() + "</h5></td>");
 												out.print("<td><p>" + b.getDescripcion().substring(0, 100) + "...</p></td>");
 												out.print("<td><img src= 'copia_" + b.getId() + "'></td>");
-												out.print("<td><a href ='eliminar'>Mostrar</td>");
+												out.print("<td><a href ='../rdyController?action=mostrarNoticia'>Mostrar</td>");
 												out.print("</tr>");
 
 											}
@@ -148,6 +159,45 @@
 
 
 									</table>
+								</div>
+
+								<div class="col-md-12">
+									<div class="recent-game-item">
+										<div class="rgi-thumb set-bg"
+											data-setbg="ESTILOS/principal/img/recent-game/3.jpg">
+											<div class="cata adventure">Adventure</div>
+										</div>
+										<div class="rgi-content">
+											<%
+								   //CONECTANOD A LA BASE DE DATOS:
+					            Connection con;
+					            String url = "jdbc:mysql://localhost:3306/rdy";
+					            String Driver = "com.mysql.jdbc.Driver";
+					            String user = "root";
+					            String clave = "";
+					            Class.forName(Driver);
+					            con = DriverManager.getConnection(url, user, clave);
+					            PreparedStatement ps;
+					            //Emnpezamos Listando los Datos de la Tabla Usuario
+					            Statement smt;
+					            ResultSet rs;
+					            smt = con.createStatement();
+					            rs = smt.executeQuery("select * from blog");
+								
+                            while (rs.next()) {
+                        %>
+
+											<h5><%= rs.getString("titulo")%></h5>
+											<p><%= rs.getString("descripcion").substring(0,250)+"..."%></p>
+											
+											<a href="Editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;">Editar</a>
+                                			<a href="Delete.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px;">Eliminar</a>
+                                            <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320">Leer más</a>
+                                
+											
+											<%} %>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

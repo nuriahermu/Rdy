@@ -24,6 +24,11 @@ public class Blog {
 		this.descripcion = descripcion2;
 		this.imagen = imagen;
 	}
+	
+	public Blog(int id) {
+		// TODO Auto-generated constructor stub
+		this.id = id;
+	}
 
 	public int getId() {
 		return id;

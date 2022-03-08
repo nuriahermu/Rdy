@@ -17,7 +17,7 @@
           <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
           <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-          <link rel="stylesheet" href="../ESTILOS/login/css/login.css">
+          <link rel="stylesheet" href="ESTILOS/login/css/login.css">
 
           
           <script src="../JS/Login.js" language="JavaScript" type="text/javascript"></script>
@@ -31,18 +31,18 @@
       <div class="card login-card">
         <div class="row no-gutters">
           <div class="col-md-5">
-            <img src="../ESTILOS/login/images/nuevoUsuario.jpg" alt="login" class="login-card-img">
+            <img src="ESTILOS/login/images/nuevoUsuario.jpg" alt="login" class="login-card-img">
           </div>
           <div class="col-md-7">
             <div class="card-body">
               <div class="brand-wrapper">
-                <img src="../ESTILOS/login/images/logo1.svg" alt="logo" class="logo" style=" width: 500px; height: 200px;">
+                <img src="ESTILOS/login/images/logo1.svg" alt="logo" class="logo" style=" width: 500px; height: 200px;">
               </div>
                 <div style=" padding-left: 100px;"> 
                     
               <p class="login-card-description">Nuevo usuario</p>
               <div id="error"></div>
-              <form action="../rdyControllerUsuarios?action=register" method="post">               
+              <form action="../rdyController?action=register" method="post">               
                   <div class="form-group">
                     <label for="usuario" class="sr-only">Usuario</label>
                     <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" maxlength="15">
