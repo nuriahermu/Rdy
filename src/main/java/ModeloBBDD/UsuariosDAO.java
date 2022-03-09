@@ -19,7 +19,6 @@ public class UsuariosDAO {
     private final Conexion con;
     
     public UsuariosDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) throws SQLException {
-		System.out.println(jdbcURL);
 		con = new Conexion(jdbcURL, jdbcUsername, jdbcPassword);
     }
     

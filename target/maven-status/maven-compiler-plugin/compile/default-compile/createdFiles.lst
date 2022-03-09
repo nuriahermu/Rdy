@@ -1,6 +1,8 @@
-Controlador\Conexion.class
 Modelo\Blog.class
+ModeloBBDD\BlogDAO.class
+Controlador\Conexion.class
 Modelo\Usuarios.class
+ModeloBBDD\ComentariosDAO.class
+Modelo\ComentarioBlog.class
 ModeloBBDD\UsuariosDAO.class
 Controlador\RdyController.class
-ModeloBBDD\BlogDAO.class

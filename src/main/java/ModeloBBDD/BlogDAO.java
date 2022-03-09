@@ -1,5 +1,10 @@
 package ModeloBBDD;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,22 +14,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.protocol.a.BinaryResultsetReader;
-
-import java.awt.Image;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import Controlador.Conexion;
 import Modelo.Blog;
-import Modelo.Usuarios;
+import Modelo.ComentarioBlog;
 
 public class BlogDAO {
 
@@ -82,24 +77,6 @@ public class BlogDAO {
 				is.close();
 
 				listaBlog.add(b);
-
-//			int id = resulSet.getInt("id");
-//			String titulo = resulSet.getString("titulo");
-//			String descripcion = resulSet.getString("descripcion");
-//			Blob imageBlob = resulSet.getBina("imagen");
-//
-//			// recuperamos la imagen
-//			Image imagenConvertida = null;
-//			try {
-//				imagenConvertida = javax.imageio.ImageIO.read(imageBlob.getBinaryStream());
-//				Blog blogNew = new Blog(id, titulo, descripcion, imagenConvertida);
-//				listaBlog.add(blogNew);
-//
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-
 			}
 			sentencia.close();
 			desconectar();
@@ -179,26 +156,7 @@ public class BlogDAO {
 			// TODO: handle exception
 		}
 	}
-
-//	// actualizar
-//	public boolean actualizar(Usuarios usuario) throws SQLException {
-//		boolean rowActualizar = false;
-//		String sql = "UPDATE usuarios SET usuario=?,clave=?,rol=?, memoria=? WHERE id=?";
-//		conectar();
-//		connection = con.getJdbcConnection();
-//		PreparedStatement statement = connection.prepareStatement(sql);
-//		statement.setString(1, usuario.getUsuario());
-//		statement.setString(2, usuario.getClave());
-//		statement.setString(3, usuario.getRol());
-//		statement.setInt(4, usuario.getMemoria());
-//		System.out.println(usuario.getUsuario());
-//
-//		rowActualizar = statement.executeUpdate() > 0;
-//		statement.close();
-//		desconectar();
-//		return rowActualizar;
-//	}
-//
+	
 	// eliminar
 	public void eliminar(int id) throws SQLException {
 		try {
@@ -212,28 +170,6 @@ public class BlogDAO {
 			System.exit(0);
 		}
 	}
-//
-//	// consultar
-//	public Usuarios consultar(String nombre, String clave) throws SQLException {
-//		Usuarios usuario = null;
-//
-//		String sql = "SELECT * FROM usuarios WHERE usuario= ? AND clave=? ";
-//		conectar();
-//		connection = con.getJdbcConnection();
-//		PreparedStatement statement = connection.prepareStatement(sql);
-//		statement.setString(1, nombre);
-//		statement.setString(2, clave);
-//
-//		ResultSet res = statement.executeQuery();
-//		if (res.next()) {
-//			usuario = new Usuarios(res.getInt("id"), res.getString("usuario"), res.getString("clave"),
-//					res.getString("rol"), res.getInt("memoria"));
-//		}
-//		res.close();
-//		desconectar();
-//
-//		return usuario;
-//	}
 
 	public void conectar() throws SQLException {
 		try {

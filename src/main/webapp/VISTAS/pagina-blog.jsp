@@ -8,7 +8,7 @@
 <meta name="keywords" content="rdy, juegos, creativo, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon -->
-<link href="ESTILOS/principal/img/favicon.ico" rel="shortcut icon" />
+<link href="ESTILOS/principal/img/palanca-de-mando.png" rel="shortcut icon"/>
 
 <!-- Google Fonts -->
 <link
@@ -22,12 +22,6 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
-
-<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -36,7 +30,7 @@
 	</div>
 
 	<!-- Header section -->
-		<header class="header-section">
+	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
 			<a class="site-logo" href="index.html"> <img
@@ -61,9 +55,9 @@
 			<!-- site menu -->
 			<nav class="main-menu" style="margin-top: 50px;">
 				<ul>
-					<li><a href="review.html">Games</a></li>
-					<li><a href="categories.jsp">NOTICIAS</a></li>
-					<li><a href="contact.html">CONTACTO</a></li>
+					<li><a href="juegos.jsp">JUEGOS</a></li>
+					<li><a href="noticias.jsp">NOTICIAS</a></li>
+					<li><a href="contacto.jsp">CONTACTO</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -95,54 +89,21 @@
 	</div>
 	<!-- Latest news section end -->
 
-
-	<!-- Page info section -->
-	<section class="page-info-section set-bg"
-		data-setbg="ESTILOS/principal/img/page-top-bg/2.jpg">
-		<div class="pi-content">
-			<div class="container">
-				<div class="row">
-					<div class="col-xl-5 col-lg-6 text-white">
-						<h2>Genji - The Game</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla
-							dictum.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Page info section -->
-
-
 	<!-- Page section -->
 	<section class="page-section single-blog-page spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<div class="blog-thumb set-bg"
-						data-setbg="ESTILOS/principal/img/recent-game/big.jpg">
-						<div class="cata new">new</div>
-						<div class="rgi-extra">
-							<div class="rgi-star">
-								<img src="ESTILOS/principal/img/icons/star.png" alt="">
-							</div>
-							<div class="rgi-heart">
-								<img src="ESTILOS/principal/img/icons/heart.png" alt="">
-							</div>
-						</div>
-					</div>
 					<div class="blog-content">
 						<%
 						//CONECTANOD A LA BASE DE DATOS:
 						Connection con;
 						String url = "jdbc:mysql://localhost:3306/rdy";
-						String Driver = "com.mysql.jdbc.Driver";
+						String Driver = "com.mysql.cj.jdbc.Driver";
 						String user = "root";
 						String clave = "";
 						Class.forName(Driver);
 						con = DriverManager.getConnection(url, user, clave);
-						//Emnpezamos Listando los Datos de la Tabla Usuario pero de la fila seleccionada
 						PreparedStatement ps;
 						ResultSet rs;
 						int id = Integer.parseInt(request.getParameter("id"));
@@ -150,111 +111,63 @@
 						rs = ps.executeQuery();
 						while (rs.next()) {
 						%>
-						<h3><%=rs.getString("titulo")%></h3>
+						<h2 style="margin-bottom: 50px;"><%=rs.getString("titulo")%></h2>
+						<iframe width="640" height="360"
+							src="<%=rs.getString("youtube")%>" frameborder="0"
+							allowfullscreen></iframe>
 						<textarea
-							style="height: 297px; width: 750px; border: none; display: block; resize: none; background-color: white;"
+							style="margin-top: 50px; height: 320px; width: 750px; border: none; display: block; resize: none; background-color: white;"
 							disabled="true"><%=rs.getString("descripcion")%></textarea>
 						<%
 						}
 						%>
 					</div>
-					<div class="comment-form-warp">
-						<h4 class="comment-title">Esribe un comentario</h4>
-						<form class="comment-form">
+					<form class="comment-form"
+						action="../rdyController?action=comentarioBlog" method="post">
+						<div class="comment-form-warp">
+							<h4 class="comment-title">Esribe un comentario</h4>
+							<input name="id_blog" value=<%=id%> hidden="true">
 							<div class="row">
 								<div class="col-md-6">
-									<input type="text" placeholder="Nombre">
+									<input type="text" name="nombre" placeholder="Nombre"
+										class="form-control" maxlength="15" required>
 								</div>
 								<div class="col-lg-12">
-									<textarea placeholder="Mensaje"></textarea>
-									<button class="site-btn btn-sm">Publicar</button>
+									<textarea placeholder="Mensaje" name="mensaje"
+										class="form-control" maxlength="350" required></textarea>
+									<button class="site-btn btn-sm" type="submit">Publicar</button>
 								</div>
 							</div>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
 				<!-- sidebar -->
 				<div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0">
 					<!-- widget -->
 					<div class="widget-item">
-						<form class="search-widget">
-							<input type="text" placeholder="Search">
-							<button>
-								<i class="fa fa-search"></i>
-							</button>
-						</form>
-					</div>
-					<!-- widget -->
-					<div class="widget-item">
-						<h4 class="widget-title">Latest Posts</h4>
+						<h4 class="widget-title">Últimos comentarios</h4>
+						<%
+							PreparedStatement ps2;
+							ResultSet rs2;
+							ps2 = con.prepareStatement("select * from blog_comentario where id_blog=" + id);
+							rs2 = ps2.executeQuery();
+							
+							System.out.print(rs2.next());
+							while (rs2.next()) {
+						%>
 						<div class="latest-blog">
 							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/1.jpg"></div>
+								<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
+									data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
 								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Ipsum dolor sit amet, consectetur adipisc ing consecips</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/2.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Ipsum dolor sit amet, consectetur adipisc ing consecips</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/3.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Ipsum dolor sit amet, consectetur adipisc ing consecips</p>
-									<a href="#" class="lb-author">By Admin</a>
+									<p><%=rs2.getString("mensaje")%></p>
+									<a href="#" class="lb-author">Por: <%=rs2.getString("nombre")%></a>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- widget -->
-					<div class="widget-item">
-						<h4 class="widget-title">Top Comments</h4>
-						<div class="top-comment">
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/1.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">James Smith</a> <span>on</span> Lorem consec ipsum
-										dolor sit amet, co
-									</p>
-									<div class="tc-date">June 21, 2018</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/2.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">Michael James</a> <span>on</span>Cras sit amet
-										sapien aliquam
-									</p>
-									<div class="tc-date">June 21, 2018</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/3.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">Justin More</a> <span>on</span> Lorem ipsum dolor
-										consecsit amet, co
-									</p>
-									<div class="tc-date">June 21, 2018</div>
-								</div>
-							</div>
-						</div>
+						<%
+						}
+						%>
 					</div>
 				</div>
 			</div>
@@ -375,15 +288,12 @@
 		<div class="container">
 			<ul class="footer-menu">
 				<p class="copyright">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					Copyright &copy;
 					<script>
 						document.write(new Date().getFullYear());
 					</script>
 					Todos los derechos reservados| Hecho con <i class="fa fa-heart-o"
-						aria-hidden="true"></i> by <a href="https://colorlib.com"
-						target="_blank">Nuria</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						aria-hidden="true"></i> by Nuria
 				</p>
 		</div>
 	</footer>

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : index
+    Document   : nuevoUsuario
     Created on : 11 nov. 2021, 21:36:19
     Author     : Nuria
 --%>
@@ -17,12 +17,11 @@
           <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
           <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-          <link rel="stylesheet" href="ESTILOS/login/css/login.css">
-
+          <link rel="stylesheet" href="ESTILOS/login/css/login.css">          
           
-          <script src="../JS/Login.js" language="JavaScript" type="text/javascript"></script>
-          
-          
+       <!--- Favicon --->
+       	<link href="ESTILOS/principal/img/palanca-de-mando.png" rel="shortcut icon"/>
+       
     </head>
     <body>        
         
