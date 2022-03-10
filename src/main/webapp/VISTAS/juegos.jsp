@@ -1,25 +1,43 @@
 <!DOCTYPE html>
+<%@page import="java.util.Base64"%>
+<%@page import="java.io.OutputStream"%>
+<%@page import="java.sql.*"%>
 <html lang="en">
 <head>
-	<title>Rdy</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<meta name="description" content="RDY portal de videojuegos">
-	<meta name="keywords" content="rdy, juegos, creativo, html">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<!-- Favicon -->   
-	<link href="ESTILOS/principal/img/palanca-de-mando.png" rel="shortcut icon"/>
+<title>Rdy</title>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="description" content="RDY portal de videojuegos">
+<meta name="keywords" content="rdy, juegos, creativo, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<!-- Favicon -->
+<link href="ESTILOS/principal/img/palanca-de-mando.png"
+	rel="shortcut icon" />
 
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="ESTILOS/principal/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="ESTILOS/principal/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="ESTILOS/principal/css/owl.carousel.css"/>
-	<link rel="stylesheet" href="ESTILOS/principal/css/style.css"/>
-	<link rel="stylesheet" href="ESTILOS/principal/css/animate.css"/>
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i"
+	rel="stylesheet">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="ESTILOS/principal/css/bootstrap.min.css" />
+<link rel="stylesheet" href="ESTILOS/principal/css/font-awesome.min.css" />
+<link rel="stylesheet" href="ESTILOS/principal/css/owl.carousel.css" />
+<link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
+<link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
+
+
+<script>
+
+ function filtroXbox(){
+	 //$('todos').hide();
+	 document.getElementById('todos').style.visibility = "hidden";
+}
+
+</script>
+
+
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -28,7 +46,7 @@
 	</div>
 
 	<!-- Header section -->
-		<header class="header-section">
+	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
 			<a class="site-logo" href="index.html"> <img
@@ -43,7 +61,9 @@
 					</form>
 				</div>
 			</div>
-			<div class="user-panel" >Bienvenido de vuelta, <%= request.getParameter("usuario") %></div>
+			<div class="user-panel">
+				Bienvenido de vuelta,
+				<%=request.getParameter("usuario")%></div>
 			<!-- responsive -->
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
@@ -62,7 +82,7 @@
 
 
 	<!-- Latest news section -->
-		<div class="latest-news-section">
+	<div class="latest-news-section">
 		<div class="ln-title">¡ÚLTIMAS NOTICIAS!</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
@@ -87,13 +107,16 @@
 
 
 	<!-- Page info section -->
-	<section class="page-info-section set-bg" data-setbg="ESTILOS/principal/img/page-top-bg/4.jpg">
+	<section class="page-info-section set-bg"
+		data-setbg="ESTILOS/principal/img/mujeres-gamer.png">
 		<div class="pi-content">
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
-						<h2>Our Community</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum.</p>
+						<h2>Sumérgete de lleno en un mundo nuevo</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla
+							dictum.</p>
 					</div>
 				</div>
 			</div>
@@ -103,83 +126,103 @@
 
 
 	<!-- Page section -->
-	<section class="page-section community-page set-bg" data-setbg="ESTILOS/principal/img/community-bg.jpg">
+	<section class="page-section community-page set-bg"
+		data-setbg="ESTILOS/principal/img/fondo.jpg">
 		<div class="community-warp spad">
 			<div class="container">
 				<ul class="community-post-list">
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="ESTILOS/principal/img/authors/1.jpg"></div>
-							<div class="post-content">
-								<h5>James Smith<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
+					<li
+						style="background: white; height: 220px; writing-mode: vertical-lr; margin-left: 20px;">
+						<img src="ESTILOS/principal/img/logos/Xbox-Logo.jpg" alt="Xbox" onclick="filtroXbox();"
+						style="width: 200px; height: 150px; margin-right: 50px; margin-left: 20px;">
+						<img src="ESTILOS/principal/img/logos/play-logo.jpg"
+						alt="PlayStation"
+						style="width: 200px; height: 150px; margin-right: 50px;"> <img
+						src="ESTILOS/principal/img/logos/nintengo-logo.jpg" alt="Nintendo"
+						style="width: 200px; height: 200px; margin-right: 50px;"> <img
+						src="ESTILOS/principal/img/logos/pc-logo.png" alt="PC"
+						style="width: 200px; height: 150px;">
 					</li>
-					<li>
+				
+					<li style="background: #f9eeee7a;" id="todos">
+						<%
+					//CONECTANOD A LA BASE DE DATOS:
+					Connection con;
+					String url = "jdbc:mysql://localhost:3306/rdy";
+					String Driver = "com.mysql.cj.jdbc.Driver";
+					String user = "root";
+					String clave = "";
+					Class.forName(Driver);
+					con = DriverManager.getConnection(url, user, clave);
+					PreparedStatement ps;
+					Statement smt;
+					ResultSet rs;
+					OutputStream outs;
+					smt = con.createStatement();
+					rs = smt.executeQuery("select * from juegos");
+					OutputStream oImage;
+					while (rs.next()) {
+						
+						byte[] imgData = rs.getBytes("foto_portada"); // blob field 
+			            request.setAttribute("rvi", "Ravinath");
+			            rs.getString("nombre");
+
+			            String encode = Base64.getEncoder().encodeToString(imgData);
+			            request.setAttribute("imgBase", encode);
+						
+					%>
 						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="ESTILOS/principal/img/authors/8.jpg"></div>
-							<div class="post-content">
-								<h5>Partik Williams<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-								<div class="attachment-file">
-									<img src="img/attachment.jpg" alt="">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-4 col-md-6">
+										<div class="recent-game-item">
+											<div class="rgi-thumb set-bg">
+											
+											<div class="cata new"><%=rs.getInt("anio")%></div>
+											<br>
+											<img src="data:image/jpeg;base64,${imgBase}" alt="<%=rs.getString("nombre")%>" style="margin-top: 50px; height: 190px;"/>
+												
+											</div>
+											<div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-2 col-md-2">
+										<div class="recent-game-item">
+										<div class="rgi-content" style=" height: 105px; width: 596px; border: dashed; border-radius: 60px;">
+												<h5 style="text-align: -webkit-center;"><%=rs.getString("nombre")%></h5>
+											</div>
+											<div class="rgi-thumb set-bg"
+												style="width: 656px;height: auto;background: white;margin-top: 25px;">
+												<p><%=rs.getString("caracteristicas")%></p>
+											</div>
+											
+											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;margin-left: 310px;width: 80px;">Editar</a>
+                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
+                                            <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
+                                
+											<!-- <div>											
+												<div class="rgi-extra" style="position: relative;top: 30px;left: 550px;">
+													<button>1</button>
+													<button>2</button>
+													<div class="rgi-star">
+														<img src="ESTILOS/principal/img/icons/star.png" alt="">
+													</div>
+													<div class="rgi-heart">
+														<img src="ESTILOS/principal/img/icons/heart.png" alt="">
+													</div>
+												</div>
+											</div> -->
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
+						<%
+						}%>
+						
 					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="ESTILOS/principal/img/authors/5.jpg"></div>
-							<div class="post-content">
-								<h5>Cris The Man<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="ESTILOS/principal/img/authors/1.jpg"></div>
-							<div class="post-content">
-								<h5>James Smith<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="ESTILOS/principal/img/authors/4.jpg"></div>
-							<div class="post-content">
-								<h5>Cris The Man<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="ESTILOS/principal/img/authors/6.jpg"></div>
-							<div class="post-content">
-								<h5>James Smith<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="ESTILOS/principal/img/authors/7.jpg"></div>
-							<div class="post-content">
-								<h5>Maria Doe<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -293,7 +336,7 @@
 	</section>
 	<!-- Footer top section end -->
 
-	
+
 	<!-- Footer section -->
 	<footer class="footer-section">
 		<div class="container">
@@ -306,7 +349,7 @@
 					Todos los derechos reservados| Hecho con <i class="fa fa-heart-o"
 						aria-hidden="true"></i> by Nuria
 				</p>
-				</ul>
+			</ul>
 		</div>
 	</footer>
 	<!-- Footer section end -->
@@ -318,5 +361,5 @@
 	<script src="ESTILOS/principal/js/owl.carousel.min.js"></script>
 	<script src="ESTILOS/principal/js/jquery.marquee.min.js"></script>
 	<script src="ESTILOS/principal/js/main.js"></script>
-    </body>
+</body>
 </html>

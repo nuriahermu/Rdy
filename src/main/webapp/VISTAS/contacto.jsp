@@ -169,7 +169,6 @@
 				</div>
 			</div>
 		</div>
-		</div>
 	</section>
 	<!-- Page section end -->
 

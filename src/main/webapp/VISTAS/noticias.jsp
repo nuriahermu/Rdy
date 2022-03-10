@@ -134,22 +134,22 @@
 										</div>
 										<div class="rgi-content">
 											<%
-								   //CONECTANOD A LA BASE DE DATOS:
-					            Connection con;
-					            String url = "jdbc:mysql://localhost:3306/rdy";
-					            String Driver = "com.mysql.cj.jdbc.Driver";
-					            String user = "root";
-					            String clave = "";
-					            Class.forName(Driver);
-					            con = DriverManager.getConnection(url, user, clave);
-					            PreparedStatement ps;
-					            Statement smt;
-					            ResultSet rs;
-					            smt = con.createStatement();
-					            rs = smt.executeQuery("select * from blog");
-								
-                            while (rs.next()) {
-                        %>
+												//CONECTANOD A LA BASE DE DATOS:
+									            Connection con;
+									            String url = "jdbc:mysql://localhost:3306/rdy";
+									            String Driver = "com.mysql.cj.jdbc.Driver";
+									            String user = "root";
+									            String clave = "";
+									            Class.forName(Driver);
+									            con = DriverManager.getConnection(url, user, clave);
+									            PreparedStatement ps;
+									            Statement smt;
+									            ResultSet rs;
+									            smt = con.createStatement();
+									            rs = smt.executeQuery("select * from blog");
+												
+				                           		 while (rs.next()) {
+				                        	%>
 
 											<h5><%= rs.getString("titulo")%></h5>
 											<p><%= rs.getString("descripcion").substring(0,250)+"..."%></p>

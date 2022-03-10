@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.util.Base64"%>
 <%@page import="java.sql.*"%>
 <html lang="zxx">
 <head>
@@ -110,14 +111,22 @@
 						ps = con.prepareStatement("select * from blog where id=" + id);
 						rs = ps.executeQuery();
 						while (rs.next()) {
+							byte[] imgData = rs.getBytes("imagen"); 
+				            rs.getString("titulo");
+
+				            String encode = Base64.getEncoder().encodeToString(imgData);
+				            request.setAttribute("imgBase", encode);
 						%>
 						<h2 style="margin-bottom: 50px;"><%=rs.getString("titulo")%></h2>
 						<iframe width="640" height="360"
-							src="<%=rs.getString("youtube")%>" frameborder="0"
-							allowfullscreen></iframe>
+							src="<%=rs.getString("youtube")%>"></iframe>
 						<textarea
 							style="margin-top: 50px; height: 320px; width: 750px; border: none; display: block; resize: none; background-color: white;"
-							disabled="true"><%=rs.getString("descripcion")%></textarea>
+							disabled><%=rs.getString("descripcion")%></textarea>
+							
+						<h3 style="margin-bottom: 20px;">Captura del juego</h3>
+						<img src="data:image/jpeg;base64,${imgBase}" alt="<%=rs.getString("titulo")%>" />
+						
 						<%
 						}
 						%>
@@ -136,6 +145,7 @@
 									<textarea placeholder="Mensaje" name="mensaje"
 										class="form-control" maxlength="350" required></textarea>
 									<button class="site-btn btn-sm" type="submit">Publicar</button>
+									<input type="button" class="site-btn btn-sm" style="background: yellow;" value="Volver" onClick="history.go(-1);">
 								</div>
 							</div>
 						</div>

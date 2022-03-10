@@ -19,6 +19,9 @@
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
           <link rel="stylesheet" href="ESTILOS/login/css/login.css">          
           
+       <!--- Favicon --->
+       	<link href="ESTILOS/principal/img/palanca-de-mando.png" rel="shortcut icon"/>
+       
     </head>
     <body>        
         

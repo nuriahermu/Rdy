@@ -121,7 +121,7 @@
 					 ID: 
 					 <input type="text" name="id" readonly style="margin-bottom: 20px;width: 76px;" class="form-control" value="<%= rs.getInt("id")%>" required/>
                  	Título:	
-                 	<input type="text" name="titulo" class="form-control" style="margin-bottom: 20px;" value="<%= rs.getString("titulo")%>" required/>
+                 	<input type="text" name="titulo" maxlength="50" class="form-control" style="margin-bottom: 20px;" value="<%= rs.getString("titulo")%>" required/>
                  	URL Youtube:
                  	<input type="text" name="youtube" class="form-control" style="margin-bottom: 20px;" value="<%= rs.getString("youtube")%>" required/>
                  	Descripción:	
