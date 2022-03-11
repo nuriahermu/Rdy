@@ -42,7 +42,10 @@
 			</a>
 			<div class="user-panel">
 				Bienvenido de vuelta,
-				<%=request.getParameter("usuario")%></div>
+				${usuario.usuario}</div>
+			<div class="user-panel" style="position: absolute; top: 75px; left: 1060px; background: yellow; border-style: inset;">
+				<a href="VISTAS/perfil.jsp" style="font-size: 17px;">Mi cuenta</a>
+			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>

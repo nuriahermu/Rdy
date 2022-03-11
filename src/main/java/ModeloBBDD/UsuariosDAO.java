@@ -25,7 +25,7 @@ public class UsuariosDAO {
   
     // insertar usuario
     public boolean insertar(Usuarios usuario) throws SQLException {
-            String sql = "INSERT INTO usuarios (id, usuario, clave, rol, memoria) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO usuarios (id, usuario, clave, rol) VALUES (?, ?, ?, ?)";
             System.out.println(usuario.getUsuario());
             con.conectar();
             connection = con.getJdbcConnection();
@@ -34,7 +34,6 @@ public class UsuariosDAO {
             statement.setString(2, usuario.getUsuario());
             statement.setString(3, usuario.getClave());
             statement.setString(4, usuario.getRol());
-            statement.setInt(5, usuario.getMemoria());
 
             boolean rowInserted = statement.executeUpdate() > 0;
             statement.close();
@@ -57,9 +56,8 @@ public class UsuariosDAO {
                     String usuario = resulSet.getString("usuario");
                     String clave = resulSet.getString("clave");
                     String rol = resulSet.getString("rol");
-                    int memoria = resulSet.getInt("memoria");
                     
-                    Usuarios usuarioNew = new Usuarios(id, usuario, clave, rol, memoria);
+                    Usuarios usuarioNew = new Usuarios(id, usuario, clave, rol);
                     listaUsuarios.add(usuarioNew);
             }
             con.desconectar();
@@ -79,7 +77,7 @@ public class UsuariosDAO {
             ResultSet res = statement.executeQuery();
             if (res.next()) {
                     usuario = new Usuarios(res.getInt("id"), res.getString("usuario"), res.getString("clave"),
-                                    res.getString("rol"), res.getInt("memoria"));
+                                    res.getString("rol"));
             }
             res.close();
             con.desconectar();
@@ -90,14 +88,13 @@ public class UsuariosDAO {
     // actualizar
     public boolean actualizar(Usuarios usuario) throws SQLException {
             boolean rowActualizar = false;
-            String sql = "UPDATE usuarios SET usuario=?,clave=?,rol=?, memoria=? WHERE id=?";
+            String sql = "UPDATE usuarios SET usuario=?,clave=?,rol=? WHERE id=?";
             con.conectar();
             connection = con.getJdbcConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, usuario.getUsuario());
             statement.setString(2, usuario.getClave());
             statement.setString(3, usuario.getRol());
-            statement.setInt(4, usuario.getMemoria());
             System.out.println(usuario.getUsuario());
 
             rowActualizar = statement.executeUpdate() > 0;
@@ -136,7 +133,7 @@ public class UsuariosDAO {
             ResultSet res = statement.executeQuery();
             if (res.next()) {
                     usuario = new Usuarios(res.getInt("id"), res.getString("usuario"), res.getString("clave"),
-                                    res.getString("rol"), res.getInt("memoria"));
+                                    res.getString("rol"));
             }
             res.close();
             con.desconectar();

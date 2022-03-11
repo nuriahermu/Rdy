@@ -40,7 +40,7 @@
 				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel-index"
-				style="width: 80px; height: 50px; top: 65px; left: 450px;">
+				style="width: 80px; height: 50px; top: 65px; left: 400px;">
 				<div>
 					<form action="../rdyController?action=inicio" method="post">
 						<input name="inicio" id="inicio" type="submit" value="INICIO"
@@ -48,8 +48,9 @@
 					</form>
 				</div>
 			</div>
-			<div class="user-panel" style="margin-top: 50px;">
-				<a href="#">Login</a> / <a href="#">Register</a>
+			<div class="user-panel" >Bienvenido de vuelta, ${usuario.usuario}</div>
+			<div class="user-panel" style="position: absolute; top: 75px; left: 1060px; background: yellow; border-style: inset;">
+				<a href="perfil.jsp" style="font-size: 17px;">Mi cuenta</a>
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">

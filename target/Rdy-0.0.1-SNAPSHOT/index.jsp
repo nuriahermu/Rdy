@@ -23,6 +23,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="VISTAS/ESTILOS/login/css/login.css">
 
+<!-- Favicon -->
+	<link href="VISTAS/ESTILOS/principal/img/palanca-de-mando.png" rel="shortcut icon"/>
+
 </head>
 <body>
 	<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">

@@ -43,7 +43,10 @@
 					</form>
 				</div>
 			</div>
-			<div class="user-panel" >Bienvenido de vuelta, <%= request.getParameter("usuario") %></div>
+			<div class="user-panel" >Bienvenido de vuelta, ${usuario.usuario}</div>
+			<div class="user-panel" style="position: absolute; top: 75px; left: 1060px; background: yellow; border-style: inset;">
+				<a href="perfil.jsp" style="font-size: 17px;">Mi cuenta</a>
+			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
@@ -123,7 +126,7 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row"  style="margin-right: 0px;">
 			<div class="col-lg-1 mb-5 mb-lg-0"></div>
 			<div class="col-lg-4 mb-5 mb-lg-0" style="margin-top: 50px;">
 				<div class="row">

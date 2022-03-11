@@ -109,7 +109,7 @@ public class RdyController extends HttpServlet {
 		Usuarios usuarioEncontrado = usuariosDao.consultar(request.getParameter("usuario"),
 				request.getParameter("clave"));
 		if (usuarioEncontrado != null) {
-			request.getSession().setAttribute("user", request.getParameter("usuario"));
+			request.getSession().setAttribute("usuario", usuarioEncontrado);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/index.jsp");
 			dispatcher.forward(request, response);
 		} else {
@@ -134,8 +134,9 @@ public class RdyController extends HttpServlet {
 	private void registrarUsuario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		Usuarios usuario = new Usuarios(0, request.getParameter("usuario"), request.getParameter("clave"),
-				request.getParameter("rol"), Integer.parseInt(request.getParameter("memoria")));
+				request.getParameter("rol"));
 		usuariosDao.insertar(usuario);
+		request.getSession().setAttribute("usuario", usuario);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/index.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -189,8 +190,7 @@ public class RdyController extends HttpServlet {
 	private void editar(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 		Usuarios usuario = new Usuarios(Integer.parseInt(request.getParameter("id")), request.getParameter("usuario"),
-				request.getParameter("clave"), request.getParameter("rol"),
-				Integer.parseInt(request.getParameter("memoria")));
+				request.getParameter("clave"), request.getParameter("rol"));
 		usuariosDao.actualizar(usuario);
 		index(request, response);
 	}

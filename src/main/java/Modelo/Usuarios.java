@@ -6,7 +6,6 @@ public class Usuarios {
     private String usuario;
     private String clave;
     private String rol;
-    private int memoria;
     
     //contructor por defecto
     public Usuarios(){
@@ -15,12 +14,11 @@ public class Usuarios {
 
     //constructor ampliado
 
-    public Usuarios(int id, String usuario, String clave, String rol, int memoria) {
+    public Usuarios(int id, String usuario, String clave, String rol) {
         this.id = id;
         this.usuario = usuario;
         this.clave = clave;
         this.rol = rol;
-        this.memoria = memoria;
     }
    
 
@@ -56,14 +54,6 @@ public class Usuarios {
         this.rol = rol;
     }
 
-    public int getMemoria() {
-        return memoria;
-    }
-
-    public void setMemoria(int memoria) {
-        this.memoria = memoria;
-    }
-
 
     @Override
     public String toString() {
@@ -72,7 +62,6 @@ public class Usuarios {
                 ", usuario=" + usuario +
                 ", clave=" + clave +
                 ", rol=" + rol + 
-                ", memoria=" + memoria + 
                 '}';
     }
     
