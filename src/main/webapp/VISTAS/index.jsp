@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="es">
 <head>
 <title>RDY</title>
 <meta charset="UTF-8">
@@ -40,11 +40,12 @@
 				src="VISTAS/ESTILOS/login/images/logo1blancosmall.png"
 				alt="logo RDY">
 			</a>
-			<div class="user-panel">
-				Bienvenido de vuelta,
-				${usuario.usuario}</div>
-			<div class="user-panel" style="position: absolute; top: 75px; left: 1060px; background: yellow; border-style: inset;">
-				<a href="VISTAS/perfil.jsp" style="font-size: 17px;">Mi cuenta</a>
+			<div class="user-panel" style="text-align: center;">
+				Hola,
+				${usuario.usuario}
+				<div>
+					<a href="VISTAS/perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
+				</div>
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">

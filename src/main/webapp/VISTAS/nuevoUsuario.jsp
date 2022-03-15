@@ -55,7 +55,6 @@
                     <label for="" class=""> Acepto los <a href="#!">términos de uso</a> </label>
                   </div>
                   <input hidden="rol" name="rol" id="rol" value="cliente"/>
-                  <input hidden="memoria" name="memoria" id="memoria" value="1000000"/>
                   <input name="nuevoUsuario" id="nuevoUsuario" class="btn btn-block login-btn mb-4" type="submit" value="Aceptar">
                   <a href="../index.jsp" ><input name="cancelar" id="cancelar" class="btn btn-block login-btn mb-4" type="button" value="Cancelar"></a>
                 </form>

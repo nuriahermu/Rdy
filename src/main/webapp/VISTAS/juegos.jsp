@@ -2,7 +2,7 @@
 <%@page import="java.util.Base64"%>
 <%@page import="java.io.OutputStream"%>
 <%@page import="java.sql.*"%>
-<html lang="en">
+<html lang="es">
 <head>
 <title>Rdy</title>
 <meta charset="UTF-8">
@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/owl.carousel.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
@@ -82,11 +83,33 @@
 		 $('#todos_pc').show();
 	 }
 	 
-	 function confirmarDescarga(nombre) {
+	 
+	/*  $(document).ready(function() {
+			$('#descargar').click(function(event) {
+				var nombreVar = $('#nombre').val();
+				var apellidoVar = $('#apellido').val();
+				var edadVar = $('#edad').val();
+				// Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+				$.post('ActionServlet', {
+					nombre : nombreVar,
+					apellido: apellidoVar,
+					edad: edadVar
+				}, function(responseText) {
+					$('#tabla').html(responseText);
+				});
+			});
+		}); */
+	 
+	 
+	 function confirmarDescarga(nombre, id) {
 		event.preventDefault();  //evitar recarga de pagina
 		alertify.confirm("¿Estás seguro que quieres decargar "+nombre+" ?",
 				  function() {
 			 		event.preventDefault();
+			 		
+			 		//insertar en la tabla
+
+			 		
 				    alertify.success('¡Gracias por descargar!');
 					 var texto = "Gracias por descargar "+nombre+". ¡Disfrutalo! Rdy";
 				     var nombreArchivo = nombre+".txt";
@@ -100,6 +123,10 @@
 					  element.click();
 
 					  document.body.removeChild(element);
+					  
+					  
+					  document.formdescargar.submit();
+					  					  
 				  },
 				  function() {
 					  event.preventDefault();
@@ -124,20 +151,12 @@
 			<a class="site-logo" href="index.html"> <img
 				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
-			<div class="user-panel-index"
-				style="width: 80px; height: 50px; top: 65px; left: 400px;">
+			<div class="user-panel" style="text-align: center;">
+				Hola,
+				${usuario.usuario}
 				<div>
-					<form action="../rdyController?action=inicio" method="post">
-						<input name="inicio" id="inicio" type="submit" value="INICIO"
-							style="margin-top: 12px; margin-left: 10px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
-					</form>
+					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
 				</div>
-			</div>
-			<div class="user-panel">
-				Bienvenido de vuelta,
-				${usuario.usuario}</div>
-			<div class="user-panel" style="position: absolute; top: 75px; left: 1060px; background: yellow; border-style: inset;">
-				<a href="perfil.jsp" style="font-size: 17px;">Mi cuenta</a>
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
@@ -146,6 +165,13 @@
 			<!-- site menu -->
 			<nav class="main-menu" style="margin-top: 50px;">
 				<ul>
+				<li>
+				<a href="">
+					<form action="../rdyController?action=inicio" method="post">
+						<input name="inicio" id="inicio" type="submit" value="INICIO" onMouseover="this.style.color='#ffb320'" onMouseout="this.style.color='white'" style="border: none;background: none;color: white;padding: 10px 5px;font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: bolder;">
+					</form>
+				</a>
+				</li>
 					<li><a href="juegos.jsp">JUEGOS</a></li>
 					<li><a href="noticias.jsp">NOTICIAS</a></li>
 					<li><a href="contacto.jsp">CONTACTO</a></li>
@@ -199,30 +225,29 @@
 
 
 	<!-- Page section -->
-	<section class="page-section community-page set-bg"
-		data-setbg="ESTILOS/principal/img/fondo.jpg">
-		<div class="community-warp spad">
+	<section class="page-section community-page set-bg" style="background: #f5a00454;">
+		<div class="community-warp spad" style="background: antiquewhite;">
 		
-		
-		<div class="user-panel" style="width: 146px;height: 46px; position: absolute; left: 1100px; top: 760px;">
-		<input name="inicio" id="inicio" type="button" value="VER TODOS" onclick="filtroTodos();"
-		style="margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
-							
+		<div class="row" style="margin-right: 0px;">
+			<div class="col-md-3" style="margin-bottom: 20px;">
+				<div class="user-panel" >
+					<input name="inicio" id="inicio" type="button" value="VER TODOS" onclick="filtroTodos();"
+					style="margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
+				</div>
+			</div>
 		</div>
-		
-		
-		
+
 			<div class="container">
 				<ul class="community-post-list">
 					<li
-						style="background: white; height: 220px; writing-mode: vertical-lr; margin-left: 20px;">
-						<img src="ESTILOS/principal/img/logos/Xbox-Logo.jpg" alt="Xbox" onclick="filtroXbox();"
+						style="border: none; background: none; height: 220px; writing-mode: vertical-lr; margin-left: 20px;">
+						<img src="ESTILOS/principal/img/logos/xbox-logo.png" alt="Xbox" onclick="filtroXbox();"
 						style="width: 200px; height: 150px; margin-right: 50px; margin-left: 20px;">
-						<img src="ESTILOS/principal/img/logos/play-logo.jpg" onclick="filtroPlay();"
+						<img src="ESTILOS/principal/img/logos/play-logo.png" onclick="filtroPlay();"
 						alt="PlayStation"
-						style="width: 200px; height: 150px; margin-right: 50px;"> <img
-						src="ESTILOS/principal/img/logos/nintengo-logo.jpg" alt="Nintendo" onclick="filtroNintendo();"
-						style="width: 200px; height: 200px; margin-right: 50px;"> <img
+						style="width: 200px;margin-right: 50px;margin-top: 70px;"> <img
+						src="ESTILOS/principal/img/logos/nintendo-logo.png" alt="Nintendo" onclick="filtroNintendo();"
+						style="width: 200px;margin-right: 50px;margin-top: 70px;"> <img
 						src="ESTILOS/principal/img/logos/pc-logo.png" alt="PC" onclick="filtroPC();"
 						style="width: 200px; height: 150px;">
 					</li>
@@ -254,7 +279,7 @@
 			            request.setAttribute("imgBase", encode);
 						
 					%>
-					<li style="background: #f9eeee7a;">
+					<li style="background: white;">
 						<div class="community-post">
 							<div class="container">
 								<div class="row">
@@ -273,31 +298,20 @@
 									</div>
 									<div class="col-lg-2 col-md-2">
 										<div class="recent-game-item">
-										<div class="rgi-content" style=" height: 105px; width: 596px; border: dashed; border-radius: 60px;">
+										<div class="rgi-content" style=" height: 105px; width: 596px; border: none;">
 												<h5 style="text-align: -webkit-center;"><%=rs.getString("nombre")%></h5>
 											</div>
 											<div class="rgi-thumb set-bg"
 												style="width: 656px;height: auto;background: white;margin-top: 25px;">
 												<p><%=rs.getString("caracteristicas")%></p>
 											</div>
-											
-											<a href="" onclick="confirmarDescarga('<%= rs.getString("nombre")%>')" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;position: absolute;margin-top: 20px;margin-left: 200px;width: 96px; font-weight: 600;">Descargar</a>
-											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;margin-left: 310px;width: 80px;">Editar</a>
-                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
+											<form name="formdescargar">
+											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;position: absolute; margin-left: 200px;width: 96px; font-weight: 600;">Descargar</a>
+											</form>
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute;margin-left: 310px;width: 80px;">Editar</a>
+                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; left: 420px; width: 80px;">Eliminar</a>
+                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px; width: 80px;">Ver</a>
                                 
-											<!-- <div>											
-												<div class="rgi-extra" style="position: relative;top: 30px;left: 550px;">
-													<button>1</button>
-													<button>2</button>
-													<div class="rgi-star">
-														<img src="ESTILOS/principal/img/icons/star.png" alt="">
-													</div>
-													<div class="rgi-heart">
-														<img src="ESTILOS/principal/img/icons/heart.png" alt="">
-													</div>
-												</div>
-											</div> -->
 										</div>
 									</div>
 								</div>
@@ -321,7 +335,7 @@
 			            request.setAttribute("imgBase", encode);
 						
 					%>
-					<li style="background: #f9eeee7a;">
+					<li style="background: white;">
 						<div class="community-post">
 							<div class="container">
 								<div class="row">
@@ -340,7 +354,7 @@
 									</div>
 									<div class="col-lg-2 col-md-2">
 										<div class="recent-game-item">
-										<div class="rgi-content" style=" height: 105px; width: 596px; border: dashed; border-radius: 60px;">
+										<div class="rgi-content" style=" height: 105px; width: 596px; border: none;">
 												<h5 style="text-align: -webkit-center;"><%=rs.getString("nombre")%></h5>
 											</div>
 											<div class="rgi-thumb set-bg"
@@ -351,19 +365,7 @@
 											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;margin-left: 310px;width: 80px;">Editar</a>
                                 			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
                                             <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
-                                
-											<!-- <div>											
-												<div class="rgi-extra" style="position: relative;top: 30px;left: 550px;">
-													<button>1</button>
-													<button>2</button>
-													<div class="rgi-star">
-														<img src="ESTILOS/principal/img/icons/star.png" alt="">
-													</div>
-													<div class="rgi-heart">
-														<img src="ESTILOS/principal/img/icons/heart.png" alt="">
-													</div>
-												</div>
-											</div> -->
+										
 										</div>
 									</div>
 								</div>
@@ -387,7 +389,7 @@
 			            request.setAttribute("imgBase", encode);
 						
 					%>
-					<li style="background: #f9eeee7a;">
+					<li style="background: white;">
 						<div class="community-post">
 							<div class="container">
 								<div class="row">
@@ -406,7 +408,7 @@
 									</div>
 									<div class="col-lg-2 col-md-2">
 										<div class="recent-game-item">
-										<div class="rgi-content" style=" height: 105px; width: 596px; border: dashed; border-radius: 60px;">
+										<div class="rgi-content" style=" height: 105px; width: 596px; border: none;">
 												<h5 style="text-align: -webkit-center;"><%=rs.getString("nombre")%></h5>
 											</div>
 											<div class="rgi-thumb set-bg"
@@ -417,19 +419,7 @@
 											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;margin-left: 310px;width: 80px;">Editar</a>
                                 			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
                                             <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
-                                
-											<!-- <div>											
-												<div class="rgi-extra" style="position: relative;top: 30px;left: 550px;">
-													<button>1</button>
-													<button>2</button>
-													<div class="rgi-star">
-														<img src="ESTILOS/principal/img/icons/star.png" alt="">
-													</div>
-													<div class="rgi-heart">
-														<img src="ESTILOS/principal/img/icons/heart.png" alt="">
-													</div>
-												</div>
-											</div> -->
+                               
 										</div>
 									</div>
 								</div>
@@ -453,7 +443,7 @@
 			            request.setAttribute("imgBase", encode);
 						
 					%>
-					<li style="background: #f9eeee7a;">
+					<li style="background: white;">
 						<div class="community-post">
 							<div class="container">
 								<div class="row">
@@ -472,7 +462,7 @@
 									</div>
 									<div class="col-lg-2 col-md-2">
 										<div class="recent-game-item">
-										<div class="rgi-content" style=" height: 105px; width: 596px; border: dashed; border-radius: 60px;">
+										<div class="rgi-content" style=" height: 105px; width: 596px; border: none;">
 												<h5 style="text-align: -webkit-center;"><%=rs.getString("nombre")%></h5>
 											</div>
 											<div class="rgi-thumb set-bg"
@@ -483,19 +473,6 @@
 											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;margin-left: 310px;width: 80px;">Editar</a>
                                 			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
                                             <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
-                                
-											<!-- <div>											
-												<div class="rgi-extra" style="position: relative;top: 30px;left: 550px;">
-													<button>1</button>
-													<button>2</button>
-													<div class="rgi-star">
-														<img src="ESTILOS/principal/img/icons/star.png" alt="">
-													</div>
-													<div class="rgi-heart">
-														<img src="ESTILOS/principal/img/icons/heart.png" alt="">
-													</div>
-												</div>
-											</div> -->
 										</div>
 									</div>
 								</div>
@@ -519,7 +496,7 @@
 			            request.setAttribute("imgBase", encode);
 						
 					%>
-					<li style="background: #f9eeee7a;">
+					<li style="background: white;">
 						<div class="community-post">
 							<div class="container">
 								<div class="row">
@@ -538,7 +515,7 @@
 									</div>
 									<div class="col-lg-2 col-md-2">
 										<div class="recent-game-item">
-										<div class="rgi-content" style=" height: 105px; width: 596px; border: dashed; border-radius: 60px;">
+										<div class="rgi-content" style=" height: 105px; width: 596px; border: none;">
 												<h5 style="text-align: -webkit-center;"><%=rs.getString("nombre")%></h5>
 											</div>
 											<div class="rgi-thumb set-bg"
@@ -550,18 +527,6 @@
                                 			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
                                             <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
                                 
-											<!-- <div>											
-												<div class="rgi-extra" style="position: relative;top: 30px;left: 550px;">
-													<button>1</button>
-													<button>2</button>
-													<div class="rgi-star">
-														<img src="ESTILOS/principal/img/icons/star.png" alt="">
-													</div>
-													<div class="rgi-heart">
-														<img src="ESTILOS/principal/img/icons/heart.png" alt="">
-													</div>
-												</div>
-											</div> -->
 										</div>
 									</div>
 								</div>

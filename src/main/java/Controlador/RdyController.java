@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.swing.JOptionPane;
 
 import Modelo.ComentarioBlog;
+import Modelo.ComentarioJuego;
 import Modelo.Usuarios;
 import ModeloBBDD.ComentariosDAO;
 import ModeloBBDD.UsuariosDAO;
@@ -75,6 +76,9 @@ public class RdyController extends HttpServlet {
 				break;
 			case "mostrarBlog":
 				mostrarBlog(request, response);
+				break;
+			case "comentarioJuego":
+				comentarioJuego(request, response);
 				break;
 			case "showedit":
 				showEditar(request, response);
@@ -151,24 +155,25 @@ public class RdyController extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 		
 		String id = request.getParameter("id");
-//		PrintWriter out = response.getWriter();
-//		out.println("<script type=\"text/javascript\">");
-//		out.println("alert('Usuario o clave incorrectos');");
-//		out.println("location='noticias.jsp';");
-//		out.println("</script>");
-		
-		JOptionPane.showConfirmDialog(null, "Realmente desea salir de Hola Swing?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-		
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/noticias.jsp");
-		//dispatcher.forward(request, response);
+		comentariosDao.eliminarNoticia(id);
+				
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/noticias_servlet.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private void comentarioBlog(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		//TODO
 		ComentarioBlog comentario = new ComentarioBlog(0, request.getParameter("id_blog"), request.getParameter("nombre"), request.getParameter("mensaje"));
 		comentariosDao.insertar(comentario);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/noticias.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-blog-servlet.jsp?id="+request.getParameter("id_blog"));
+		dispatcher.forward(request, response);
+	}
+	
+	private void comentarioJuego(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		ComentarioJuego comentario = new ComentarioJuego(0, request.getParameter("id_juego"), request.getParameter("nombre"), request.getParameter("mensaje"));
+		comentariosDao.insertarComentarioJuego(comentario);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-juego-ver-servlet.jsp?id="+request.getParameter("id_juego"));
 		dispatcher.forward(request, response);
 	}
 	

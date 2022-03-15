@@ -42,18 +42,12 @@
 			<a class="site-logo" href="index.html"> <img
 				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
-			<div class="user-panel-index"
-				style="width: 80px; height: 50px; top: 65px; left: 400px;">
+			<div class="user-panel" style="text-align: center;">
+				Hola,
+				${usuario.usuario}
 				<div>
-					<form action="../rdyController?action=inicio" method="post">
-						<input name="inicio" id="inicio" type="submit" value="INICIO"
-							style="margin-top: 12px; margin-left: 10px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
-					</form>
+					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
 				</div>
-			</div>
-			<div class="user-panel" >Bienvenido de vuelta, ${usuario.usuario}</div>
-			<div class="user-panel" style="position: absolute; top: 75px; left: 1060px; background: yellow; border-style: inset;">
-				<a href="perfil.jsp" style="font-size: 17px;">Mi cuenta</a>
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
@@ -62,6 +56,13 @@
 			<!-- site menu -->
 			<nav class="main-menu" style="margin-top: 50px;">
 				<ul>
+				<li>
+				<a href="">
+					<form action="../rdyController?action=inicio" method="post">
+						<input name="inicio" id="inicio" type="submit" value="INICIO" onMouseover="this.style.color='#ffb320'" onMouseout="this.style.color='white'" style="border: none;background: none;color: white;padding: 10px 5px;font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: bolder;">
+					</form>
+				</a>
+				</li>
 					<li><a href="juegos.jsp">JUEGOS</a></li>
 					<li><a href="noticias.jsp">NOTICIAS</a></li>
 					<li><a href="contacto.jsp">CONTACTO</a></li>

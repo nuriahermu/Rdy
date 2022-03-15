@@ -1,5 +1,6 @@
 Modelo\Blog.class
 ModeloBBDD\BlogDAO.class
+Modelo\ComentarioJuego.class
 Controlador\Conexion.class
 Modelo\Usuarios.class
 ModeloBBDD\ComentariosDAO.class

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <%@page import="java.util.Base64"%>
 <%@page import="java.sql.*"%>
-<html lang="zxx">
+<html lang="es">
 <head>
-<title>Game Warrior Template</title>
+<title>Rdy</title>
 <meta charset="UTF-8">
 <meta name="description" content="RDY portal de videojuegos">
 <meta name="keywords" content="rdy, juegos, creativo, html">
@@ -37,18 +37,12 @@
 			<a class="site-logo" href="index.html"> <img
 				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
-			<div class="user-panel-index"
-				style="width: 80px; height: 50px; top: 65px; left: 400px;">
+			<div class="user-panel" style="text-align: center;">
+				Hola,
+				${usuario.usuario}
 				<div>
-					<form action="../rdyController?action=inicio" method="post">
-						<input name="inicio" id="inicio" type="submit" value="INICIO"
-							style="margin-top: 12px; margin-left: 10px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
-					</form>
+					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
 				</div>
-			</div>
-			<div class="user-panel" >Bienvenido de vuelta, ${usuario.usuario}</div>
-			<div class="user-panel" style="position: absolute; top: 75px; left: 1060px; background: yellow; border-style: inset;">
-				<a href="perfil.jsp" style="font-size: 17px;">Mi cuenta</a>
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
@@ -57,6 +51,13 @@
 			<!-- site menu -->
 			<nav class="main-menu" style="margin-top: 50px;">
 				<ul>
+				<li>
+				<a href="">
+					<form action="../rdyController?action=inicio" method="post">
+						<input name="inicio" id="inicio" type="submit" value="INICIO" onMouseover="this.style.color='#ffb320'" onMouseout="this.style.color='white'" style="border: none;background: none;color: white;padding: 10px 5px;font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: bolder;">
+					</form>
+				</a>
+				</li>
 					<li><a href="juegos.jsp">JUEGOS</a></li>
 					<li><a href="noticias.jsp">NOTICIAS</a></li>
 					<li><a href="contacto.jsp">CONTACTO</a></li>
@@ -122,10 +123,10 @@
 						<iframe width="640" height="360"
 							src="<%=rs.getString("youtube")%>"></iframe>
 						<textarea
-							style="margin-top: 50px; height: 320px; width: 750px; border: none; display: block; resize: none; background-color: white;"
+							style="overflow: hidden; margin-top: 50px; height: 320px; width: 750px; border: none; display: block; resize: none; background-color: white;"
 							disabled><%=rs.getString("descripcion")%></textarea>
 							
-						<h3 style="margin-bottom: 20px;">Captura del juego</h3>
+						<h3 style="margin-bottom: 20px;">Galería imágenes de la noticia</h3>
 						<img src="data:image/jpeg;base64,${imgBase}" alt="<%=rs.getString("titulo")%>" />
 						
 						<%
@@ -158,21 +159,23 @@
 					<div class="widget-item">
 						<h4 class="widget-title">Últimos comentarios</h4>
 						<%
-							PreparedStatement ps2;
-							ResultSet rs2;
-							ps2 = con.prepareStatement("select * from blog_comentario where id_blog=" + id);
-							rs2 = ps2.executeQuery();
+							ps = con.prepareStatement("select * from blog_comentario where id_blog=" + id);
+							rs = ps.executeQuery();
 							
-							System.out.print(rs2.next());
-							while (rs2.next()) {
+							if(rs.next() == false){
+								%>
+									<p>No hay comentarios </p>
+								<% 	
+									}
+							while (rs.next()) {
 						%>
 						<div class="latest-blog">
 							<div class="lb-item">
 								<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
 									data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
 								<div class="lb-content">
-									<p><%=rs2.getString("mensaje")%></p>
-									<a href="#" class="lb-author">Por: <%=rs2.getString("nombre")%></a>
+									<p><%=rs.getString("mensaje")%></p>
+									<a href="#" class="lb-author">Por: <%=rs.getString("nombre")%></a>
 								</div>
 							</div>
 						</div>

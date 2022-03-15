@@ -44,18 +44,17 @@
               <form action="../rdyController?action=register" method="post">               
                   <div class="form-group">
                     <label for="usuario" class="sr-only">Usuario</label>
-                    <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" maxlength="15">
+                    <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" maxlength="15" required>
                   </div>
                   <div class="form-group mb-4">
                     <label for="clave" class="sr-only">Contraseña</label>
-                    <input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña" maxlength="15">
+                    <input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña" maxlength="15" required>
                   </div>
                   <div class="form-group mb-4">
-                  	<input type="checkbox" id="terminos" class="" >
+                  	<input type="checkbox" id="terminos" class="" required>
                     <label for="" class=""> Acepto los <a href="#!">términos de uso</a> </label>
                   </div>
                   <input hidden="rol" name="rol" id="rol" value="cliente"/>
-                  <input hidden="memoria" name="memoria" id="memoria" value="1000000"/>
                   <input name="nuevoUsuario" id="nuevoUsuario" class="btn btn-block login-btn mb-4" type="submit" value="Aceptar">
                   <a href="../index.jsp" ><input name="cancelar" id="cancelar" class="btn btn-block login-btn mb-4" type="button" value="Cancelar"></a>
                 </form>

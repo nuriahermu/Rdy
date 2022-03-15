@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <title>RDY</title>
 <meta charset="UTF-8">
@@ -21,6 +21,19 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
+<link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+
+
+
+<script type="text/javascript">
+	function enviarMensaje() {
+		event.preventDefault();
+	    var notification = alertify.notify('¡Mensaje enviado! Gracias', 'success', 5, function(){ });
+	    document.getElementById('formularioMensaje').reset();
+	}
+
+</script>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -35,17 +48,12 @@
 			<a class="site-logo"> <img
 				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
-			<div class="user-panel-index" style="width: 80px;height: 50px;top: 65px;left: 400px;">
+			<div class="user-panel" style="text-align: center;">
+				Hola,
+				${usuario.usuario}
 				<div>
-					<form action="../rdyController?action=inicio" method="post">
-						<input name="inicio" id="inicio" type="submit" value="INICIO"
-						style="margin-top: 12px; margin-left: 10px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
-					</form>
+					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
 				</div>
-			</div>
-			<div class="user-panel" >Bienvenido de vuelta, ${usuario.usuario}</div>
-			<div class="user-panel" style="position: absolute; top: 75px; left: 1060px; background: yellow; border-style: inset;">
-				<a href="perfil.jsp" style="font-size: 17px;">Mi cuenta</a>
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
@@ -54,6 +62,13 @@
 			<!-- site menu -->
 			<nav class="main-menu" style="margin-top: 50px;">
 				<ul>
+				<li>
+				<a href="">
+					<form action="../rdyController?action=inicio" method="post">
+						<input name="inicio" id="inicio" type="submit" value="INICIO" onMouseover="this.style.color='#ffb320'" onMouseout="this.style.color='white'" style="border: none;background: none;color: white;padding: 10px 5px;font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: bolder;">
+					</form>
+				</a>
+				</li>
 					<li><a href="juegos.jsp">JUEGOS</a></li>
 					<li><a href="noticias.jsp">NOTICIAS</a></li>
 					<li><a href="contacto.jsp">CONTACTO</a></li>
@@ -154,18 +169,18 @@
 			<div class="col-lg-5" style="margin-top: 50px;">
 				<div class="contact-form-warp">
 					<h4 class="comment-title">Envíanos un mensaje</h4>
-					<form class="comment-form">
+					<form class="comment-form" id="formularioMensaje">
 						<div class="row">
 							<div class="col-md-6">
-								<input type="text" placeholder="Nombre">
+								<input type="text" id="nombre" placeholder="Nombre" required>
 							</div>
 							<div class="col-md-6">
-								<input type="email" placeholder="Email">
+								<input type="email" id="email" placeholder="Email" required>
 							</div>
 							<div class="col-lg-12">
-								<input type="text" placeholder="Mensaje">
-								<textarea placeholder="Tu mensaje"></textarea>
-								<button class="site-btn btn-sm">Enviar</button>
+								<input type="text" id="asunto" placeholder="Asunto" required>
+								<textarea placeholder="Tu mensaje" id="mensaje" required></textarea>
+								<button class="site-btn btn-sm" onclick="enviarMensaje()">Enviar</button>
 							</div>
 						</div>
 					</form>

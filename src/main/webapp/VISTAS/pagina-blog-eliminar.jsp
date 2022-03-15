@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <%@page import="java.sql.*"%>
-<html lang="zxx">
+<html lang="es">
 <head>
-<title>Game Warrior Template</title>
+<title>Rdy</title>
 <meta charset="UTF-8">
 <meta name="description" content="RDY portal de videojuegos">
 <meta name="keywords" content="rdy, juegos, creativo, html">
@@ -22,33 +22,25 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
+
+<link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+
 <script type="text/javascript">
 
-function alerta()
-{
-var mensaje;
-var opcion = confirm("¿Está seguro que quiere eliminar esta noticia?");
-if (opcion == true) {
-	 //Eliminamos la noticia y los comentarios asociados a ella
-	 
-		Connection con;
-		String url1 = "jdbc:mysql://localhost:3306/rdy";
-		String Driver1 = "com.mysql.cj.jdbc.Driver";
-		String user1 = "root";
-		String clave1 = "";
-		Class.forName(Driver1);
-		con1 = DriverManager.getConnection(url1, user1, clave1);
-		PreparedStatement ps1;
-		int id1 = Integer.parseInt(request.getParameter("id"));
-
-    ps=con.prepareStatement("delete from blog where id="+id);
-    ps.executeUpdate();
-    ps=con.prepareStatement("delete from blog_comentario where id_blog="+id);
-    ps.executeUpdate();
-    response.sendRedirect("noticias.jsp");
-    
-    
-} 
+function alerta(){
+	event.preventDefault();  //evitar recarga de pagina
+	alertify.confirm("¿Estás seguro que quieres eliminar esta noticia?",
+			  function() {
+		 		event.preventDefault();
+		 		$('#fomEliminar').submit();
+  					  
+			  },
+			  function() {
+				  event.preventDefault();
+				  alertify.error('¡Cancelado!');
+			  }
+			);
 }
 </script>
 
@@ -66,18 +58,12 @@ if (opcion == true) {
 			<a class="site-logo" href="index.html"> <img
 				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
-			<div class="user-panel-index"
-				style="width: 80px; height: 50px; top: 65px; left: 400px;">
+			<div class="user-panel" style="text-align: center;">
+				Hola,
+				${usuario.usuario}
 				<div>
-					<form action="../rdyController?action=inicio" method="post">
-						<input name="inicio" id="inicio" type="submit" value="INICIO"
-							style="margin-top: 12px; margin-left: 10px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
-					</form>
+					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
 				</div>
-			</div>
-			<div class="user-panel" >Bienvenido de vuelta, ${usuario.usuario}</div>
-			<div class="user-panel" style="position: absolute; top: 75px; left: 1060px; background: yellow; border-style: inset;">
-				<a href="perfil.jsp" style="font-size: 17px;">Mi cuenta</a>
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
@@ -86,6 +72,13 @@ if (opcion == true) {
 			<!-- site menu -->
 			<nav class="main-menu" style="margin-top: 50px;">
 				<ul>
+				<li>
+				<a href="">
+					<form action="../rdyController?action=inicio" method="post">
+						<input name="inicio" id="inicio" type="submit" value="INICIO" onMouseover="this.style.color='#ffb320'" onMouseout="this.style.color='white'" style="border: none;background: none;color: white;padding: 10px 5px;font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: bolder;">
+					</form>
+				</a>
+				</li>
 					<li><a href="juegos.jsp">JUEGOS</a></li>
 					<li><a href="noticias.jsp">NOTICIAS</a></li>
 					<li><a href="contacto.jsp">CONTACTO</a></li>
@@ -121,13 +114,14 @@ if (opcion == true) {
 	<!-- Latest news section end -->
 
 	<!-- Page section -->
+	<form id="fomEliminar" action="../rdyController?action=borrarBlog" method="post">
 	<section class="page-section single-blog-page spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="blog-content">
 						<%
-						//CONECTANOD A LA BASE DE DATOS:
+						//CONECTANDO A LA BASE DE DATOS:
 						Connection con;
 						String url = "jdbc:mysql://localhost:3306/rdy";
 						String Driver = "com.mysql.cj.jdbc.Driver";
@@ -140,10 +134,12 @@ if (opcion == true) {
 						int id = Integer.parseInt(request.getParameter("id"));
 						ps = con.prepareStatement("select * from blog where id=" + id);
 						rs = ps.executeQuery();
+						Boolean eliminar = false;
 						while (rs.next()) {
 						%>
-						<h2 style="margin-bottom: 50px;"><%=rs.getString("titulo")%></h2>
-						<iframe width="640" height="360"
+						 <input hidden="id" name="id" id="id" value='<%=rs.getInt("id")%>'/>
+						<h2 id="titulo" style="margin-bottom: 50px;"><%=rs.getString("titulo")%></h2>
+						<iframe width="640" height="360" 
 							src="<%=rs.getString("youtube")%>" frameborder="0"
 							allowfullscreen></iframe>
 						<textarea
@@ -152,9 +148,8 @@ if (opcion == true) {
 						<%
 						}
 						%>
-						
-						
-                 	 <button onclick="alerta()" style="margin-top: 20px;" class="btn btn-primary btn-lg">	
+												
+                 	 <button type="button" onclick="alerta()" style="margin-top: 20px;" class="btn btn-primary btn-lg">	
                  	 Eliminar
                  	 </button>
                  	 <a href="noticias.jsp" class="btn btn-primary btn-lg" style="margin-top: 20px;margin-left: 10px; background: red;border-color: red; width: 105px;">Volver</a>
@@ -172,7 +167,11 @@ if (opcion == true) {
 							ps2 = con.prepareStatement("select * from blog_comentario where id_blog=" + id);
 							rs2 = ps2.executeQuery();
 							
-							System.out.print(rs2.next());
+							if(rs2.next() == false){
+								%>
+									<p>No hay comentarios </p>
+								<% 	
+									}
 							while (rs2.next()) {
 						%>
 						<div class="latest-blog">
@@ -193,6 +192,7 @@ if (opcion == true) {
 			</div>
 		</div>
 	</section>
+	</form>
 	<!-- Page section end -->
 
 
@@ -328,12 +328,3 @@ if (opcion == true) {
 	<script src="ESTILOS/principal/js/main.js"></script>
 </body>
 </html>
-<%--    <%
-   //Eliminamos la noticia y los comentarios asociados a ella
-       ps=con.prepareStatement("delete from blog where id="+id);
-       ps.executeUpdate();
-       ps=con.prepareStatement("delete from blog_comentario where id_blog="+id);
-       ps.executeUpdate();
-       response.sendRedirect("noticias.jsp");
-       
-       %> --%>

@@ -130,32 +130,6 @@ public class BlogDAO {
 		return blog;
 	}
 
-	public void listarImg(int id, HttpServletResponse response) {
-
-		String sql = "select * from blog where id = " + id;
-		InputStream is = null;
-		OutputStream os = null;
-		BufferedInputStream bis = null;
-		BufferedOutputStream bos = null;
-		response.setContentType("image/*");
-		try {
-			conectar();
-			sentencia = con.createStatement();
-			resulSet = sentencia.executeQuery(sql);
-
-			if (resulSet.next()) {
-				is = resulSet.getBinaryStream("imagen");
-			}
-			bis = new BufferedInputStream(is);
-			bos = new BufferedOutputStream(os);
-			int i = 0;
-			while ((i = bis.read()) != -1) {
-				bos.write(i);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
 	
 	// eliminar
 	public void eliminar(int id) throws SQLException {
