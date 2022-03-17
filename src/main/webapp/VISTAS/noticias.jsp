@@ -158,11 +158,12 @@
 											<h5><%= rs.getString("titulo")%></h5>
 											<p><%= rs.getString("descripcion").substring(0,250)+"..."%></p>
 											
-											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;">Editar</a>
+											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style="margin-bottom: 30px;background: #05bd05;border-color: #05bd05;">Insertar</a>
+											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; width: 81px;">Editar</a>
                                 			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px;">Eliminar</a>
                                             <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320">Leer más</a>
                                 
-											
+											<hr>
 											<%} %>
 										</div>
 									</div>

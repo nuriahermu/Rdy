@@ -1,25 +1,17 @@
 package ModeloBBDD;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import javax.servlet.http.HttpServletResponse;
-
-import Controlador.Conexion;
 import Modelo.Blog;
-import Modelo.ComentarioBlog;
 
 public class BlogDAO {
 

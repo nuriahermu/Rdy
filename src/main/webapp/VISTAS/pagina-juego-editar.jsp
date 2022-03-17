@@ -9,7 +9,8 @@
 <meta name="keywords" content="rdy, juegos, creativo, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon -->
-<link href="ESTILOS/principal/img/palanca-de-mando.png" rel="shortcut icon"/>
+<link href="ESTILOS/principal/img/palanca-de-mando.png"
+	rel="shortcut icon" />
 
 <!-- Google Fonts -->
 <link
@@ -23,8 +24,11 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
-<link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
 
 </head>
@@ -42,10 +46,10 @@
 				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel" style="text-align: center;">
-				Hola,
-				${usuario.usuario}
+				Hola, ${usuario.usuario}
 				<div>
-					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
+					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi
+						cuenta</a>
 				</div>
 			</div>
 			<!-- responsive -->
@@ -55,13 +59,14 @@
 			<!-- site menu -->
 			<nav class="main-menu" style="margin-top: 50px;">
 				<ul>
-				<li>
-				<a href="">
-					<form action="../rdyController?action=inicio" method="post">
-						<input name="inicio" id="inicio" type="submit" value="INICIO" onMouseover="this.style.color='#ffb320'" onMouseout="this.style.color='white'" style="border: none;background: none;color: white;padding: 10px 5px;font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: bolder;">
-					</form>
-				</a>
-				</li>
+					<li><a href="">
+							<form action="../rdyController?action=inicio" method="post">
+								<input name="inicio" id="inicio" type="submit" value="INICIO"
+									onMouseover="this.style.color='#ffb320'"
+									onMouseout="this.style.color='white'"
+									style="border: none; background: none; color: white; padding: 10px 5px; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: bolder;">
+							</form>
+					</a></li>
 					<li><a href="juegos.jsp">JUEGOS</a></li>
 					<li><a href="noticias.jsp">NOTICIAS</a></li>
 					<li><a href="contacto.jsp">CONTACTO</a></li>
@@ -99,131 +104,148 @@
 	<!-- Page section -->
 	<section class="page-section single-blog-page spad">
 		<div class="container">
-			<form action="" method="post" class="form-control" style="border:0px; width: 1026px;height: 1300px;"
-							style="width: 500px; height: 400px">
-			<div class="row">
-				<div class="col-lg-8">
-				<h2 style="margin-bottom: 50px;">EDICIÓN DE JUEGO</h2>
-					<div class="blog-content">
-						<%
-						//CONECTANOD A LA BASE DE DATOS:
-						Connection con;
-						String url = "jdbc:mysql://localhost:3306/rdy";
-						String Driver = "com.mysql.cj.jdbc.Driver";
-						String user = "root";
-						String clave = "";
-						Class.forName(Driver);
-						con = DriverManager.getConnection(url, user, clave);
-						PreparedStatement ps;
-						ResultSet rs;
-						int id = Integer.parseInt(request.getParameter("id"));
-						ps = con.prepareStatement("select * from juegos where id=" + id);
-						rs = ps.executeQuery();
-						while (rs.next()) {
-							byte[] imgData = rs.getBytes("foto_portada"); 
-							byte[] imgData2 = rs.getBytes("foto_juego1"); 
-							byte[] imgData3 = rs.getBytes("foto_juego2"); 
-				            rs.getString("nombre");
-
-				            String encode = Base64.getEncoder().encodeToString(imgData);
-				            request.setAttribute("imgBase", encode);
-				            
-				            
-				            
-				           
-						%>
-							
-				
-						 ID: 
-					 	<input type="text" name="id" readonly style="margin-bottom: 20px;width: 76px;" class="form-control" value="<%= rs.getInt("id")%>" required/>
-                 	
-	                 	Título:	
-	                 	<input type="text" name="nombre" maxlength="50" class="form-control" style="margin-bottom: 20px;" value="<%= rs.getString("nombre")%>" required/>
-	                 	
-	                 	Año:	
-	                 	<input type="text" name="anio" maxlength="50" class="form-control" style="margin-bottom: 20px;" value="<%= rs.getInt("anio")%>" required/>
-	                 	
-	                 	Plataforma:	
-	                 	<input type="text" name="plataforma_id" maxlength="50" class="form-control" style="margin-bottom: 20px;" value="<%= rs.getInt("plataforma_id")%>" required/>
-	                 	
-	                 	Exclusivo:	
-	                 	<input type="text" name="exclusivo" maxlength="50" class="form-control" style="margin-bottom: 20px;" value="<%= rs.getInt("exclusivo")%>" required/>
-	                 	
-	                 	
-	                 	Características:	
-						<textarea class="form-control" maxlength="1000" name="caracteristicas" style="overflow: hidden; height: 260px; resize: none" required>
-	                 		<%= rs.getString("caracteristicas")%>
-	                 	</textarea>
-                 		                 	
+		<form action="" method="post" class="form-control"
+				style="border: 0px; width: 1026px; height: 1300px;"
+				style="width: 500px; height: 400px">
+			
+				<div class="row">
+					<div class="col-lg-8">
+						<h2 style="margin-bottom: 50px;">EDICIÓN DE JUEGO</h2>
+						<div class="blog-content">
+						
 							<%
-							if(imgData2 != null || imgData3 != null){
-							%>	
-							<h3 style="margin-bottom: 20px;margin-top: 50px;">Imágenes del juego</h3>
-								<%
-								if(imgData2 != null){
-					           	 	String encode2 = Base64.getEncoder().encodeToString(imgData2);
-					            	request.setAttribute("imgBase2", encode2);
-					         
-								%>
-									<img src="data:image/jpeg;base64,${imgBase2}" alt="<%=rs.getString("nombre")%>" style="width: 300px;height: 250px;margin-bottom: 60px;"/>
-								<%
-								}
-								 if(imgData3 != null){
-						           	 	String encode3 = Base64.getEncoder().encodeToString(imgData3);
-						            	request.setAttribute("imgBase3", encode3);
-						           
-								%>
-								<img src="data:image/jpeg;base64,${imgBase3}" alt="<%=rs.getString("nombre")%>" style="width: 300px;height: 250px;margin-bottom: 60px;"/>
-								<%} %>
+							//CONECTANOD A LA BASE DE DATOS:
+							Connection con;
+							String url = "jdbc:mysql://localhost:3306/rdy";
+							String Driver = "com.mysql.cj.jdbc.Driver";
+							String user = "root";
+							String clave = "";
+							Class.forName(Driver);
+							con = DriverManager.getConnection(url, user, clave);
+							PreparedStatement ps;
+							ResultSet rs;
+							int id = Integer.parseInt(request.getParameter("id"));
+							ps = con.prepareStatement("select * from juegos where id=" + id);
+							rs = ps.executeQuery();
+							while (rs.next()) {
+								byte[] imgData = rs.getBytes("foto_portada");
+								byte[] imgData2 = rs.getBytes("foto_juego1");
+								byte[] imgData3 = rs.getBytes("foto_juego2");
+								rs.getString("nombre");
+
+								String encode = Base64.getEncoder().encodeToString(imgData);
+								request.setAttribute("imgBase", encode);
+							%>
+
+
+
+							ID: <input type="text" name="id" readonly
+								style="margin-bottom: 20px; width: 76px;" class="form-control"
+								value="<%=rs.getInt("id")%>" required /> 
+							Título: <input
+								type="text" name="nombre" maxlength="50" class="form-control"
+								style="margin-bottom: 20px;"
+								value="<%=rs.getString("nombre")%>" required /> 
+							Año: <input
+								type="text" name="anio" maxlength="50" class="form-control"
+								style="margin-bottom: 20px;" value="<%=rs.getInt("anio")%>"
+								required /> 
+							Plataforma: <input type="text" name="plataforma_id"
+								maxlength="50" class="form-control" style="margin-bottom: 20px;"
+								value="<%=rs.getInt("plataforma_id")%>" required /> 
+							Exclusivo:
+							<input type="text" name="exclusivo" maxlength="50"
+								class="form-control" style="margin-bottom: 20px;"
+								value="<%=rs.getInt("exclusivo")%>" required />
+
+
+							Características:
+							<textarea class="form-control" maxlength="1000"
+								name="caracteristicas"
+								style="overflow: hidden; height: 260px; resize: none" required>
+	                 		<%=rs.getString("caracteristicas")%>
+	                 	</textarea>
+
+							<%
+							if (imgData2 != null || imgData3 != null) {
+							%>
+							<h3 style="margin-bottom: 20px; margin-top: 50px;">Imágenes
+								del juego</h3>
+							<%
+							if (imgData2 != null) {
+								String encode2 = Base64.getEncoder().encodeToString(imgData2);
+								request.setAttribute("imgBase2", encode2);
+							%>
+							<img src="data:image/jpeg;base64,${imgBase2}"
+								alt="<%=rs.getString("nombre")%>"
+								style="width: 300px; height: 250px; margin-bottom: 60px;" />
 							<%
 							}
+							if (imgData3 != null) {
+							String encode3 = Base64.getEncoder().encodeToString(imgData3);
+							request.setAttribute("imgBase3", encode3);
 							%>
-							</div>
+							<img src="data:image/jpeg;base64,${imgBase3}"
+								alt="<%=rs.getString("nombre")%>"
+								style="width: 300px; height: 250px; margin-bottom: 60px;" />
+							<%
+							}
 							
-							<div class="col-lg-8">
-							
-							 <input type="submit" value="Guardar" style="margin-top: 20px;" class="btn btn-primary btn-lg"/>					
-                 	 		 <a href="juegos.jsp" class="btn btn-primary btn-lg" style="margin-top: 20px;margin-left: 10px; background: red;border-color: red; width: 105px;">Volver</a>
-							
-							
-							</div>
-						<%
-						}
-						%>
-					
-					
-					</form>
-					<div class="col-lg-8">
-				<!-- COMENTARIOS -->
-					<div class="comment-form-warp">
-					<h4 class="widget-title">Últimos comentarios</h4>
-						<%
-							ps = con.prepareStatement("select * from juego_comentario where id_juego=" + id);
-							rs = ps.executeQuery();
-							
-							if(rs.next() == false){
-								%>
-									<p>No hay comentarios </p>
-								<% 	
-									}
-							while (rs.next()) {
-						%>
-						<div class="latest-blog">
-							<div class="lb-item">
-								<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
-									data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
-								<div class="lb-content">
-									<p><%=rs.getString("mensaje")%></p>
-									<a href="#" class="lb-author">Por: <%=rs.getString("nombre")%></a>
-								</div>
-							</div>
+							}
+							%>
 						</div>
+
+						<div class="col-lg-8">
+
+							<input type="submit" value="Guardar" style="margin-top: 20px;"
+								class="btn btn-primary btn-lg" /> <a href="juegos.jsp"
+								class="btn btn-primary btn-lg"
+								style="margin-top: 20px; margin-left: 10px; background: red; border-color: red; width: 105px;">Volver</a>
+
+
+						</div>
+						
 						<%
 						}
 						%>
+					
+			
+		</div>
+		</div>
+		</form>
+		</div>
+	</section>
+	<section style="padding-left: 100px;">
+		<div class="col-lg-8">
+			<!-- COMENTARIOS -->
+			<div class="comment-form-warp">
+				<h4 class="widget-title" style="margin-bottom: 20px;">Comentarios asociados</h4>
+				<%
+				PreparedStatement ps2;
+				ResultSet rs2;
+				ps2 = con.prepareStatement("select * from juego_comentario where id_juego=" + id);
+				rs2 = ps2.executeQuery();
+
+				if (rs2.next() == false) {
+				%>
+				<p>No hay comentarios</p>
+				<%
+				}
+				while (rs2.next()) {
+				%>
+				<div class="latest-blog">
+					<div class="lb-item">
+						<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
+							data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
+						<div class="lb-content">
+							<p style="color: black;"><%=rs2.getString("mensaje")%></p>
+							<a href="#" class="lb-author" style="color: black;">Por: <%=rs2.getString("nombre")%></a>
+						</div>
 					</div>
-					</div>
-					</div>
+				</div>
+				<%
+				}
+				%>
 			</div>
 		</div>
 	</section>
@@ -364,17 +386,26 @@
 </html>
 
 <%
-       String titulo, anio, caracteristicas, plataforma, exclusivo;
-       titulo=request.getParameter("nombre");
-       anio=request.getParameter("anio");
-       caracteristicas=request.getParameter("caracteristicas");
-       plataforma=request.getParameter("plataforma_id");
-       exclusivo=request.getParameter("exclusivo");
+Connection con2;
+String url2 = "jdbc:mysql://localhost:3306/rdy";
+String Driver2 = "com.mysql.cj.jdbc.Driver";
+String user2 = "root";
+String clave2 = "";
+Class.forName(Driver2);
+con2 = DriverManager.getConnection(url2, user2, clave2);
 
-
-       if(titulo!=null && anio!=null && caracteristicas !=null && plataforma != null && exclusivo!= null){
-           ps=con.prepareStatement("update juegos set nombre='"+titulo+"', anio="+anio+", caracteristicas='"+caracteristicas+"', plataforma_id="+plataforma+", exclusivo="+exclusivo+" where id="+id);
-           ps.executeUpdate();
-           response.sendRedirect("juegos.jsp");
-       }
+	String titulo, anio, caracteristicas, plataforma, exclusivo;
+	titulo = request.getParameter("nombre");
+	anio = request.getParameter("anio");
+	caracteristicas = request.getParameter("caracteristicas");
+	plataforma = request.getParameter("plataforma_id");
+	exclusivo = request.getParameter("exclusivo");
+	
+	if (titulo != null && anio != null && caracteristicas != null && plataforma != null && exclusivo != null) {
+		ps2 = con2.prepareStatement("update juegos set nombre='" + titulo + "', anio=" + anio + ", caracteristicas='"
+		+ caracteristicas + "', plataforma_id=" + plataforma + ", exclusivo=" + exclusivo + " where id=" + id);
+		 response.flushBuffer();
+		ps2.executeUpdate();
+		response.sendRedirect("/juegos.jsp");
+	}
 %>

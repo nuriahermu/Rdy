@@ -279,7 +279,7 @@
 			            request.setAttribute("imgBase", encode);
 						
 					%>
-					<li style="background: white;">
+					<li style="background: white;margin-bottom: 50px;">
 						<div class="community-post">
 							<div class="container">
 								<div class="row">
@@ -305,13 +305,17 @@
 												style="width: 656px;height: auto;background: white;margin-top: 25px;">
 												<p><%=rs.getString("caracteristicas")%></p>
 											</div>
-											<form name="formdescargar">
-											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;position: absolute; margin-left: 200px;width: 96px; font-weight: 600;">Descargar</a>
-											</form>
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute;margin-left: 310px;width: 80px;">Editar</a>
-                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; left: 420px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px; width: 80px;">Ver</a>
+											<div style="position: absolute;height: 50px;width: 545px;">
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-left: 210px; margin-bottom: 30px;width: 80px; background: #05bd05;border-color: #05bd05;">Insertar</a>
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
+											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
+											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
+											</form>
+											</div>
+											
 										</div>
 									</div>
 								</div>
@@ -361,11 +365,16 @@
 												style="width: 656px;height: auto;background: white;margin-top: 25px;">
 												<p><%=rs.getString("caracteristicas")%></p>
 											</div>
-											
-											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;margin-left: 310px;width: 80px;">Editar</a>
-                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
-										
+											<div style="position: absolute;height: 50px;width: 545px;">
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-left: 210px; margin-bottom: 30px;width: 80px; background: #05bd05;border-color: #05bd05;">Insertar</a>
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
+                                
+											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
+											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
+											</form>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -415,11 +424,16 @@
 												style="width: 656px;height: auto;background: white;margin-top: 25px;">
 												<p><%=rs.getString("caracteristicas")%></p>
 											</div>
-											
-											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;margin-left: 310px;width: 80px;">Editar</a>
-                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
-                               
+											<div style="position: absolute;height: 50px;width: 545px;">
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-left: 210px; margin-bottom: 30px;width: 80px; background: #05bd05;border-color: #05bd05;">Insertar</a>
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
+                                
+											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
+											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
+											</form>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -470,9 +484,16 @@
 												<p><%=rs.getString("caracteristicas")%></p>
 											</div>
 											
-											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;margin-left: 310px;width: 80px;">Editar</a>
-                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
+											<div style="position: absolute;height: 50px;width: 545px;">
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-left: 210px; margin-bottom: 30px;width: 80px; background: #05bd05;border-color: #05bd05;">Insertar</a>
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
+                                
+											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
+											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
+											</form>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -523,10 +544,17 @@
 												<p><%=rs.getString("caracteristicas")%></p>
 											</div>
 											
-											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;margin-left: 310px;width: 80px;">Editar</a>
-                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; position: absolute; margin-top: 20px;left: 420px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320; position: absolute; margin-left: 500px;margin-top: 20px; width: 80px;">Ver</a>
+											<div style="position: absolute;height: 50px;width: 545px;">
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-left: 210px; margin-bottom: 30px;width: 80px; background: #05bd05;border-color: #05bd05;">Insertar</a>
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
+											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
+											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
+											</form>
+											</div>
+											
 										</div>
 									</div>
 								</div>

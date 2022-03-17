@@ -5,12 +5,13 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
-import javax.swing.JOptionPane;
 
 import Modelo.ComentarioBlog;
 import Modelo.ComentarioJuego;
+import Modelo.Juego;
 import Modelo.Usuarios;
 import ModeloBBDD.ComentariosDAO;
+import ModeloBBDD.JuegosDAO;
 import ModeloBBDD.UsuariosDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -18,12 +19,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ServletControlador", urlPatterns = {"/ServletControlador"})
+@WebServlet(name = "rdyController", urlPatterns = {"/rdyController"})
 public class RdyController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	UsuariosDAO usuariosDao;
 	ComentariosDAO comentariosDao;
+	JuegosDAO juegosDao;
 
 	public void init() {
 		String jdbcURL = getServletContext().getInitParameter("jdbcURL");
@@ -33,6 +35,7 @@ public class RdyController extends HttpServlet {
 
 			usuariosDao = new UsuariosDAO(jdbcURL, jdbcUsername, jdbcPassword);
 			comentariosDao = new ComentariosDAO(jdbcURL, jdbcUsername, jdbcPassword);
+			juegosDao = new JuegosDAO(jdbcURL, jdbcUsername, jdbcPassword);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -43,7 +46,6 @@ public class RdyController extends HttpServlet {
 	 */
 	public RdyController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -79,6 +81,9 @@ public class RdyController extends HttpServlet {
 				break;
 			case "comentarioJuego":
 				comentarioJuego(request, response);
+				break;
+			case "editarJuego":
+				editarJuego(request, response);
 				break;
 			case "showedit":
 				showEditar(request, response);
@@ -173,6 +178,15 @@ public class RdyController extends HttpServlet {
 			throws SQLException, IOException, ServletException {
 		ComentarioJuego comentario = new ComentarioJuego(0, request.getParameter("id_juego"), request.getParameter("nombre"), request.getParameter("mensaje"));
 		comentariosDao.insertarComentarioJuego(comentario);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-juego-ver-servlet.jsp?id="+request.getParameter("id_juego"));
+		dispatcher.forward(request, response);
+	}
+	
+	private void editarJuego(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		//Juego juego = new Juego(0, request.getParameter("id_juego"), request.getParameter("nombre"), request.getParameter("mensaje"), request.getParameter("id_juego"), 
+		//		request.getParameter("id_juego"), request.getParameter("id_juego"), request.getParameter("id_juego"), request.getParameter("id_juego"));
+		//comentariosDao.insertarComentarioJuego(comentario);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-juego-ver-servlet.jsp?id="+request.getParameter("id_juego"));
 		dispatcher.forward(request, response);
 	}
