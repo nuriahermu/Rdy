@@ -12,20 +12,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Favicon -->
-<link href="ESTILOS/principal/img/palanca-de-mando.png"
+<link src="VISTAS/ESTILOS/principal/img/palanca-de-mando.png"
 	rel="shortcut icon" />
 
 <!-- Google Fonts -->
 <link
-	href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i"
+	href="VISTAS/https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i"
 	rel="stylesheet">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="ESTILOS/principal/css/bootstrap.min.css" />
-<link rel="stylesheet" href="ESTILOS/principal/css/font-awesome.min.css" />
-<link rel="stylesheet" href="ESTILOS/principal/css/owl.carousel.css" />
-<link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
-<link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/bootstrap.min.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/font-awesome.min.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/owl.carousel.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/style.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/animate.css" />
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
@@ -148,14 +148,14 @@
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="index.html"> <img
-				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
+			<a class="site-logo" href="VISTAS/index.html"> <img
+				src="VISTAS/ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel" style="text-align: center;">
 				Hola,
 				${usuario.usuario}
 				<div>
-					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
+					<a href="VISTAS/perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
 				</div>
 			</div>
 			<!-- responsive -->
@@ -167,14 +167,14 @@
 				<ul>
 				<li>
 				<a href="">
-					<form action="../rdyController?action=inicio" method="post">
+					<form action="rdyController?action=inicio" method="post">
 						<input name="inicio" id="inicio" type="submit" value="INICIO" onMouseover="this.style.color='#ffb320'" onMouseout="this.style.color='white'" style="border: none;background: none;color: white;padding: 10px 5px;font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: bolder;">
 					</form>
 				</a>
 				</li>
-					<li><a href="juegos.jsp">JUEGOS</a></li>
-					<li><a href="noticias.jsp">NOTICIAS</a></li>
-					<li><a href="contacto.jsp">CONTACTO</a></li>
+					<li><a href="VISTAS/juegos.jsp">JUEGOS</a></li>
+					<li><a href="VISTAS/noticias.jsp">NOTICIAS</a></li>
+					<li><a href="VISTAS/contacto.jsp">CONTACTO</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -209,7 +209,7 @@
 
 	<!-- Page info section -->
 	<section class="page-info-section set-bg"
-		data-setbg="ESTILOS/principal/img/mujeres-gamer.png">
+		data-setbg="VISTAS/ESTILOS/principal/img/mujeres-gamer.png">
 		<div class="pi-content">
 			<div class="container">
 				<div class="row">
@@ -235,28 +235,20 @@
 					style="margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
 				</div>
 			</div>
-			<div class="col-md-8" style="margin-bottom: 20px;">
-			 <a href="pagina-juego-insertar.jsp">
-				<div class="user-panel" style="background: #4ecf0c;">
-					<input name="inicio" id="inicio" type="button" value="INSERTAR JUEGO"
-					style="margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
-				</div>
-				<a/>
-			</div>
 		</div>
 
 			<div class="container">
 				<ul class="community-post-list">
 					<li
 						style="border: none; background: none; height: 220px; writing-mode: vertical-lr; margin-left: 20px;">
-						<img src="ESTILOS/principal/img/logos/xbox-logo.png" alt="Xbox" onclick="filtroXbox();"
+						<img src="VISTAS/ESTILOS/principal/img/logos/xbox-logo.png" alt="Xbox" onclick="filtroXbox();"
 						style="width: 200px; height: 150px; margin-right: 50px; margin-left: 20px;">
-						<img src="ESTILOS/principal/img/logos/play-logo.png" onclick="filtroPlay();"
+						<img src="VISTAS/ESTILOS/principal/img/logos/play-logo.png" onclick="filtroPlay();"
 						alt="PlayStation"
 						style="width: 200px;margin-right: 50px;margin-top: 70px;"> <img
-						src="ESTILOS/principal/img/logos/nintendo-logo.png" alt="Nintendo" onclick="filtroNintendo();"
+						src="VISTAS/ESTILOS/principal/img/logos/nintendo-logo.png" alt="Nintendo" onclick="filtroNintendo();"
 						style="width: 200px;margin-right: 50px;margin-top: 70px;"> <img
-						src="ESTILOS/principal/img/logos/pc-logo.png" alt="PC" onclick="filtroPC();"
+						src="VISTAS/ESTILOS/principal/img/logos/pc-logo.png" alt="PC" onclick="filtroPC();"
 						style="width: 200px; height: 150px;">
 					</li>
 				
@@ -287,7 +279,7 @@
 			            request.setAttribute("imgBase", encode);
 						
 					%>
-					<li style="background: white;">
+					<li style="background: white;margin-bottom: 50px; ">
 						<div class="community-post">
 							<div class="container">
 								<div class="row">
@@ -313,17 +305,17 @@
 												style="width: 656px;height: auto;background: white;margin-top: 25px;">
 												<p style="text-align: justify;"><%=rs.getString("caracteristicas")%></p>
 											</div>
-											
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
 											
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
-                                			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
+											<a href="VISTAS/pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="VISTAS/pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="VISTAS/pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
 											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
 											</form>
 											</div>
+											
 										</div>
 									</div>
 								</div>
@@ -375,9 +367,9 @@
 											</div>
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
 											
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
-                                			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
+											<a href="VISTAS/pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="VISTAS/pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="VISTAS/pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
 											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
@@ -432,12 +424,11 @@
 												style="width: 656px;height: auto;background: white;margin-top: 25px;">
 												<p style="text-align: justify;"><%=rs.getString("caracteristicas")%></p>
 											</div>
-											
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
 											
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
-                                			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
+											<a href="VISTAS/pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="VISTAS/pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="VISTAS/pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
 											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
@@ -495,9 +486,9 @@
 											
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
 											
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
-                                			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
+											<a href="VISTAS/pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="VISTAS/pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="VISTAS/pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
 											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
@@ -554,10 +545,10 @@
 											</div>
 											
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
-
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
-                                			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
+											
+											<a href="VISTAS/pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+                                			<a href="VISTAS/pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            <a href="VISTAS/pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
 											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
@@ -585,12 +576,12 @@
 	<section class="footer-top-section">
 		<div class="container">
 			<div class="footer-top-bg">
-				<img src="ESTILOS/principal/img/footer-top-bg.png" alt="">
+				<img src="VISTAS/ESTILOS/principal/img/footer-top-bg.png" alt="">
 			</div>
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="footer-logo text-white">
-						<img src="ESTILOS/login/images/logo1blancosmall.png"
+						<img src="VISTAS/ESTILOS/login/images/logo1blancosmall.png"
 							alt="logo RDY">
 					</div>
 				</div>
@@ -600,7 +591,7 @@
 						<div class="latest-blog">
 							<div class="lb-item">
 								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/1.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/1.jpg"></div>
 								<div class="lb-content">
 									<div class="lb-date">June 21, 2018</div>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
@@ -610,7 +601,7 @@
 							</div>
 							<div class="lb-item">
 								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/2.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/2.jpg"></div>
 								<div class="lb-content">
 									<div class="lb-date">June 21, 2018</div>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
@@ -620,7 +611,7 @@
 							</div>
 							<div class="lb-item">
 								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/3.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/3.jpg"></div>
 								<div class="lb-content">
 									<div class="lb-date">June 21, 2018</div>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
@@ -637,7 +628,7 @@
 						<div class="top-comment">
 							<div class="tc-item">
 								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/1.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/authors/1.jpg"></div>
 								<div class="tc-content">
 									<p>
 										<a href="#">James Smith</a> <span>dice: </span> Todo perfecto,
@@ -648,7 +639,7 @@
 							</div>
 							<div class="tc-item">
 								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/2.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/authors/2.jpg"></div>
 								<div class="tc-content">
 									<p>
 										<a href="#">Valentin Martinez</a> <span>dice: </span> Todos
@@ -659,7 +650,7 @@
 							</div>
 							<div class="tc-item">
 								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/3.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/authors/3.jpg"></div>
 								<div class="tc-content">
 									<p>
 										<a href="#">Jose Fernandez</a> <span>dice: </span> Sin duda
@@ -670,7 +661,7 @@
 							</div>
 							<div class="tc-item">
 								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/4.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/authors/4.jpg"></div>
 								<div class="tc-content">
 									<p>
 										<a href="#">Julián Gonzalez</a> <span>dice: </span> Todos mis
@@ -707,10 +698,10 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="ESTILOS/principal/js/jquery-3.2.1.min.js"></script>
-	<script src="ESTILOS/principal/js/bootstrap.min.js"></script>
-	<script src="ESTILOS/principal/js/owl.carousel.min.js"></script>
-	<script src="ESTILOS/principal/js/jquery.marquee.min.js"></script>
-	<script src="ESTILOS/principal/js/main.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/jquery-3.2.1.min.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/bootstrap.min.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/owl.carousel.min.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/jquery.marquee.min.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/main.js"></script>
 </body>
 </html>

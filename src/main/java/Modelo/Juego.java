@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.io.InputStream;
 import java.sql.Blob;
 
 public class Juego {
@@ -9,9 +10,12 @@ public class Juego {
 	private int anio;
 	private int plataforma_id;
 	private Blob foto_portada;
+	private InputStream foto_portada2;
 	private String caracteristicas;
 	private Blob foto_juego1;
 	private Blob foto_juego2;
+	private InputStream foto_juego11;
+	private InputStream foto_juego22;
 	private int exclusivo;
 	
 	
@@ -32,6 +36,16 @@ public class Juego {
 		this.exclusivo = exclusivo;
 	}
 	
+	public Juego(String id, String nombre, String anio, String plataforma_id, String caracteristicas, String exclusivo) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.nombre = nombre;
+		this.anio = Integer.parseInt(anio);
+		this.plataforma_id = Integer.parseInt(plataforma_id);
+		this.caracteristicas = caracteristicas;
+		this.exclusivo = Integer.parseInt(exclusivo);
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -87,7 +101,30 @@ public class Juego {
 		this.exclusivo = exclusivo;
 	}
 	
-	
+	public InputStream getFoto_portada2() {
+		return foto_portada2;
+	}
+
+	public void setFoto_portada2(InputStream foto_portada2) {
+		this.foto_portada2 = foto_portada2;
+	}
+
+	public InputStream getFoto_juego11() {
+		return foto_juego11;
+	}
+
+	public void setFoto_juego11(InputStream foto_juego11) {
+		this.foto_juego11 = foto_juego11;
+	}
+
+	public InputStream getFoto_juego22() {
+		return foto_juego22;
+	}
+
+	public void setFoto_juego22(InputStream foto_juego22) {
+		this.foto_juego22 = foto_juego22;
+	}
+
 	@Override
 	public String toString() {
 		return "Juego [id=" + id + ", nombre=" + nombre + ", anio=" + anio + ", plataforma_id=" + plataforma_id

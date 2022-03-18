@@ -22,7 +22,6 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
-
 <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
@@ -30,7 +29,7 @@
 
 function alerta(){
 	event.preventDefault();  //evitar recarga de pagina
-	alertify.confirm("¿Estás seguro que quieres eliminar esta noticia?",
+	alertify.confirm("¿Estás seguro que quieres eliminar esta noticia y los comentarios asociados?",
 			  function() {
 		 		event.preventDefault();
 		 		$('#fomEliminar').submit();

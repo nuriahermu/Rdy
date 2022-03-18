@@ -1,7 +1,9 @@
 package Controlador;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +17,13 @@ import ModeloBBDD.JuegosDAO;
 import ModeloBBDD.UsuariosDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
+@MultipartConfig
 @WebServlet(name = "rdyController", urlPatterns = {"/rdyController"})
 public class RdyController extends HttpServlet {
 
@@ -82,8 +87,14 @@ public class RdyController extends HttpServlet {
 			case "comentarioJuego":
 				comentarioJuego(request, response);
 				break;
+			case "insertarJuego":
+				insertarJuego(request, response);
+				break;
 			case "editarJuego":
 				editarJuego(request, response);
+				break;
+			case "borrarJuego":
+				eliminarJuego(request, response);
 				break;
 			case "showedit":
 				showEditar(request, response);
@@ -182,14 +193,52 @@ public class RdyController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	private void editarJuego(HttpServletRequest request, HttpServletResponse response)
+	private void insertarJuego(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		//Juego juego = new Juego(0, request.getParameter("id_juego"), request.getParameter("nombre"), request.getParameter("mensaje"), request.getParameter("id_juego"), 
-		//		request.getParameter("id_juego"), request.getParameter("id_juego"), request.getParameter("id_juego"), request.getParameter("id_juego"));
-		//comentariosDao.insertarComentarioJuego(comentario);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-juego-ver-servlet.jsp?id="+request.getParameter("id_juego"));
+		
+		Juego juego = new Juego(null, request.getParameter("nombre"), request.getParameter("anio"), request.getParameter("plataforma_id"), request.getParameter("caracteristicas"), 
+				request.getParameter("exclusivo"));
+		
+		Part part = request.getPart("foto_portada");
+		InputStream is = part.getInputStream();
+		
+		juego.setFoto_portada2(is);	
+		
+		Part part2 = request.getPart("foto_juego1");
+		InputStream is2 = part2.getInputStream();
+		
+		juego.setFoto_juego11(is2);	
+		
+		Part part3 = request.getPart("foto_juego2");
+		InputStream is3 = part3.getInputStream();
+		
+		juego.setFoto_juego22(is3);
+		
+		juegosDao.insertarJuego(juego);
+		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/juegos-servlet.jsp");
 		dispatcher.forward(request, response);
 	}
+	
+	private void editarJuego(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		Juego juego = new Juego(request.getParameter("id"), request.getParameter("nombre"), request.getParameter("anio"), request.getParameter("plataforma_id"), request.getParameter("caracteristicas"), 
+				request.getParameter("exclusivo"));
+		juegosDao.modificar(juego);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/juegos-servlet.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void eliminarJuego(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+		String id = request.getParameter("id");
+		juegosDao.eliminarJuego(id);		
+				
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/juegos-servlet.jsp");
+		dispatcher.forward(request, response);
+	}
+
 	
 	private void mostrarBlog(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
