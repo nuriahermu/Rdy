@@ -29,15 +29,29 @@
 	rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+
+
 <script type="text/javascript">
 
  function aceptarCambios() {
 	 
+	 event.preventDefault();
+	 var imgVal = $('#imagen').val(); 
+     if(imgVal=='') 
+     { 
+         alertify.error('¡Por favor seleccione una imágen de portada!');
+         return false; 
+     }else{
+
 		event.preventDefault();
-		alertify.confirm("¿Estás seguro que quiere realizar estos cambios?",
+		alertify.confirm("¿Está seguro que quiere insertar esta noticia?",
 				  function() {
 			 		event.preventDefault();
-			 		$('#formEditar').submit();
+			 		$('#formInsertar').submit();
 	  					  
 				  },
 				  function() {
@@ -45,8 +59,9 @@
 					  alertify.error('¡Cancelado!');
 				  }
 				);
-}
-
+     }
+ }
+     
 </script>
 
 
@@ -123,145 +138,48 @@
 	<!-- Page section -->
 	<section class="page-section single-blog-page spad">
 		<div class="container">
-		<form action="../rdyController?action=editarJuego" method="post" class="form-control" id="formEditar"
+		<form action="../rdyController?action=insertarBlog" method="post" class="form-control" id="formInsertar" enctype='multipart/form-data'
 				style="border: 0px; width: 1026px; height: 1300px;"
 				style="width: 500px; height: 400px">
 			
 				<div class="row">
 					<div class="col-lg-8">
-						<h2 style="margin-bottom: 50px;">EDICIÓN DE JUEGO</h2>
+						<h2 style="margin-bottom: 50px;">INSERTAR NOTICIA</h2>
 						<div class="blog-content">
-						
-							<%
-							//CONECTANOD A LA BASE DE DATOS:
-							Connection con;
-							String url = "jdbc:mysql://localhost:3306/rdy";
-							String Driver = "com.mysql.cj.jdbc.Driver";
-							String user = "root";
-							String clave = "";
-							Class.forName(Driver);
-							con = DriverManager.getConnection(url, user, clave);
-							PreparedStatement ps;
-							ResultSet rs;
-							int id = Integer.parseInt(request.getParameter("id"));
-							ps = con.prepareStatement("select * from juegos where id=" + id);
-							rs = ps.executeQuery();
-							while (rs.next()) {
-								byte[] imgData = rs.getBytes("foto_portada");
-								byte[] imgData2 = rs.getBytes("foto_juego1");
-								byte[] imgData3 = rs.getBytes("foto_juego2");
-								rs.getString("nombre");
-
-								String encode = Base64.getEncoder().encodeToString(imgData);
-								request.setAttribute("imgBase", encode);
-							%>
-
-
-
-							ID: <input type="text" name="id" id="id" 
-								style="margin-bottom: 20px; width: 76px;" class="form-control"
-								value="<%=rs.getInt("id")%>" readonly/> 
 							Título: <input
-								type="text" name="nombre" maxlength="50" class="form-control"
-								style="margin-bottom: 20px;"
-								value="<%=rs.getString("nombre")%>" required /> 
-							Año: <input
-								type="text" name="anio" maxlength="50" class="form-control"
-								style="margin-bottom: 20px;" value="<%=rs.getInt("anio")%>"
+								type="text" name="titulo" maxlength="50" class="form-control"
+								style="margin-bottom: 20px;height: 40px;"
 								required /> 
-							Plataforma: <input type="text" name="plataforma_id"
-								maxlength="50" class="form-control" style="margin-bottom: 20px;"
-								value="<%=rs.getInt("plataforma_id")%>" required /> 
-							Exclusivo:
-							<input type="text" name="exclusivo" maxlength="50"
-								class="form-control" style="margin-bottom: 20px;"
-								value="<%=rs.getInt("exclusivo")%>" required />
-
-
-							Características:
+							Descripción:
 							<textarea class="form-control" maxlength="1000" minlength="50"
-								name="caracteristicas"
-								style="overflow: hidden; height: 260px; resize: none" required><%=rs.getString("caracteristicas").trim()%></textarea>
+								name="descripcion"
+								style="overflow: hidden; height: 260px; resize: none" required></textarea>
+								<br>
+							URL youtube: <input
+								type="text" name="youtube" class="form-control"
+								style="margin-bottom: 20px;height: 40px;"/> 
 
-							<%
-							if (imgData2 != null || imgData3 != null) {
-							%>
-							<h3 style="margin-bottom: 20px; margin-top: 50px;">Imágenes
-								del juego</h3>
-							<%
-							if (imgData2 != null) {
-								String encode2 = Base64.getEncoder().encodeToString(imgData2);
-								request.setAttribute("imgBase2", encode2);
-							%>
-							<img src="data:image/jpeg;base64,${imgBase2}"
-								alt="<%=rs.getString("nombre")%>"
-								style="width: 300px; height: 250px; margin-bottom: 60px;" />
-							<%
-							}
-							if (imgData3 != null) {
-							String encode3 = Base64.getEncoder().encodeToString(imgData3);
-							request.setAttribute("imgBase3", encode3);
-							%>
-							<img src="data:image/jpeg;base64,${imgBase3}"
-								alt="<%=rs.getString("nombre")%>"
-								style="width: 300px; height: 250px; margin-bottom: 60px;" />
-							<%
-							}
+							<h3 style="margin-bottom: 20px; margin-top: 50px;">Imágen
+								de la noticia</h3>
 							
-							}
-							%>
+							<p style="margin-bottom: 5px;margin-top: 20px; font-family: 'Roboto';font-size: initial;">Imágen de portada:</p>
+							<input type="file" style="margin-bottom: 50px; height: 50px;" id="imagen" name="imagen"/>
+
 						</div>
 
-						<div class="col-lg-8">
+							
+			</div>
+			
+			</div>
+			<div class="col-lg-8">
 
 							<input type="button" onclick="aceptarCambios()" value="Guardar" style="margin-top: 20px;" class="btn btn-primary btn-lg" /> 
-							<a href="juegos.jsp" class="btn btn-primary btn-lg"
+							<a href="noticias.jsp" class="btn btn-primary btn-lg"
 								style="margin-top: 20px; margin-left: 10px; background: red; border-color: red; width: 105px;">
 							Volver</a>
 
-
-						</div>
-						
-						<%
-						}
-						%>			
-		</div>
-		</div>
+						</div>	
 		</form>
-		</div>
-	</section>
-	<section style="padding-left: 100px;">
-		<div class="col-lg-8">
-			<!-- COMENTARIOS -->
-			<div class="comment-form-warp">
-				<h4 class="widget-title" style="margin-bottom: 20px;">Comentarios asociados</h4>
-				<%
-				PreparedStatement ps2;
-				ResultSet rs2;
-				ps2 = con.prepareStatement("select * from juego_comentario where id_juego=" + id);
-				rs2 = ps2.executeQuery();
-
-				if (rs2.next() == false) {
-				%>
-				<p>No hay comentarios</p>
-				<%
-				}
-				while (rs2.next()) {
-				%>
-				<div class="latest-blog">
-					<div class="lb-item">
-						<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
-							data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
-						<div class="lb-content">
-							<p style="color: black;"><%=rs2.getString("mensaje")%></p>
-							<a href="#" class="lb-author" style="color: black;">Por: <%=rs2.getString("nombre")%></a>
-						</div>
-					</div>
-				</div>
-				<%
-				}
-				%>
-			</div>
 		</div>
 	</section>
 	<!-- Page section end -->

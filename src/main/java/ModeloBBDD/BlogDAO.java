@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,12 +26,20 @@ public class BlogDAO {
 
 	// insertar blog
 	public void insertar(Blog blog) throws SQLException {
-		String sql = "INSERT INTO blog (id, titulo, descripcion, imagen) VALUES (" + blog.getTitulo() + ","
-				+ blog.getDescripcion() + "," + blog.getImagen() + ")";
+		String sql = "INSERT INTO blog (id, titulo, descripcion, imagen, youtube) VALUES (?,?,?,?,?)";
 		System.out.println("Se va a insertar una entrada de blog");
 		conectar();
-		sentencia = con.createStatement();
-		sentencia.execute(sql);
+		sentencia = con.prepareStatement(sql);
+		//sentencia.setString(2, blog.getTitulo());
+//		sentencia.setInt(3, j.getAnio());
+//		sentencia.setInt(4, j.getPlataforma_id());
+//		sentencia.setBlob(5, j.getFoto_portada2());
+//		sentencia.setString(6, j.getCaracteristicas());
+//		sentencia.setBlob(7, j.getFoto_juego11());
+//		sentencia.setBlob(8, j.getFoto_juego22());
+//		sentencia.setInt(9, j.getExclusivo());
+
+		sentencia.executeUpdate(sql);
 		sentencia.close();
 		desconectar();
 	}

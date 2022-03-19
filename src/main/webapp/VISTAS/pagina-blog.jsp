@@ -120,8 +120,11 @@
 				            request.setAttribute("imgBase", encode);
 						%>
 						<h2 style="margin-bottom: 50px;"><%=rs.getString("titulo")%></h2>
+						
+						<% if(rs.getString("youtube") != null &&  !rs.getString("youtube").equals("")){ %>
 						<iframe width="640" height="360"
 							src="<%=rs.getString("youtube")%>"></iframe>
+						<% } %>
 						<textarea
 							style="overflow: hidden; margin-top: 50px; height: 320px; width: 750px; border: none; display: block; resize: none; background-color: white;"
 							disabled><%=rs.getString("descripcion")%></textarea>

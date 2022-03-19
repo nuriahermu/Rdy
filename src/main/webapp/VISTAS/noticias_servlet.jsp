@@ -130,6 +130,16 @@
 									</button>
 								</form>
 							</div>
+							<div class="row" style="margin-right: 0px;">
+								<div class="col-md-4" style="margin-bottom: 20px;">
+								 <a href="pagina-blog-insertar.jsp">
+									<div class="user-panel" style="background: #4ecf0c;">
+										<input name="inicio" id="inicio" type="button" value="INSERTAR NOTICIA"
+										style="margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
+									</div>
+								 <a/>
+								</div>
+							</div>
 							<div class="recent-game-item">
 								<div class="col-md-12">
 									<div class="recent-game-item">
@@ -156,7 +166,7 @@
 				                        	%>
 
 											<h5><%= rs.getString("titulo")%></h5>
-											<p><%= rs.getString("descripcion").substring(0,250)+"..."%></p>
+											<p><%= rs.getString("descripcion")%></p>
 											
 											<a href="VISTAS/pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;">Editar</a>
                                 			<a href="VISTAS/pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px;">Eliminar</a>

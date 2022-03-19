@@ -3,17 +3,19 @@ package Controlador;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Blob;
 import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
 
+import Modelo.Blog;
 import Modelo.ComentarioBlog;
 import Modelo.ComentarioJuego;
 import Modelo.Juego;
 import Modelo.Usuarios;
+import ModeloBBDD.BlogDAO;
 import ModeloBBDD.ComentariosDAO;
 import ModeloBBDD.JuegosDAO;
+import ModeloBBDD.NoticiasDAO;
 import ModeloBBDD.UsuariosDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -31,6 +33,8 @@ public class RdyController extends HttpServlet {
 	UsuariosDAO usuariosDao;
 	ComentariosDAO comentariosDao;
 	JuegosDAO juegosDao;
+	BlogDAO blogDao;
+	NoticiasDAO noticiasDao;
 
 	public void init() {
 		String jdbcURL = getServletContext().getInitParameter("jdbcURL");
@@ -41,8 +45,11 @@ public class RdyController extends HttpServlet {
 			usuariosDao = new UsuariosDAO(jdbcURL, jdbcUsername, jdbcPassword);
 			comentariosDao = new ComentariosDAO(jdbcURL, jdbcUsername, jdbcPassword);
 			juegosDao = new JuegosDAO(jdbcURL, jdbcUsername, jdbcPassword);
+			noticiasDao = new NoticiasDAO(jdbcURL, jdbcUsername, jdbcPassword);
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Error al realizar el init "+e);
+			e.getStackTrace();
 		}
 	}
 
@@ -84,6 +91,9 @@ public class RdyController extends HttpServlet {
 			case "mostrarBlog":
 				mostrarBlog(request, response);
 				break;
+			case "insertarBlog":
+				insertarBlog(request, response);
+				break;
 			case "comentarioJuego":
 				comentarioJuego(request, response);
 				break;
@@ -109,6 +119,7 @@ public class RdyController extends HttpServlet {
 				break;
 			}
 		} catch (SQLException e) {
+			System.out.println("Error en do get "+e);
 			e.getStackTrace();
 		}
 
@@ -182,6 +193,20 @@ public class RdyController extends HttpServlet {
 		ComentarioBlog comentario = new ComentarioBlog(0, request.getParameter("id_blog"), request.getParameter("nombre"), request.getParameter("mensaje"));
 		comentariosDao.insertar(comentario);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-blog-servlet.jsp?id="+request.getParameter("id_blog"));
+		dispatcher.forward(request, response);
+	}
+	
+	private void insertarBlog(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+		Blog blog = new Blog(0, request.getParameter("titulo"), request.getParameter("descripcion"), request.getParameter("youtube"));
+		
+		Part part = request.getPart("imagen");
+		InputStream is = part.getInputStream();
+		blog.setFoto(is);	
+		noticiasDao.insertarNoticia(blog);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/noticias_servlet.jsp");
 		dispatcher.forward(request, response);
 	}
 	

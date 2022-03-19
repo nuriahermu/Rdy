@@ -29,7 +29,6 @@
 	rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
-<link href="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
@@ -44,7 +43,7 @@
 	 var imgVal = $('#foto_portada').val(); 
      if(imgVal=='') 
      { 
-         alertify.error('¡Por favos seleccione una imágen de portada!');
+         alertify.error('¡Por favor seleccione una imágen de portada!');
          return false; 
      }else{
 
@@ -178,8 +177,7 @@
 							Características:
 							<textarea class="form-control" maxlength="1000" minlength="50"
 								name="caracteristicas"
-								style="overflow: hidden; height: 260px; resize: none" required>
-	                 		</textarea>
+								style="overflow: hidden; height: 260px; resize: none" required></textarea>
 
 							<h3 style="margin-bottom: 20px; margin-top: 50px;">Imágenes
 								del juego</h3>
@@ -195,16 +193,18 @@
 
 						</div>
 
-						<div class="col-lg-8">
+							
+			</div>
+			
+			</div>
+			<div class="col-lg-8">
 
 							<input type="button" onclick="aceptarCambios()" value="Guardar" style="margin-top: 20px;" class="btn btn-primary btn-lg" /> 
 							<a href="juegos.jsp" class="btn btn-primary btn-lg"
 								style="margin-top: 20px; margin-left: 10px; background: red; border-color: red; width: 105px;">
 							Volver</a>
 
-						</div>		
-			</div>
-			</div>
+						</div>	
 		</form>
 		</div>
 	</section>

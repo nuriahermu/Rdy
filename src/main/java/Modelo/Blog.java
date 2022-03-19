@@ -12,24 +12,29 @@ public class Blog {
 	private Blob imagen;
 	private Image imagenConvert;
 	private InputStream foto;
+	private String youtube;
 
 	public Blog() {
 	}
 
-	
 	public Blog(int id2, String titulo2, String descripcion2, Blob imagen) {
-		// TODO Auto-generated constructor stub
 		this.id = id2;
 		this.titulo = titulo2;
 		this.descripcion = descripcion2;
 		this.imagen = imagen;
 	}
-	
-	public Blog(int id) {
-		// TODO Auto-generated constructor stub
-		this.id = id;
+
+	public Blog(int id2, String titulo2, String descripcion2, String youtube) {
+		this.id = id2;
+		this.titulo = titulo2;
+		this.descripcion = descripcion2;
+		this.youtube = youtube;
 	}
 
+	public Blog(int id) {
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -69,21 +74,27 @@ public class Blog {
 	public void setImagenConvert(Image imagenConvert) {
 		this.imagenConvert = imagenConvert;
 	}
-	
 
 	public InputStream getFoto() {
 		return foto;
 	}
 
-
 	public void setFoto(InputStream foto) {
 		this.foto = foto;
 	}
 
+	public String getYoutube() {
+		return youtube;
+	}
+
+	public void setYoutube(String youtube) {
+		this.youtube = youtube;
+	}
 
 	@Override
 	public String toString() {
-		return "Blog [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", imagen=" + imagen + "]";
+		return "Blog [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", imagen=" + imagen
+				+ ", youtube=" + youtube + "]";
 	}
 
 }
