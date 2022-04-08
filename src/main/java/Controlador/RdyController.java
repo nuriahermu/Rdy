@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
 
+import com.mysql.cj.jdbc.Blob;
+
 import Modelo.Blog;
 import Modelo.ComentarioBlog;
 import Modelo.ComentarioJuego;
@@ -84,6 +86,9 @@ public class RdyController extends HttpServlet {
 				break;
 			case "borrarBlog":
 				borrarBlog(request, response);
+				break;
+			case "editarBlog":
+				editarBlog(request, response);
 				break;
 			case "comentarioBlog":
 				comentarioBlog(request, response);
@@ -187,6 +192,21 @@ public class RdyController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/noticias_servlet.jsp");
 		dispatcher.forward(request, response);
 	}
+	
+	private void editarBlog(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		Blog blog = new Blog(request.getParameter("id"), request.getParameter("titulo").trim(), request.getParameter("descripcion").trim(), request.getParameter("youtube").trim());
+		
+		Part part = request.getPart("imagen_mod");
+		if(request.getPart("imagen_mod").getSubmittedFileName() != "" && request.getPart("imagen_mod").getSubmittedFileName() != null) {
+			InputStream is = part.getInputStream();
+			blog.setFoto(is);
+		}
+		
+		juegosDao.modificar(blog);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-blog-servlet.jsp");
+		dispatcher.forward(request, response);
+	}
 
 	private void comentarioBlog(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
@@ -221,7 +241,7 @@ public class RdyController extends HttpServlet {
 	private void insertarJuego(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		
-		Juego juego = new Juego(null, request.getParameter("nombre"), request.getParameter("anio"), request.getParameter("plataforma_id"), request.getParameter("caracteristicas"), 
+		Juego juego = new Juego("0", request.getParameter("nombre"), request.getParameter("anio"), request.getParameter("plataforma_id"), request.getParameter("caracteristicas"), 
 				request.getParameter("exclusivo"));
 		
 		Part part = request.getPart("foto_portada");
@@ -250,6 +270,25 @@ public class RdyController extends HttpServlet {
 			throws SQLException, IOException, ServletException {
 		Juego juego = new Juego(request.getParameter("id"), request.getParameter("nombre"), request.getParameter("anio"), request.getParameter("plataforma_id"), request.getParameter("caracteristicas"), 
 				request.getParameter("exclusivo"));
+		
+		Part part = request.getPart("foto_portada_mod");
+		if(request.getPart("foto_portada_mod").getSubmittedFileName() != "" && request.getPart("foto_portada_mod").getSubmittedFileName() != null) {
+			InputStream is = part.getInputStream();
+			juego.setFoto_portada2(is);	
+		}
+		
+		Part part2 = request.getPart("foto_juego1_mod");
+		if(request.getPart("foto_juego1_mod").getSubmittedFileName() != "" && request.getPart("foto_juego1_mod").getSubmittedFileName() != null) {
+			InputStream is2 = part2.getInputStream();
+			juego.setFoto_juego11(is2);	
+		}
+		
+		Part part3 = request.getPart("foto_juego2_mod");
+		if(request.getPart("foto_juego2_mod").getSubmittedFileName() != "" && request.getPart("foto_juego2_mod").getSubmittedFileName() != null) {
+			InputStream is3 = part3.getInputStream();
+			juego.setFoto_juego22(is3);
+		}
+		
 		juegosDao.modificar(juego);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/juegos-servlet.jsp");
 		dispatcher.forward(request, response);

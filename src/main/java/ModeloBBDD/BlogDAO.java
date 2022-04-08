@@ -1,6 +1,7 @@
 package ModeloBBDD;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -144,6 +145,30 @@ public class BlogDAO {
 		} catch (Exception e) {
 			System.exit(0);
 		}
+	}
+	
+	// Modificar blog
+	public void modificar(Blog blog) throws SQLException, IOException {
+		String modImagen="";
+		
+		if(blog.getFoto() != null) {
+			modImagen = ", imagen = ? ";
+		}
+
+		String sql = "UPDATE blog SET titulo = ? , descripcion = ?, youtube = ?"+ modImagen + " where id=" + blog.getId();
+		conectar();
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setString(1, blog.getTitulo().trim());
+		statement.setString(2, blog.getDescripcion().trim());
+		statement.setString(3, blog.getYoutube().trim());
+		
+		if(modImagen != "") {
+			statement.setBlob(4, blog.getFoto());
+		}
+					
+		statement.executeUpdate();
+		statement.close();
+		desconectar();
 	}
 
 	public void conectar() throws SQLException {

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.util.Base64"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="javax.swing.JFrame"%>
 <%@page import="java.sql.*"%>
@@ -23,7 +24,52 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/owl.carousel.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
-<link href="ESTILOS/principal/css/popup.css" rel="stylesheet" type="text/css" />        
+<link href="ESTILOS/principal/css/popup.css" rel="stylesheet" type="text/css" />     
+
+<link
+	href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script
+	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+   
+<script type="text/javascript">
+	function aceptarCambios() {
+
+		event.preventDefault();
+		alertify.confirm("¿Estás seguro que quiere realizar estos cambios?",
+				function() {
+					event.preventDefault();
+					$('#formEditar').submit();
+
+				}, function() {
+					event.preventDefault();
+					alertify.error('¡Cancelado!');
+				});
+	}
+	
+	function eliminarComentario(autor) {
+		event.preventDefault();
+		alertify.confirm("¿Estás seguro que quiere eliminar el comentario de "+autor+"?",
+				function() {
+					event.preventDefault();
+					//$('#formEditar').submit();
+
+				}, function() {
+					event.preventDefault();
+					alertify.error('¡Cancelado!');
+				});
+	}
+</script>
 
 </head>
 <body>
@@ -116,9 +162,16 @@
 						ps = con.prepareStatement("select * from blog where id=" + id);
 						rs = ps.executeQuery();
 						while (rs.next()) {
+							byte[] imgData = rs.getBytes("imagen"); 
+				            rs.getString("titulo");
+
+				            String encode = Base64.getEncoder().encodeToString(imgData);
+				            request.setAttribute("imgBase", encode);
 						%>
-						<form action="" method="post" class="form-control" style="border:0px; width: 1026px;height: 600px;"
-							style="width: 500px; height: 400px">
+						<form action="../rdyController?action=editarBlog" method="post" class="form-control" style="border:0px; width: 1026px;height: auto;"
+							style="width: 500px; height: 400px" enctype='multipart/form-data' id="formEditar">
+					<img src="data:image/jpeg;base64,${imgBase}" alt="<%=rs.getString("titulo")%>" />
+					<br><br><br>
 
 					 ID: 
 					 <input type="text" name="id" readonly style="margin-bottom: 20px;width: 76px;" class="form-control" value="<%= rs.getInt("id")%>" required/>
@@ -130,8 +183,15 @@
                  	<textarea class="form-control" maxlength="1000" name="descripcion" style="overflow: hidden; height: 260px; resize: none" required>
                  	<%= rs.getString("descripcion")%>
                  	</textarea>
+                 	<br>
+					Cambiar imágen de la noticia:
+					<br>
+					<input type="file" id="imagen_mod" name="imagen_mod"
+								style="height: 50px;" /> <br>
                  	
-                 	 <input type="submit" value="Guardar" style="margin-top: 20px;" class="btn btn-primary btn-lg"/>					
+                 		
+                 	
+                 	 <input type="button" onclick="aceptarCambios()" value="Guardar" style="margin-top: 20px;" class="btn btn-primary btn-lg"/>					
                  	 <a href="noticias.jsp" class="btn btn-primary btn-lg" style="margin-top: 20px;margin-left: 10px; background: red;border-color: red; width: 105px;">Volver</a>
 
 						</form>
@@ -310,17 +370,4 @@
 
 </body>
 </html>
-
-<%
-       String titulo, youtube, descripcion;
-       titulo=request.getParameter("titulo");
-       youtube=request.getParameter("youtube");
-       descripcion=request.getParameter("descripcion");
-
-       if(titulo!=null && youtube!=null && descripcion !=null){
-           ps=con.prepareStatement("update blog set titulo='"+titulo+"', youtube='"+youtube+"', descripcion='"+descripcion+"'where id="+id);
-           ps.executeUpdate();
-           response.sendRedirect("noticias.jsp");
-       }
-%>
 

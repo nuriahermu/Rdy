@@ -121,7 +121,9 @@
 						%>
 						<h2 style="margin-bottom: 50px;"><%=rs.getString("titulo")%></h2>
 						
-						<% if(rs.getString("youtube") != null &&  !rs.getString("youtube").equals("")){ %>
+						<% 
+						System.out.println(rs.getString("youtube"));
+						if(rs.getString("youtube") != null &&  !rs.getString("youtube").equals("")){ %>
 						<iframe width="640" height="360"
 							src="<%=rs.getString("youtube")%>"></iframe>
 						<% } %>

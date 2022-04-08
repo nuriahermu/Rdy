@@ -27,26 +27,47 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"
 	rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script
+	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+
 
 <script type="text/javascript">
+	function aceptarCambios() {
 
- function aceptarCambios() {
-	 
 		event.preventDefault();
 		alertify.confirm("¿Estás seguro que quiere realizar estos cambios?",
-				  function() {
-			 		event.preventDefault();
-			 		$('#formEditar').submit();
-	  					  
-				  },
-				  function() {
-					  event.preventDefault();
-					  alertify.error('¡Cancelado!');
-				  }
-				);
-}
+				function() {
+					event.preventDefault();
+					$('#formEditar').submit();
 
+				}, function() {
+					event.preventDefault();
+					alertify.error('¡Cancelado!');
+				});
+	}
+	
+	function eliminarComentario(autor) {
+		event.preventDefault();
+		alertify.confirm("¿Estás seguro que quiere eliminar el comentario de "+autor+"?",
+				function() {
+					event.preventDefault();
+					//$('#formEditar').submit();
+
+				}, function() {
+					event.preventDefault();
+					alertify.error('¡Cancelado!');
+				});
+	}
 </script>
 
 
@@ -123,15 +144,16 @@
 	<!-- Page section -->
 	<section class="page-section single-blog-page spad">
 		<div class="container">
-		<form action="../rdyController?action=editarJuego" method="post" class="form-control" id="formEditar"
-				style="border: 0px; width: 1026px; height: 1300px;"
+			<form action="../rdyController?action=editarJuego" method="post" enctype='multipart/form-data'
+				class="form-control" id="formEditar"
+				style="border: 0px; width: 1026px; height: auto;"
 				style="width: 500px; height: 400px">
-			
+
 				<div class="row">
 					<div class="col-lg-8">
 						<h2 style="margin-bottom: 50px;">EDICIÓN DE JUEGO</h2>
 						<div class="blog-content">
-						
+
 							<%
 							//CONECTANOD A LA BASE DE DATOS:
 							Connection con;
@@ -158,41 +180,79 @@
 
 
 
-							ID: <input type="text" name="id" id="id" 
+							ID: <input type="text" name="id" id="id"
 								style="margin-bottom: 20px; width: 76px;" class="form-control"
-								value="<%=rs.getInt("id")%>" readonly/> 
+								value="<%=rs.getInt("id")%>" readonly /> 
+								
 							Título: <input
 								type="text" name="nombre" maxlength="50" class="form-control"
-								style="margin-bottom: 20px;"
-								value="<%=rs.getString("nombre")%>" required /> 
-							Año: <input
-								type="text" name="anio" maxlength="50" class="form-control"
-								style="margin-bottom: 20px;" value="<%=rs.getInt("anio")%>"
+								style="margin-bottom: 20px;" value="<%=rs.getString("nombre")%>"
 								required /> 
-							Plataforma: <input type="text" name="plataforma_id"
-								maxlength="50" class="form-control" style="margin-bottom: 20px;"
-								value="<%=rs.getInt("plataforma_id")%>" required /> 
-							Exclusivo:
-							<input type="text" name="exclusivo" maxlength="50"
-								class="form-control" style="margin-bottom: 20px;"
-								value="<%=rs.getInt("exclusivo")%>" required />
+								
+							Año: <input type="text" class="form-control"
+								value="<%=rs.getInt("anio")%>" id="anio" name="anio"
+								style="width: 64px; height: 40px;" autocomplete="off" />
+							<script type="text/javascript">
+								 $("#anio").datepicker({
+							    	    format: "yyyy",
+							    	    viewMode: "years", 
+							    	    minViewMode: "years",
+							    	    autoclose:true //to close picker once year is selected
+							    	   
+							    	});
+								</script>
+							<br> 
+							Plataforma: <br> <select name="plataforma_id"
+								id="plataforma_id" required
+								style="height: 37px; width: 202px; margin-bottom: 20px; margin-top: 5px;">
+								<option value="1">XBOX</option>
+								<option value="2">PLAYSTATION</option>
+								<option value="3">NINTENDO</option>
+								<option value="4">PC</option>
+							</select> <br>
 
+							<script>
+							    document.ready = document.getElementById("plataforma_id").value = "<%=rs.getInt("plataforma_id")%>";
+							</script>
+
+							Exclusivo: <br> <select name="exclusivo" id="exclusivo"
+								required
+								style="height: 37px; width: 202px; margin-bottom: 20px; margin-top: 5px;">
+								<option value="0">NO</option>
+								<option value="1">SÍ</option>
+							</select> <br>
+							<script>
+							    document.ready = document.getElementById("exclusivo").value = "<%=rs.getInt("exclusivo")%>";
+							</script>
 
 							Características:
 							<textarea class="form-control" maxlength="1000" minlength="50"
 								name="caracteristicas"
-								style="overflow: hidden; height: 260px; resize: none" required><%=rs.getString("caracteristicas").trim()%></textarea>
+								style="overflow: hidden; width: 820px; height: 260px; resize: none" required><%=rs.getString("caracteristicas").trim()%></textarea>
 
+							<h3 style="margin-bottom: 20px; margin-top: 50px;">Imágenes</h3>
 							<%
+							if (imgData != null) {
+								encode = Base64.getEncoder().encodeToString(imgData);
+								request.setAttribute("imgBase", encode);
+							%>
+							<h6>Imágen de portada</h6>
+							<br> <img src="data:image/jpeg;base64,${imgBase}"
+								alt="<%=rs.getString("nombre")%>"
+								style="width: 300px; height: 250px; margin-bottom: 60px;" />
+							<%
+							}
 							if (imgData2 != null || imgData3 != null) {
 							%>
-							<h3 style="margin-bottom: 20px; margin-top: 50px;">Imágenes
-								del juego</h3>
+							<br>
+							<h6>Capturas del juego</h6>
+							<br>
 							<%
 							if (imgData2 != null) {
 								String encode2 = Base64.getEncoder().encodeToString(imgData2);
 								request.setAttribute("imgBase2", encode2);
 							%>
+
 							<img src="data:image/jpeg;base64,${imgBase2}"
 								alt="<%=rs.getString("nombre")%>"
 								style="width: 300px; height: 250px; margin-bottom: 60px;" />
@@ -207,34 +267,56 @@
 								style="width: 300px; height: 250px; margin-bottom: 60px;" />
 							<%
 							}
-							
 							}
 							%>
+
+							<h3 style="margin-bottom: 20px; margin-top: 50px;">
+							Nuevas imágenes del juego</h3>
+							<p
+								style="margin-bottom: 5px; margin-top: 20px; font-family: 'Roboto'; font-size: initial;">Imágen
+								de portada:</p>
+							<input type="file" id="foto_portada_mod" name="foto_portada_mod"
+								style="height: 50px;" /> <br>
+							<p
+								style="margin-bottom: 5px; margin-top: 20px; font-family: 'Roboto'; font-size: initial;">Imágen
+								del juego 1:</p>
+							<input type="file" id="foto_juego1_mod" name="foto_juego1_mod"
+								style="height: 50px;" /> <br>
+							<p
+								style="margin-bottom: 5px; margin-top: 20px; font-family: 'Roboto'; font-size: initial;">Imágen
+								del juego 2:</p>
+							<input type="file" id="foto_juego2_mod" name="foto_juego2_mod"
+								style="height: 50px;" /> <br>
 						</div>
 
 						<div class="col-lg-8">
 
-							<input type="button" onclick="aceptarCambios()" value="Guardar" style="margin-top: 20px;" class="btn btn-primary btn-lg" /> 
-							<a href="juegos.jsp" class="btn btn-primary btn-lg"
+							<input type="button" onclick="aceptarCambios()" value="Guardar"
+								style="margin-top: 20px;" class="btn btn-primary btn-lg" /> <a
+								href="juegos.jsp" class="btn btn-primary btn-lg"
 								style="margin-top: 20px; margin-left: 10px; background: red; border-color: red; width: 105px;">
-							Volver</a>
-
+								Volver</a>
 
 						</div>
-						
+
 						<%
 						}
-						%>			
-		</div>
-		</div>
-		</form>
+						%>
+						
+						
+						
+
+					</div>
+				</div>
+			</form>
 		</div>
 	</section>
-	<section style="padding-left: 100px;">
-		<div class="col-lg-8">
+	<section style="padding-left: 100px; margin-top: auto;">
+		<div class="col-lg-12">
 			<!-- COMENTARIOS -->
 			<div class="comment-form-warp">
-				<h4 class="widget-title" style="margin-bottom: 20px;">Comentarios asociados</h4>
+				<h4 class="widget-title" style="margin-bottom: 20px;">Comentarios
+					asociados</h4>
 				<%
 				PreparedStatement ps2;
 				ResultSet rs2;
@@ -249,12 +331,26 @@
 				while (rs2.next()) {
 				%>
 				<div class="latest-blog">
-					<div class="lb-item">
-						<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
-							data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
-						<div class="lb-content">
-							<p style="color: black;"><%=rs2.getString("mensaje")%></p>
-							<a href="#" class="lb-author" style="color: black;">Por: <%=rs2.getString("nombre")%></a>
+					<div class="row">
+						<div class="col-md-2">
+
+							<div class="lb-item">
+								<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
+									data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
+								<div class="lb-content">
+									<p style="color: black;"><%=rs2.getString("mensaje")%></p>
+									<a href="#" class="lb-author" style="color: black;">Por: <%=rs2.getString("nombre")%></a>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-3">
+							<div class="lb-content">
+								<button type="button"
+									onclick="javascript:eliminarComentario('<%=rs2.getString("nombre")%>')"
+									style="background-image: url(ESTILOS/principal/img/borrarComentario.png); border: none; background-repeat: no-repeat; width: 50px; height: 48px; background-size: contain; mix-blend-mode: hard-light;"></button>
+							</div>
+
 						</div>
 					</div>
 				</div>

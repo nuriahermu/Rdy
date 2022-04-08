@@ -1,10 +1,12 @@
 package ModeloBBDD;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import Controlador.Conexion;
+import Modelo.Blog;
 import Modelo.Juego;
 
 public class JuegosDAO {
@@ -23,14 +25,60 @@ public class JuegosDAO {
 	}
 
 	// Modificar juego
-	public void modificar(Juego juego) throws SQLException {
-		String sql = "update juegos set nombre='" + juego.getNombre().trim() + "', anio=" + juego.getAnio()
-				+ ", caracteristicas='" + juego.getCaracteristicas().trim() + "', plataforma_id="
-				+ juego.getPlataforma_id() + ", exclusivo=" + juego.getExclusivo() + " where id=" + juego.getId();
+	public void modificar(Juego juego) throws SQLException, IOException {
+		String modImagenPortada="";
+		String modImagenFoto1="";
+		String modImagenFoto2="";
+		
+		if(juego.getFoto_portada2() != null) {
+			modImagenPortada = ", foto_portada = ? ";
+		}
+		
+		if(juego.getFoto_juego11() != null) {
+			modImagenFoto1= ", foto_juego1 = ? ";
+		}
+		
+		if(juego.getFoto_juego22() != null) {
+			modImagenFoto2= ", foto_juego2= ? ";
+		}
+		
+		
+		String sql = "UPDATE juegos SET nombre = ? , anio = ?, caracteristicas = ?, plataforma_id = ?, exclusivo = ?"+ 
+						modImagenPortada + modImagenFoto1+ modImagenFoto2+ " where id=" + juego.getId();
 		con.conectar();
 		connection = con.getJdbcConnection();
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.execute();
+		statement.setString(1, juego.getNombre().trim());
+		statement.setInt(2, juego.getAnio());
+		statement.setString(3, juego.getCaracteristicas().trim());
+		statement.setInt(4, juego.getPlataforma_id());
+		statement.setInt(5, juego.getExclusivo());
+		
+		if(modImagenPortada != "") {
+			statement.setBlob(6, juego.getFoto_portada2());
+		}
+		
+		if(modImagenPortada != "" && modImagenFoto1 != "" ) {
+			statement.setBlob(7, juego.getFoto_juego11());
+		}
+		
+		if(modImagenPortada == "" && modImagenFoto1 != "" ) {
+			statement.setBlob(6, juego.getFoto_juego11());
+		}
+
+		if(modImagenPortada != "" && modImagenFoto1 != "" && modImagenFoto2 != "" ) {
+			statement.setBlob(8, juego.getFoto_juego22());
+		}else if((modImagenPortada != "" || modImagenFoto1 != "") && modImagenFoto2 != "" ) {
+			statement.setBlob(7, juego.getFoto_juego22());
+		}
+		
+		if(modImagenPortada == "" && modImagenFoto1 == "" && modImagenFoto2 != "") {
+			statement.setBlob(6, juego.getFoto_juego22());
+		}
+		
+		
+		
+		statement.executeUpdate();
 		statement.close();
 		con.desconectar();
 	}
@@ -74,4 +122,29 @@ public class JuegosDAO {
 		statement.close();
 		con.desconectar();
 	}
+	
+	// Modificar blog
+		public void modificar(Blog blog) throws SQLException, IOException {
+			String modImagen="";
+			
+			if(blog.getFoto() != null) {
+				modImagen = ", imagen = ? ";
+			}
+
+			String sql = "UPDATE blog SET titulo = ? , descripcion = ?, youtube = ?"+ modImagen + " where id=" + blog.getId();
+			con.conectar();
+			connection = con.getJdbcConnection();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, blog.getTitulo().trim());
+			statement.setString(2, blog.getDescripcion().trim());
+			statement.setString(3, blog.getYoutube().trim());
+			
+			if(modImagen != "") {
+				statement.setBlob(4, blog.getFoto());
+			}
+						
+			statement.executeUpdate();
+			statement.close();
+			con.desconectar();
+		}
 }

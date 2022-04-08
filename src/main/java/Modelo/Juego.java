@@ -39,6 +39,7 @@ public class Juego {
 	public Juego(String id, String nombre, String anio, String plataforma_id, String caracteristicas, String exclusivo) {
 		// TODO Auto-generated constructor stub
 		super();
+		this.id = Integer.parseInt(id);
 		this.nombre = nombre;
 		this.anio = Integer.parseInt(anio);
 		this.plataforma_id = Integer.parseInt(plataforma_id);

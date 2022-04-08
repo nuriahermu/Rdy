@@ -1,6 +1,5 @@
 package Modelo;
 
-import java.awt.Image;
 import java.io.InputStream;
 import java.sql.Blob;
 
@@ -10,7 +9,6 @@ public class Blog {
 	private String titulo;
 	private String descripcion;
 	private Blob imagen;
-	private Image imagenConvert;
 	private InputStream foto;
 	private String youtube;
 
@@ -18,6 +16,7 @@ public class Blog {
 	}
 
 	public Blog(int id2, String titulo2, String descripcion2, Blob imagen) {
+		super();
 		this.id = id2;
 		this.titulo = titulo2;
 		this.descripcion = descripcion2;
@@ -25,16 +24,26 @@ public class Blog {
 	}
 
 	public Blog(int id2, String titulo2, String descripcion2, String youtube) {
+		super();
 		this.id = id2;
 		this.titulo = titulo2;
 		this.descripcion = descripcion2;
 		this.youtube = youtube;
 	}
+	
 
 	public Blog(int id) {
 		this.id = id;
 	}
 	
+	public Blog(String id2, String titulo2, String descripcion2, String youtube) {
+		super();
+		this.id = Integer.parseInt(id2);
+		this.titulo = titulo2;
+		this.descripcion = descripcion2;
+		this.youtube = youtube;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -65,14 +74,6 @@ public class Blog {
 
 	public void setImagen(Blob imagen) {
 		this.imagen = imagen;
-	}
-
-	public Image getImagenConvert() {
-		return imagenConvert;
-	}
-
-	public void setImagenConvert(Image imagenConvert) {
-		this.imagenConvert = imagenConvert;
 	}
 
 	public InputStream getFoto() {

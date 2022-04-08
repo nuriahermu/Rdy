@@ -232,7 +232,7 @@
 			<div class="col-md-3" style="margin-bottom: 20px;">
 				<div class="user-panel" >
 					<input name="inicio" id="inicio" type="button" value="VER TODOS" onclick="filtroTodos();"
-					style="margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
+					style="cursor: pointer; margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
 				</div>
 			</div>
 		</div>
@@ -242,14 +242,14 @@
 					<li
 						style="border: none; background: none; height: 220px; writing-mode: vertical-lr; margin-left: 20px;">
 						<img src="VISTAS/ESTILOS/principal/img/logos/xbox-logo.png" alt="Xbox" onclick="filtroXbox();"
-						style="width: 200px; height: 150px; margin-right: 50px; margin-left: 20px;">
+						style="cursor: pointer; width: 200px; height: 150px; margin-right: 50px; margin-left: 20px;">
 						<img src="VISTAS/ESTILOS/principal/img/logos/play-logo.png" onclick="filtroPlay();"
 						alt="PlayStation"
-						style="width: 200px;margin-right: 50px;margin-top: 70px;"> <img
+						style="cursor: pointer; width: 200px;margin-right: 50px;margin-top: 70px;"> <img
 						src="VISTAS/ESTILOS/principal/img/logos/nintendo-logo.png" alt="Nintendo" onclick="filtroNintendo();"
-						style="width: 200px;margin-right: 50px;margin-top: 70px;"> <img
+						style="cursor: pointer; width: 200px;margin-right: 50px;margin-top: 70px;"> <img
 						src="VISTAS/ESTILOS/principal/img/logos/pc-logo.png" alt="PC" onclick="filtroPC();"
-						style="width: 200px; height: 150px;">
+						style="cursor: pointer; width: 200px; height: 150px;">
 					</li>
 				
 					<div id="todos">

@@ -42,8 +42,16 @@
 		$('#todos_play').hide();
 		$('#todos_nintendo').hide();
 		$('#todos_pc').hide();
+		
+		//ocultar las opciones para usuario con perfil cliente
+		 if('${usuario.rol}' == 'cliente'){
+			 $('#insertarJuegoButton').hide();
+			 for (let el of document.querySelectorAll('.opcionAdmin')) el.style.visibility = 'hidden';
+		} 
+		 
 	});
 
+		
 	function filtroTodos() {
 		 document.getElementById("todos_xbox").style.display = "none";
 		 document.getElementById("todos_play").style.display = "none";
@@ -84,22 +92,6 @@
 	 }
 	 
 	 
-	/*  $(document).ready(function() {
-			$('#descargar').click(function(event) {
-				var nombreVar = $('#nombre').val();
-				var apellidoVar = $('#apellido').val();
-				var edadVar = $('#edad').val();
-				// Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
-				$.post('ActionServlet', {
-					nombre : nombreVar,
-					apellido: apellidoVar,
-					edad: edadVar
-				}, function(responseText) {
-					$('#tabla').html(responseText);
-				});
-			});
-		}); */
-	 
 	 
 	 function confirmarDescarga(nombre, id) {
 		event.preventDefault();  //evitar recarga de pagina
@@ -125,7 +117,7 @@
 					  document.body.removeChild(element);
 					  
 					  
-					  document.formdescargar.submit();
+					 // document.formdescargar.submit();
 					  					  
 				  },
 				  function() {
@@ -232,13 +224,13 @@
 			<div class="col-md-3" style="margin-bottom: 20px;">
 				<div class="user-panel" >
 					<input name="inicio" id="inicio" type="button" value="VER TODOS" onclick="filtroTodos();"
-					style="margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
+					style="cursor: pointer; margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
 				</div>
 			</div>
-			<div class="col-md-8" style="margin-bottom: 20px;">
+			<div class="col-md-8" style="margin-bottom: 20px;" name="insertarJuegoButton" id="insertarJuegoButton">
 			 <a href="pagina-juego-insertar.jsp">
 				<div class="user-panel" style="background: #4ecf0c;">
-					<input name="inicio" id="inicio" type="button" value="INSERTAR JUEGO"
+					<input type="button" value="INSERTAR JUEGO"
 					style="margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
 				</div>
 				<a/>
@@ -250,14 +242,14 @@
 					<li
 						style="border: none; background: none; height: 220px; writing-mode: vertical-lr; margin-left: 20px;">
 						<img src="ESTILOS/principal/img/logos/xbox-logo.png" alt="Xbox" onclick="filtroXbox();"
-						style="width: 200px; height: 150px; margin-right: 50px; margin-left: 20px;">
+						style="cursor: pointer; width: 200px; height: 150px; margin-right: 50px; margin-left: 20px;">
 						<img src="ESTILOS/principal/img/logos/play-logo.png" onclick="filtroPlay();"
 						alt="PlayStation"
-						style="width: 200px;margin-right: 50px;margin-top: 70px;"> <img
+						style="cursor: pointer; width: 200px;margin-right: 50px;margin-top: 70px;"> <img
 						src="ESTILOS/principal/img/logos/nintendo-logo.png" alt="Nintendo" onclick="filtroNintendo();"
-						style="width: 200px;margin-right: 50px;margin-top: 70px;"> <img
+						style="cursor: pointer; width: 200px;margin-right: 50px;margin-top: 70px;"> <img
 						src="ESTILOS/principal/img/logos/pc-logo.png" alt="PC" onclick="filtroPC();"
-						style="width: 200px; height: 150px;">
+						style="cursor: pointer; width: 200px; height: 150px;">
 					</li>
 				
 					<div id="todos">
@@ -316,14 +308,19 @@
 											
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
 											
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
-                                			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
-                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
+											<span class="opcionAdmin">
+												<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;" id="editarButton">Editar</a>
+                                				<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            </span>
+                                            
+                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style="color: white; margin-bottom: 30px; background: #ffb320; border-color: #ffb320; width: 80px;">Ver</a>
+                                            
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
 											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
 											</form>
 											</div>
+	
 										</div>
 									</div>
 								</div>
@@ -375,8 +372,10 @@
 											</div>
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
 											
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+											<span class="opcionAdmin">
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;" id="editarButton">Editar</a>
                                 			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            </span>
                                             <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
@@ -434,9 +433,10 @@
 											</div>
 											
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
-											
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+											<span class="opcionAdmin">
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;" id="editarButton">Editar</a>
                                 			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            </span>
                                             <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
@@ -495,8 +495,10 @@
 											
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
 											
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+											<span class="opcionAdmin">
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;" id="editarButton">Editar</a>
                                 			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            </span>
                                             <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
@@ -555,8 +557,11 @@
 											
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
 
-											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;">Editar</a>
+											<span class="opcionAdmin">
+											<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;" id="editarButton">Editar</a>
                                 			<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                            </span>
+                                            
                                             <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320;  width: 80px;">Ver</a>
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
