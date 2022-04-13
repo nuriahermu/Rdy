@@ -9,7 +9,7 @@
 <meta name="keywords" content="rdy, juegos, creativo, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon -->
-<link href="ESTILOS/principal/img/palanca-de-mando.png"
+<link href="VISTAS/ESTILOS/principal/img/palanca-de-mando.png"
 	rel="shortcut icon" />
 
 <!-- Google Fonts -->
@@ -18,11 +18,11 @@
 	rel="stylesheet">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="ESTILOS/principal/css/bootstrap.min.css" />
-<link rel="stylesheet" href="ESTILOS/principal/css/font-awesome.min.css" />
-<link rel="stylesheet" href="ESTILOS/principal/css/owl.carousel.css" />
-<link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
-<link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/bootstrap.min.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/font-awesome.min.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/owl.carousel.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/style.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/animate.css" />
 
 <link
 	href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css"
@@ -51,8 +51,8 @@
 		}
 	});
 
-
 	function aceptarCambios() {
+
 		event.preventDefault();
 		alertify.confirm("¿Estás seguro que quiere realizar estos cambios?",
 				function() {
@@ -71,7 +71,7 @@
 		alertify.confirm("¿Estás seguro que quiere eliminar el comentario de "+autor+"?",
 				function() {
 					event.preventDefault();
-					$("#id_comentario").val(id);					
+					$("#id_comentario").val(id);	
 					$('#formEliminarComentario').submit();
 
 				}, function() {
@@ -94,12 +94,12 @@
 		<div class="container">
 			<!-- logo -->
 			<a class="site-logo" href="#"> <img
-				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
+				src="VISTAS/ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel" style="text-align: center;">
 				Hola, ${usuario.usuario}
 				<div>
-					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi
+					<a href="VISTAS/perfil.jsp" style="font-size: 17px;">Acceder a mi
 						cuenta</a>
 				</div>
 			</div>
@@ -111,16 +111,16 @@
 			<nav class="main-menu" style="margin-top: 50px;">
 				<ul>
 					<li><a href="">
-							<form action="../rdyController?action=inicio" method="post">
+							<form action="rdyController?action=inicio" method="post">
 								<input name="inicio" id="inicio" type="submit" value="INICIO"
 									onMouseover="this.style.color='#ffb320'"
 									onMouseout="this.style.color='white'"
 									style="border: none; background: none; color: white; padding: 10px 5px; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: bolder;">
 							</form>
 					</a></li>
-					<li><a href="juegos.jsp">JUEGOS</a></li>
-					<li><a href="noticias.jsp">NOTICIAS</a></li>
-					<li><a href="contacto.jsp">CONTACTO</a></li>
+					<li><a href="VISTAS/juegos.jsp">JUEGOS</a></li>
+					<li><a href="VISTAS/noticias.jsp">NOTICIAS</a></li>
+					<li><a href="VISTAS/contacto.jsp">CONTACTO</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -155,7 +155,7 @@
 	<!-- Page section -->
 	<section class="page-section single-blog-page spad">
 		<div class="container">
-			<form action="../rdyController?action=editarJuego" method="post" enctype='multipart/form-data'
+			<form action="rdyController?action=editarJuego" method="post" enctype='multipart/form-data'
 				class="form-control" id="formEditar"
 				style="border: 0px; width: 1026px; height: auto;"
 				style="width: 500px; height: 400px">
@@ -304,7 +304,7 @@
 
 							<input type="button" onclick="aceptarCambios()" value="Guardar"
 								style="margin-top: 20px;" class="btn btn-primary btn-lg" /> <a
-								href="juegos.jsp" class="btn btn-primary btn-lg"
+								href="VISTAS/juegos.jsp" class="btn btn-primary btn-lg"
 								style="margin-top: 20px; margin-left: 10px; background: red; border-color: red; width: 105px;">
 								Volver</a>
 
@@ -326,7 +326,7 @@
 		</div>
 	</section>
 	<section style="padding-left: 370px; margin-top: auto;">
-	<form enctype='multipart/form-data' id="formEliminarComentario" action="../rdyController?action=eliminarComentarioJuego" method="post">
+	<form enctype='multipart/form-data' id="formEliminarComentario" action="rdyController?action=eliminarComentarioJuego" method="post">
 		<div class="col-lg-12">
 			<!-- COMENTARIOS -->
 			<div class="comment-form-warp">
@@ -339,17 +339,15 @@
 				ps2 = con.prepareStatement("select * from juego_comentario where id_juego=" + id);
 				rs2 = ps2.executeQuery();
 
-			
 				while (rs2.next()) {
 				%>
-				
 				<div class="latest-blog">
 					<div class="row">
 						<div class="col-md-2">
 
 							<div class="lb-item">
 								<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
-									data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
 								<div class="lb-content">
 									<input hidden="id_comentario" name="id_comentario" id="id_comentario" value='<%=rs2.getInt("id")%>'/>
 									<input hidden="id_juego" name="id_juego" id="id_juego" value='<%=rs2.getInt("id_juego")%>'/>
@@ -363,7 +361,7 @@
 							<div class="lb-content">
 								<button type="button"
 									onclick="javascript:eliminarComentario('<%=rs2.getString("nombre")%>', '<%=rs2.getString("id")%>')"
-									style="cursor: pointer; background-image: url(ESTILOS/principal/img/borrarComentario.png); border: none; background-repeat: no-repeat; width: 50px; height: 48px; background-size: contain; mix-blend-mode: hard-light;"></button>
+									style="cursor: pointer; background-image: url(VISTAS/ESTILOS/principal/img/borrarComentario.png); border: none; background-repeat: no-repeat; width: 50px; height: 48px; background-size: contain; mix-blend-mode: hard-light;"></button>
 							</div>
 
 						</div>
@@ -385,12 +383,12 @@
 	<section class="footer-top-section">
 		<div class="container">
 			<div class="footer-top-bg">
-				<img src="ESTILOS/principal/img/footer-top-bg.png" alt="">
+				<img src="VISTAS/ESTILOS/principal/img/footer-top-bg.png" alt="">
 			</div>
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="footer-logo text-white">
-						<img src="ESTILOS/login/images/logo1blancosmall.png"
+						<img src="VISTAS/ESTILOS/login/images/logo1blancosmall.png"
 							alt="logo RDY">
 					</div>
 				</div>
@@ -400,7 +398,7 @@
 						<div class="latest-blog">
 							<div class="lb-item">
 								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/1.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/1.jpg"></div>
 								<div class="lb-content">
 									<div class="lb-date">June 21, 2018</div>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
@@ -410,7 +408,7 @@
 							</div>
 							<div class="lb-item">
 								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/2.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/2.jpg"></div>
 								<div class="lb-content">
 									<div class="lb-date">June 21, 2018</div>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
@@ -420,7 +418,7 @@
 							</div>
 							<div class="lb-item">
 								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/3.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/3.jpg"></div>
 								<div class="lb-content">
 									<div class="lb-date">June 21, 2018</div>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
@@ -437,7 +435,7 @@
 						<div class="top-comment">
 							<div class="tc-item">
 								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/1.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/authors/1.jpg"></div>
 								<div class="tc-content">
 									<p>
 										<a href="#">James Smith</a> <span>dice: </span> Todo perfecto,
@@ -448,7 +446,7 @@
 							</div>
 							<div class="tc-item">
 								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/2.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/authors/2.jpg"></div>
 								<div class="tc-content">
 									<p>
 										<a href="#">Valentin Martinez</a> <span>dice: </span> Todos
@@ -459,7 +457,7 @@
 							</div>
 							<div class="tc-item">
 								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/3.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/authors/3.jpg"></div>
 								<div class="tc-content">
 									<p>
 										<a href="#">Jose Fernandez</a> <span>dice: </span> Sin duda
@@ -470,7 +468,7 @@
 							</div>
 							<div class="tc-item">
 								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/4.jpg"></div>
+									data-setbg="VISTAS/ESTILOS/principal/img/authors/4.jpg"></div>
 								<div class="tc-content">
 									<p>
 										<a href="#">Julián Gonzalez</a> <span>dice: </span> Todos mis
@@ -506,10 +504,10 @@
 
 
 	<!--== Javascripts & Jquery ==-->
-	<script src="ESTILOS/principal/js/jquery-3.2.1.min.js"></script>
-	<script src="ESTILOS/principal/js/bootstrap.min.js"></script>
-	<script src="ESTILOS/principal/js/owl.carousel.min.js"></script>
-	<script src="ESTILOS/principal/js/jquery.marquee.min.js"></script>
-	<script src="ESTILOS/principal/js/main.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/jquery-3.2.1.min.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/bootstrap.min.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/owl.carousel.min.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/jquery.marquee.min.js"></script>
+	<script src="VISTAS/ESTILOS/principal/js/main.js"></script>
 </body>
 </html>

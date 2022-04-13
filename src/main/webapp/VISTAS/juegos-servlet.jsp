@@ -148,7 +148,7 @@
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="VISTAS/index.html"> <img
+			<a class="site-logo" href="#"> <img
 				src="VISTAS/ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel" style="text-align: center;">

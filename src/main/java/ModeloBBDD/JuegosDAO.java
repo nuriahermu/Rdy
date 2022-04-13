@@ -76,8 +76,6 @@ public class JuegosDAO {
 			statement.setBlob(6, juego.getFoto_juego22());
 		}
 		
-		
-		
 		statement.executeUpdate();
 		statement.close();
 		con.desconectar();

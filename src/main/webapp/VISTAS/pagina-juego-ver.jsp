@@ -23,6 +23,23 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script
+	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		if($("#id_comentario").val() == undefined){
+			$("#noHay").show();
+		}else{
+			$("#noHay").hide();
+		}
+	});
+	
+</script>
+
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -34,7 +51,7 @@
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="index.html"> <img
+			<a class="site-logo" href="#"> <img
 				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel" style="text-align: center;">
@@ -183,22 +200,20 @@
 					<!-- widget -->
 					<div class="widget-item">
 					<h4 class="widget-title">Últimos comentarios</h4>
+					<p id="noHay">No hay comentarios</p>
 						<%
 							ps = con.prepareStatement("select * from juego_comentario where id_juego=" + id);
 							rs = ps.executeQuery();
-							
-							if(rs.next() == false){
-								%>
-									<p>No hay comentarios </p>
-								<% 	
-									}
 							while (rs.next()) {
 						%>
+						
 						<div class="latest-blog">
 							<div class="lb-item">
 								<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
 									data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
 								<div class="lb-content">
+									<input hidden="id_comentario" name="id_comentario" id="id_comentario" value='<%=rs.getInt("id")%>'/>
+									<input hidden="id_juego" name="id_juego" id="id_juego" value='<%=rs.getInt("id_juego")%>'/>
 									<p><%=rs.getString("mensaje")%></p>
 									<a href="#" class="lb-author">Por: <%=rs.getString("nombre")%></a>
 								</div>

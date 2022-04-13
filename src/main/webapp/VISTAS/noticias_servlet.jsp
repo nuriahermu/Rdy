@@ -39,7 +39,7 @@
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="VISTAS/index.html"> <img
+			<a class="site-logo" href="#"> <img
 				src="VISTAS/ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel" style="text-align: center;">
@@ -143,9 +143,7 @@
 							<div class="recent-game-item">
 								<div class="col-md-12">
 									<div class="recent-game-item">
-										<div class="rgi-thumb set-bg"
-											data-setbg="VISTAS/ESTILOS/principal/img/recent-game/3.jpg">
-										</div>
+										<hr>
 										<div class="rgi-content">
 											<%
 												//CONECTANOD A LA BASE DE DATOS:

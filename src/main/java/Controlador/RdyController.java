@@ -4,11 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-
 import javax.servlet.annotation.WebServlet;
-
-import com.mysql.cj.jdbc.Blob;
-
 import Modelo.Blog;
 import Modelo.ComentarioBlog;
 import Modelo.ComentarioJuego;
@@ -93,6 +89,9 @@ public class RdyController extends HttpServlet {
 			case "comentarioBlog":
 				comentarioBlog(request, response);
 				break;
+			case "eliminarComentarioBlog":
+				eliminarComentarioBlog(request, response);
+				break;
 			case "mostrarBlog":
 				mostrarBlog(request, response);
 				break;
@@ -111,8 +110,8 @@ public class RdyController extends HttpServlet {
 			case "borrarJuego":
 				eliminarJuego(request, response);
 				break;
-			case "showedit":
-				showEditar(request, response);
+			case "eliminarComentarioJuego":
+				eliminarComentarioJuego(request, response);
 				break;
 			case "editar":
 				editar(request, response);
@@ -204,7 +203,7 @@ public class RdyController extends HttpServlet {
 		}
 		
 		juegosDao.modificar(blog);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-blog-servlet.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-blog-servlet.jsp?id="+request.getParameter("id"));
 		dispatcher.forward(request, response);
 	}
 
@@ -214,6 +213,13 @@ public class RdyController extends HttpServlet {
 		comentariosDao.insertar(comentario);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-blog-servlet.jsp?id="+request.getParameter("id_blog"));
 		dispatcher.forward(request, response);
+	}
+	
+	private void eliminarComentarioBlog(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+		comentariosDao.eliminarComentarioBlog(Integer.parseInt(request.getParameter("id_comentario")));
+
+		request.getRequestDispatcher("/VISTAS/pagina-blog-editar-servlet.jsp?id="+Integer.parseInt(request.getParameter("id_blog"))).forward(request, response);
 	}
 	
 	private void insertarBlog(HttpServletRequest request, HttpServletResponse response)
@@ -290,7 +296,7 @@ public class RdyController extends HttpServlet {
 		}
 		
 		juegosDao.modificar(juego);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/juegos-servlet.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/pagina-juego-ver-servlet.jsp?id="+request.getParameter("id"));
 		dispatcher.forward(request, response);
 	}
 	
@@ -310,13 +316,11 @@ public class RdyController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void showEditar(HttpServletRequest request, HttpServletResponse response)
+	private void eliminarComentarioJuego(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		Usuarios usuario = usuariosDao.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		request.setAttribute("usuario", usuario);
+		comentariosDao.eliminarComentarioJuego(Integer.parseInt(request.getParameter("id_comentario")));
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/editar.jsp");
-		dispatcher.forward(request, response);
+		request.getRequestDispatcher("/VISTAS/pagina-juego-editar-servlet.jsp?id="+Integer.parseInt(request.getParameter("id_juego"))).forward(request, response);
 	}
 
 	private void editar(HttpServletRequest request, HttpServletResponse response)

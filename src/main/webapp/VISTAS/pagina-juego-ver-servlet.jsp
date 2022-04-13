@@ -23,6 +23,24 @@
 <link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/animate.css" />
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script
+	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		if($("#id_comentario").val() == undefined){
+			$("#noHay").show();
+		}else{
+			$("#noHay").hide();
+		}
+	});
+	
+</script>
+
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -34,7 +52,7 @@
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="VISTAS/index.html"> <img
+			<a class="site-logo" href="#"> <img
 				src="VISTAS/ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel" style="text-align: center;">
@@ -175,7 +193,9 @@
 									<textarea placeholder="Mensaje" name="mensaje"
 										class="form-control" maxlength="350" required></textarea>
 									<button class="site-btn btn-sm" type="submit">Publicar</button>
-									<input type="button" class="site-btn btn-sm" style="background: yellow;" value="Volver" onClick="history.go(-1);">
+									<a href="VISTAS/juegos.jsp">
+										<input type="button" class="site-btn btn-sm" style="background: yellow;" value="Volver">
+									</a>
 								</div>
 							</div>
 						</div>
@@ -186,6 +206,7 @@
 					<!-- widget -->
 					<div class="widget-item">
 					<h4 class="widget-title">Últimos comentarios</h4>
+					<p id="noHay">No hay comentarios</p>
 						<%
 							Connection con2;
 							String url2 = "jdbc:mysql://localhost:3306/rdy";
@@ -196,18 +217,9 @@
 							PreparedStatement ps2;
 							ResultSet rs2;
 							String consulta = "select * from juego_comentario where id_juego=" + id;
-							System.out.println(consulta);
 							ps2 = con2.prepareStatement(consulta);
-							
 							rs2 = ps2.executeQuery();
-							System.out.println(id);
-							System.out.println(rs2.next());
 							
-							if(rs2.next() == false){
-								%>
-									<p>No hay comentarios </p>
-								<% 	
-									}
 							while (rs2.next()) {
 						%>
 						<div class="latest-blog">
@@ -215,6 +227,8 @@
 								<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
 									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
 								<div class="lb-content">
+									<input hidden="id_comentario" name="id_comentario" id="id_comentario" value='<%=rs2.getInt("id")%>'/>
+									<input hidden="id_juego" name="id_juego" id="id_juego" value='<%=rs2.getInt("id_juego")%>'/>
 									<p><%=rs2.getString("mensaje")%></p>
 									<a href="#" class="lb-author">Por: <%=rs2.getString("nombre")%></a>
 								</div>

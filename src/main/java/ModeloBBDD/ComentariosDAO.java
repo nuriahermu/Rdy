@@ -73,4 +73,30 @@ public class ComentariosDAO {
 		con.desconectar();
 		return rowInserted;
 	}
+	
+	// Eliminar comentario del juego
+		public boolean eliminarComentarioJuego(Integer id) throws SQLException {
+			
+		    String sql2 = "delete from juego_comentario where id="+id;
+			con.conectar();
+			connection = con.getJdbcConnection();
+			PreparedStatement statement2 = connection.prepareStatement(sql2);
+			statement2.execute();
+			statement2.close();
+			con.desconectar();
+			return true;
+		}
+		
+	// Eliminar comentario del juego
+		public boolean eliminarComentarioBlog(Integer id) throws SQLException {
+			
+		    String sql2 = "delete from blog_comentario where id="+id;
+			con.conectar();
+			connection = con.getJdbcConnection();
+			PreparedStatement statement2 = connection.prepareStatement(sql2);
+			statement2.execute();
+			statement2.close();
+			con.desconectar();
+			return true;
+		}
 }

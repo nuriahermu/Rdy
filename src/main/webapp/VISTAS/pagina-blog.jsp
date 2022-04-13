@@ -23,6 +23,23 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script
+	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		if($("#id_comentario").val() == undefined){
+			$("#noHay").show();
+		}else{
+			$("#noHay").hide();
+		}
+	});
+	
+</script>
+
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -34,7 +51,7 @@
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="index.html"> <img
+			<a class="site-logo" href="#"> <img
 				src="ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel" style="text-align: center;">
@@ -99,7 +116,7 @@
 				<div class="col-lg-8">
 					<div class="blog-content">
 						<%
-						//CONECTANOD A LA BASE DE DATOS:
+						//CONECTANDO A LA BASE DE DATOS:
 						Connection con;
 						String url = "jdbc:mysql://localhost:3306/rdy";
 						String Driver = "com.mysql.cj.jdbc.Driver";
@@ -122,8 +139,7 @@
 						<h2 style="margin-bottom: 50px;"><%=rs.getString("titulo")%></h2>
 						
 						<% 
-						System.out.println(rs.getString("youtube"));
-						if(rs.getString("youtube") != null &&  !rs.getString("youtube").equals("")){ %>
+						if(rs.getString("youtube").trim() != null &&  !rs.getString("youtube").trim().equals("")){ %>
 						<iframe width="640" height="360"
 							src="<%=rs.getString("youtube")%>"></iframe>
 						<% } %>
@@ -163,15 +179,11 @@
 					<!-- widget -->
 					<div class="widget-item">
 						<h4 class="widget-title">Últimos comentarios</h4>
+						<p id="noHay">No hay comentarios</p>
 						<%
 							ps = con.prepareStatement("select * from blog_comentario where id_blog=" + id);
 							rs = ps.executeQuery();
 							
-							if(rs.next() == false){
-								%>
-									<p>No hay comentarios </p>
-								<% 	
-									}
 							while (rs.next()) {
 						%>
 						<div class="latest-blog">
@@ -179,6 +191,8 @@
 								<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
 									data-setbg="ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
 								<div class="lb-content">
+									<input hidden="id_comentario" name="id_comentario" id="id_comentario" value='<%=rs.getInt("id")%>'/>
+									<input hidden="id_blog" name="id_blog" id="id_blog" value='<%=rs.getInt("id_blog")%>'/>
 									<p><%=rs.getString("mensaje")%></p>
 									<a href="#" class="lb-author">Por: <%=rs.getString("nombre")%></a>
 								</div>

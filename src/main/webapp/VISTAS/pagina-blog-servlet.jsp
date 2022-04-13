@@ -23,6 +23,22 @@
 <link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/animate.css" />
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script
+	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		if($("#id_comentario").val() == undefined){
+			$("#noHay").show();
+		}else{
+			$("#noHay").hide();
+		}
+	});
+	
+</script>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -34,7 +50,7 @@
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="VISTAS/index.html"> <img
+			<a class="site-logo" href="#"> <img
 				src="VISTAS/ESTILOS/login/images/logo1blancosmall.png" alt="logo RDY">
 			</a>
 			<div class="user-panel" style="text-align: center;">
@@ -120,8 +136,11 @@
 				            request.setAttribute("imgBase", encode);
 						%>
 						<h2 style="margin-bottom: 50px;"><%=rs.getString("titulo")%></h2>
+						<% 
+						if(rs.getString("youtube").trim() != null &&  !rs.getString("youtube").trim().equals("")){ %>
 						<iframe width="640" height="360"
 							src="<%=rs.getString("youtube")%>"></iframe>
+						<% } %>
 						<textarea
 							style="overflow: hidden; margin-top: 50px; height: 320px; width: 750px; border: none; display: block; resize: none; background-color: white;"
 							disabled><%=rs.getString("descripcion")%></textarea>
@@ -160,15 +179,11 @@
 					<!-- widget -->
 					<div class="widget-item">
 						<h4 class="widget-title">Últimos comentarios</h4>
+						<p id="noHay">No hay comentarios</p>
 						<%
 							ps = con.prepareStatement("select * from blog_comentario where id_blog=" + id);
 							rs = ps.executeQuery();
 							
-							if(rs.next() == false){
-								%>
-									<p>No hay comentarios </p>
-								<% 	
-									}
 							while (rs.next()) {
 						%>
 						<div class="latest-blog">
@@ -176,6 +191,8 @@
 								<div class="lb-thumb set-bg" style="width: 63px; height: 63px;"
 									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/avatarAnonimo.jpg"></div>
 								<div class="lb-content">
+									<input hidden="id_comentario" name="id_comentario" id="id_comentario" value='<%=rs.getInt("id")%>'/>
+									<input hidden="id_blog" name="id_blog" id="id_blog" value='<%=rs.getInt("id_blog")%>'/>
 									<p><%=rs.getString("mensaje")%></p>
 									<a href="#" class="lb-author">Por: <%=rs.getString("nombre")%></a>
 								</div>
