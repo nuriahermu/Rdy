@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <html lang="en">
 <head>
 <title>RDY</title>
@@ -47,7 +51,7 @@
 				Hola,
 				${usuario.usuario}
 				<div>
-					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
+					<a href="perfil.jsp?idUsuario=${usuario.id}" style="font-size: 17px;">Acceder a mi cuenta</a>
 				</div>
 			</div>
 			<!-- responsive -->
@@ -143,18 +147,35 @@
 					<!-- Seccion de las descargas -->
 					<div class="widget-item">
 						<h4 class="widget-title">Descargas realizadas</h4>
+						<%
+						//CONECTANOD A LA BASE DE DATOS:
+						Connection con;
+						String url = "jdbc:mysql://localhost:3306/rdy";
+						String Driver = "com.mysql.cj.jdbc.Driver";
+						String user = "root";
+						String clave = "";
+						Class.forName(Driver);
+						con = DriverManager.getConnection(url, user, clave);
+						PreparedStatement ps;
+						ResultSet rs;
+						ps = con.prepareStatement("select * from usuariosjuegos where id_usuario=" + request.getParameter("idUsuario"));
+						rs = ps.executeQuery();
+							while (rs.next()) {
+						%>
 						<div class="latest-blog">
 							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/1.jpg"></div>
 								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Ipsum dolor sit amet, consectetur adipisc ing consecips</p>
-									<a href="#" class="lb-author">By Admin</a>
+									<div class="lb-date"><%=rs.getString("fecha")%></div>
+									<p><%=rs.getString("id_juego")%></p>
 								</div>
 							</div>							
 						</div>
+						<%
+						}
+						%>
 					</div>
+					
+					
 				  </div>
 			</div>
 </section>

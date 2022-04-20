@@ -99,7 +99,7 @@
 			<div class="user-panel" style="text-align: center;">
 				Hola, ${usuario.usuario}
 				<div>
-					<a href="VISTAS/perfil.jsp" style="font-size: 17px;">Acceder a mi
+					<a href="VISTAS/perfil.jsp?idUsuario=${usuario.id}" style="font-size: 17px;">Acceder a mi
 						cuenta</a>
 				</div>
 			</div>

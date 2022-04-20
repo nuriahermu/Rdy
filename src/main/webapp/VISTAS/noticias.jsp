@@ -46,7 +46,7 @@
 				Hola,
 				${usuario.usuario}
 				<div>
-					<a href="perfil.jsp" style="font-size: 17px;">Acceder a mi cuenta</a>
+					<a href="perfil.jsp?idUsuario=${usuario.id}" style="font-size: 17px;">Acceder a mi cuenta</a>
 				</div>
 			</div>
 			<!-- responsive -->
