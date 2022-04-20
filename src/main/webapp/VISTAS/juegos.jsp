@@ -2,6 +2,10 @@
 <%@page import="java.util.Base64"%>
 <%@page import="java.io.OutputStream"%>
 <%@page import="java.sql.*"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <html lang="es">
 <head>
 <title>Rdy</title>
@@ -28,7 +32,8 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
@@ -48,7 +53,7 @@
 			 $('#insertarJuegoButton').hide();
 			 for (let el of document.querySelectorAll('.opcionAdmin')) el.style.visibility = 'hidden';
 		} 
-		 
+		
 	});
 
 		
@@ -92,40 +97,46 @@
 	 }
 	 
 	 
-	 
 	 function confirmarDescarga(nombre, id) {
-		event.preventDefault();  //evitar recarga de pagina
-		alertify.confirm("¿Estás seguro que quieres decargar "+nombre+" ?",
-				  function() {
-			 		event.preventDefault();
-			 		
-			 		//insertar en la tabla
+			event.preventDefault();  //evitar recarga de pagina
+			alertify.confirm("¿Estás seguro que quieres decargar "+nombre+" ?",
+					  function() {
+				 		event.preventDefault();
+				 		
+				 		//insertar en la tabla						
+				 		var idUsuario = '${usuario.id}';
+	                    console.log(id);
+	                    
+							$.post('../descarga', {
+								idUsuario : idUsuario,
+								idJuego: id
+							}, function(responseText) {
+								  alertify.success('¡Gracias por descargar!');
+								 var texto = "Gracias por descargar "+nombre+". ¡Disfrutalo! Rdy";
+							     var nombreArchivo = nombre+".txt";
+								 var element = document.createElement('a');
+								 element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(texto));
+								 element.setAttribute('download', nombreArchivo);
+		
+								  element.style.display = 'none';
+								  document.body.appendChild(element);
+		
+								  element.click();
+		
+								  document.body.removeChild(element); 
+							});
+					 
+											  					  
+					  },
+					  function() {
+						  event.preventDefault();
+						  alertify.error('¡Sigue buscando!');
+					  }
+					);
+		}
+	 
+	 
 
-			 		
-				    alertify.success('¡Gracias por descargar!');
-					 var texto = "Gracias por descargar "+nombre+". ¡Disfrutalo! Rdy";
-				     var nombreArchivo = nombre+".txt";
-					 var element = document.createElement('a');
-					 element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(texto));
-					 element.setAttribute('download', nombreArchivo);
-
-					  element.style.display = 'none';
-					  document.body.appendChild(element);
-
-					  element.click();
-
-					  document.body.removeChild(element);
-					  
-					  
-					 // document.formdescargar.submit();
-					  					  
-				  },
-				  function() {
-					  event.preventDefault();
-					  alertify.error('¡Sigue buscando!');
-				  }
-				);
-	}
 </script>
 
 

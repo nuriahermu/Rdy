@@ -2,9 +2,13 @@ package ModeloBBDD;
 
 
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +16,7 @@ import com.mysql.cj.xdevapi.Statement;
 
 import Controlador.Conexion;
 import Modelo.Usuarios;
+import Modelo.UsuariosJuegos;
 
 public class UsuariosDAO {
     
@@ -139,6 +144,35 @@ public class UsuariosDAO {
             con.desconectar();
 
             return usuario;
+    }
+    
+    // insertar en usuario la descarga
+    public boolean insertarDescarga(UsuariosJuegos usuario) throws SQLException {
+    	String sql = "INSERT INTO usuariosjuegos (id,id_usuario,id_juego,fecha) VALUES (?, ?, ?, ?)";
+        con.conectar();
+        connection = con.getJdbcConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+    	try {
+            
+            statement.setString(1, null);
+            statement.setInt(2, usuario.getId_usuario());
+            statement.setInt(3, usuario.getId_juego());
+            
+            java.util.Date date = new java.util.Date();
+            java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
+            
+            statement.setTimestamp(4, timestamp);
+
+           
+            
+    	} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	 boolean rowInserted = statement.executeUpdate() > 0;
+         statement.close();
+         con.desconectar();
+    	return rowInserted;
     }
 
     

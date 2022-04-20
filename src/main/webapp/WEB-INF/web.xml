@@ -23,5 +23,10 @@
 	    <servlet-name>rdyController</servlet-name>
 	    <url-pattern>/rdyController</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet>
+		<servlet-name>DescargaServlet</servlet-name>
+		<servlet-class>Controlador.DescargaServlet</servlet-class>
+	</servlet>
+	
 </web-app>
