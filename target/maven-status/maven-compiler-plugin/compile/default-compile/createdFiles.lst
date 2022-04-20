@@ -1,12 +1,14 @@
+Controlador\DescargaServlet.class
 Modelo\Blog.class
-ModeloBBDD\BlogDAO.class
 ModeloBBDD\JuegosDAO.class
 Modelo\ComentarioJuego.class
 Controlador\Conexion.class
-Modelo\Usuarios.class
 ModeloBBDD\ComentariosDAO.class
 Modelo\ComentarioBlog.class
 ModeloBBDD\NoticiasDAO.class
-ModeloBBDD\UsuariosDAO.class
+Modelo\UsuariosJuegos.class
 Controlador\RdyController.class
+ModeloBBDD\BlogDAO.class
+Modelo\Usuarios.class
+ModeloBBDD\UsuariosDAO.class
 Modelo\Juego.class
