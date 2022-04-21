@@ -29,8 +29,17 @@
 <script type="text/javascript">
 	function enviarMensaje() {
 		event.preventDefault();
-	    var notification = alertify.notify('¡Mensaje enviado! Gracias', 'success', 5, function(){ });
-	    document.getElementById('formularioMensaje').reset();
+		
+		if($("#nombre").val() == "" || $("#email").val() == "" || $("#asunto").val() == "" || $("#mensaje").val() == ""){
+			event.preventDefault();
+			alertify.error('Rellene todos los campos para enviar la consulta');
+		}else{
+			event.preventDefault();
+			alertify.notify('¡Mensaje enviado! Gracias', 'success', 5, function(){ });
+		    document.getElementById('formularioMensaje').reset();
+		    event.preventDefault();
+		}
+	    
 	}
 
 </script>
@@ -169,17 +178,17 @@
 			<div class="col-lg-5" style="margin-top: 50px;">
 				<div class="contact-form-warp">
 					<h4 class="comment-title">Envíanos un mensaje</h4>
-					<form class="comment-form" id="formularioMensaje">
+					<form class="comment-form" id="formularioMensaje" method="" >
 						<div class="row">
 							<div class="col-md-6">
-								<input type="text" id="nombre" placeholder="Nombre" required>
+								<input type="text" id="nombre" placeholder="Nombre" required="required">
 							</div>
 							<div class="col-md-6">
-								<input type="email" id="email" placeholder="Email" required>
+								<input type="email" id="email" placeholder="Email" required="required">
 							</div>
 							<div class="col-lg-12">
-								<input type="text" id="asunto" placeholder="Asunto" required>
-								<textarea placeholder="Tu mensaje" id="mensaje" required></textarea>
+								<input type="text" id="asunto" placeholder="Asunto" required="required">
+								<textarea placeholder="Tu mensaje" id="mensaje" required="required"></textarea>
 								<button class="site-btn btn-sm" onclick="enviarMensaje()">Enviar</button>
 							</div>
 						</div>

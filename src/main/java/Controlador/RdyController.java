@@ -2,7 +2,6 @@ package Controlador;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -71,9 +70,6 @@ public class RdyController extends HttpServlet {
 		System.out.println(action);
 		try {
 			switch (action) {
-			case "index":
-				index(request, response);
-				break;
 			case "inicio":
 				goToInicio(request, response);
 				break;
@@ -150,12 +146,6 @@ public class RdyController extends HttpServlet {
 			request.getSession().setAttribute("usuario", usuarioEncontrado);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/index.jsp");
 			dispatcher.forward(request, response);
-		} else {
-			PrintWriter out = response.getWriter();
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Usuario o clave incorrectos');");
-			out.println("location='index.jsp';");
-			out.println("</script>");
 		}
 
 	}

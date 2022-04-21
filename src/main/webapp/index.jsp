@@ -30,11 +30,29 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script
 	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
 <script>
 	function verTerminos() {
 		$("#mostrarmodal").modal("show");
 	}
+	
+	 function confirmarUsuario() {	                    
+			$.post('inicio', {
+				usuario : $("#usuario").val(),
+				clave: $("#clave").val()
+			}, function(responseText) {
+				console.log(responseText);
+				if(responseText == "ok"){
+				  alertify.success('&iexcl;Bienvenido!');
+				  location.href='VISTAS/index-servlet.jsp';
+				}else{
+					 alertify.error('Usuario o contrase&ntilde;a incorrectos');
+				}
+			});
+	}
+	 
 </script>
 
 </head>
@@ -72,8 +90,8 @@
 											type="password" name="clave" id="clave" class="form-control"
 											placeholder="Clave" value="123" required="required">
 									</div>
-									<input name="login" id="login"
-										class="btn btn-block login-btn mb-4" type="submit"
+									<input name="login" id="login" onclick="javascript:confirmarUsuario()"
+										class="btn btn-block login-btn mb-4" type="button"
 										value="Acceder">
 								</form>
 								<p class="login-card-footer-text">
