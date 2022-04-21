@@ -72,7 +72,7 @@
 				<div class="hs-text">
 					<div class="container">
 						<h2>
-							The Best <span>Games</span> Out There
+							La mejor plataforma de juegos
 						</h2>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -80,7 +80,7 @@
 							nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus
 							faucibus finibus.
 						</p>
-						<a href="#" class="site-btn">Read More</a>
+						<a href="VISTAS/juegos.jsp" class="site-btn">Ver</a>
 					</div>
 				</div>
 			</div>
@@ -89,7 +89,7 @@
 				<div class="hs-text">
 					<div class="container">
 						<h2>
-							The Best <span>Games</span> Out There
+							Enterate de todas las noticias antes que nadie
 						</h2>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -97,7 +97,7 @@
 							nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus
 							faucibus finibus.
 						</p>
-						<a href="#" class="site-btn">Read More</a>
+						<a href="VISTAS/noticias.jsp" class="site-btn">Ver</a>
 					</div>
 				</div>
 			</div>
@@ -106,7 +106,7 @@
 				<div class="hs-text">
 					<div class="container">
 						<h2>
-							The Best <span>Games</span> Out There
+							&iquest;Tienes alguna duda?
 						</h2>
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -114,7 +114,7 @@
 							nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus
 							faucibus finibus.
 						</p>
-						<a href="#" class="site-btn">Read More</a>
+						<a href="VISTAS/contacto.jsp" class="site-btn">Ver</a>
 					</div>
 				</div>
 			</div>
@@ -146,75 +146,12 @@
 	<!-- Latest news section end -->
 
 
-	<!-- Feature section -->
-	<section class="feature-section spad">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6 p-0">
-					<div class="feature-item set-bg"
-						data-setbg="VISTAS/ESTILOS/principal/img/features/1.jpg">
-						<span class="cata new">new</span>
-						<div class="fi-content text-white">
-							<h5>
-								<a href="#">Suspendisse ut justo tem por, rutrum</a>
-							</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							<a href="#" class="fi-comment">3 Comments</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 p-0">
-					<div class="feature-item set-bg"
-						data-setbg="VISTAS/ESTILOS/principal/img/features/2.jpg">
-						<span class="cata strategy">strategy</span>
-						<div class="fi-content text-white">
-							<h5>
-								<a href="#">Justo tempor, rutrum erat id, molestie</a>
-							</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							<a href="#" class="fi-comment">3 Comments</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 p-0">
-					<div class="feature-item set-bg"
-						data-setbg="VISTAS/ESTILOS/principal/img/features/3.jpg">
-						<span class="cata new">new</span>
-						<div class="fi-content text-white">
-							<h5>
-								<a href="#">Nullam lacinia ex eleifend orci porttitor</a>
-							</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							<a href="#" class="fi-comment">3 Comments</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 p-0">
-					<div class="feature-item set-bg"
-						data-setbg="VISTAS/ESTILOS/principal/img/features/4.jpg">
-						<span class="cata racing">racing</span>
-						<div class="fi-content text-white">
-							<h5>
-								<a href="#">Lacinia ex eleifend orci suscipit</a>
-							</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							<a href="#" class="fi-comment">3 Comments</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Feature section end -->
-
-
 	<!-- Recent game section  -->
 	<section class="recent-game-section spad set-bg"
 		data-setbg="VISTAS/ESTILOS/principal/img/recent-game-bg.png">
 		<div class="container">
 			<div class="section-title">
-				<div class="cata new">new</div>
-				<h2>Recent Games</h2>
+				<h2>&Uacute;ltimos Juegos</h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-6">
@@ -230,10 +167,7 @@
 							<a href="#" class="comment">3 Comments</a>
 							<div class="rgi-extra">
 								<div class="rgi-star">
-									<img src="VISTAS/ESTILOS/principal/img/icons/star.png" alt="">
-								</div>
-								<div class="rgi-heart">
-									<img src="VISTAS/ESTILOS/principal/img/icons/heart.png" alt="">
+									<img src="VISTAS/ESTILOS/principal/img/icons/ver.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -252,10 +186,7 @@
 							<a href="#" class="comment">3 Comments</a>
 							<div class="rgi-extra">
 								<div class="rgi-star">
-									<img src="VISTAS/ESTILOS/principal/img/icons/star.png" alt="">
-								</div>
-								<div class="rgi-heart">
-									<img src="VISTAS/ESTILOS/principal/img/icons/heart.png" alt="">
+									<img src="VISTAS/ESTILOS/principal/img/icons/ver.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -274,10 +205,7 @@
 							<a href="#" class="comment">3 Comments</a>
 							<div class="rgi-extra">
 								<div class="rgi-star">
-									<img src="VISTAS/ESTILOS/principal/img/icons/star.png" alt="">
-								</div>
-								<div class="rgi-heart">
-									<img src="VISTAS/ESTILOS/principal/img/icons/heart.png" alt="">
+									<img src="VISTAS/ESTILOS/principal/img/icons/ver.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -288,69 +216,12 @@
 	</section>
 	<!-- Recent game section end -->
 
-
-	<!-- Tournaments section -->
-	<section class="tournaments-section spad">
-		<div class="container">
-			<div class="tournament-title">Tournaments</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="tournament-item mb-4 mb-lg-0">
-						<div class="ti-notic">Premium Tournament</div>
-						<div class="ti-content">
-							<div class="ti-thumb set-bg"
-								data-setbg="VISTAS/ESTILOS/principal/img/tournament/1.jpg"></div>
-							<div class="ti-text">
-								<h4>World Of WarCraft</h4>
-								<ul>
-									<li><span>Tournament Beggins:</span> June 20, 2018</li>
-									<li><span>Tounament Ends:</span> July 01, 2018</li>
-									<li><span>Participants:</span> 10 teams</li>
-									<li><span>Tournament Author:</span> Admin</li>
-								</ul>
-								<p>
-									<span>Prizes:</span> 1st place $2000, 2nd place: $1000, 3rd
-									place: $500
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="tournament-item">
-						<div class="ti-notic">Premium Tournament</div>
-						<div class="ti-content">
-							<div class="ti-thumb set-bg"
-								data-setbg="VISTAS/ESTILOS/principal/img/tournament/2.jpg"></div>
-							<div class="ti-text">
-								<h4>DOOM</h4>
-								<ul>
-									<li><span>Tournament Beggins:</span> June 20, 2018</li>
-									<li><span>Tounament Ends:</span> July 01, 2018</li>
-									<li><span>Participants:</span> 10 teams</li>
-									<li><span>Tournament Author:</span> Admin</li>
-								</ul>
-								<p>
-									<span>Prizes:</span> 1st place $2000, 2nd place: $1000, 3rd
-									place: $500
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Tournaments section bg -->
-
-
 	<!-- Review section -->
 	<section class="review-section spad set-bg"
 		data-setbg="VISTAS/ESTILOS/principal/img/review-bg.png">
 		<div class="container">
 			<div class="section-title">
-				<div class="cata new">new</div>
-				<h2>Recent Reviews</h2>
+				<h2>&Uacute;ltimas Noticias</h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-md-6">

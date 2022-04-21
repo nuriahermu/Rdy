@@ -3,7 +3,7 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<html lang="en">
+<html lang="es">
 <head>
 <title>RDY</title>
 <meta charset="UTF-8">
