@@ -164,9 +164,44 @@
 						%>
 						<div class="latest-blog">
 							<div class="lb-item">
-								<div class="lb-content">
+								<div class="lb-content" style="padding-left: 0px;">
 									<div class="lb-date"><%=rs.getString("fecha")%></div>
-									<p><%=rs.getString("id_juego")%></p>
+									
+									<%
+										//CONECTANOD A LA BASE DE DATOS:
+										Connection con2;
+										String url2 = "jdbc:mysql://localhost:3306/rdy";
+										String Driver2 = "com.mysql.cj.jdbc.Driver";
+										String user2 = "root";
+										String clave2 = "";
+										Class.forName(Driver2);
+										con2 = DriverManager.getConnection(url2, user2, clave2);
+										PreparedStatement ps2;
+										ResultSet rs2;
+										ps2 = con2.prepareStatement("select * from juegos where id=" + rs.getInt("id_juego"));
+										rs2= ps2.executeQuery();
+											while (rs2.next()) {
+									%>
+									<%
+											//CONECTANOD A LA BASE DE DATOS:
+											Connection con3;
+											String url3 = "jdbc:mysql://localhost:3306/rdy";
+											String Driver3 = "com.mysql.cj.jdbc.Driver";
+											String user3 = "root";
+											String clave3 = "";
+											Class.forName(Driver3);
+											con3 = DriverManager.getConnection(url3, user3, clave3);
+											PreparedStatement ps3;
+											ResultSet rs3;
+											ps3 = con3.prepareStatement("select * from plataformas where id=" + rs2.getInt("plataforma_id"));
+											rs3= ps3.executeQuery();
+												while (rs3.next()) {
+									%>
+										<p><%=rs2.getString("nombre")%> - <%=rs3.getString("nombre")%> </p>
+									<%
+										}
+									}
+									%>
 								</div>
 							</div>							
 						</div>
