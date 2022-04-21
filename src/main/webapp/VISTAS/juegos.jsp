@@ -25,7 +25,7 @@
 	rel="stylesheet">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="ESTILOS/principal/css/bootstrap.min.css" />
+<link rel="stylesheet" href="ESTILOS/principal/css/bootstrap.min2.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/font-awesome.min.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/owl.carousel.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
@@ -251,7 +251,7 @@
 			<div class="container">
 				<ul class="community-post-list">
 					<li
-						style="border: none; background: none; height: 220px; writing-mode: vertical-lr; margin-left: 20px;">
+						style="border: none; background: none; height: 220px; writing-mode: vertical-lr; margin-left: 20px;padding-bottom: 0px;">
 						<img src="ESTILOS/principal/img/logos/xbox-logo.png" alt="Xbox" onclick="filtroXbox();"
 						style="cursor: pointer; width: 200px; height: 150px; margin-right: 50px; margin-left: 20px;">
 						<img src="ESTILOS/principal/img/logos/play-logo.png" onclick="filtroPlay();"
@@ -276,18 +276,20 @@
 					PreparedStatement ps;
 					Statement smt;
 					ResultSet rs;
+					ResultSet rs2;
 					OutputStream outs;
 					smt = con.createStatement();
-					rs = smt.executeQuery("select * from juegos");
+					rs2 = smt.executeQuery("select * from juegos where id IS NOT NULL");
 					OutputStream oImage;
-					while (rs.next()) {
+					OutputStream oImage2;
+					while (rs2.next()) {
 						
-						byte[] imgData = rs.getBytes("foto_portada"); // blob field 
+						byte[] imgData2 = rs2.getBytes("foto_portada"); // blob field 
 			            request.setAttribute("rvi", "Ravinath");
-			            rs.getString("nombre");
+			            rs2.getString("nombre");
 
-			            String encode = Base64.getEncoder().encodeToString(imgData);
-			            request.setAttribute("imgBase", encode);
+			            String encode2 = Base64.getEncoder().encodeToString(imgData2);
+			            request.setAttribute("imgBase2", encode2);
 						
 					%>
 					<li style="background: white;">
@@ -298,9 +300,9 @@
 										<div class="recent-game-item">
 											<div class="rgi-thumb set-bg">
 											
-											<div class="cata new"><%=rs.getInt("anio")%></div>
+											<div class="cata new"><%=rs2.getInt("anio")%></div>
 											<br>
-											<img src="data:image/jpeg;base64,${imgBase}" alt="<%=rs.getString("nombre")%>" style="margin-top: 50px; height: 190px;"/>
+											<img src="data:image/jpeg;base64,${imgBase2}" alt="<%=rs2.getString("nombre")%>" style="margin-top: 50px; height: 190px; max-width:auto"/>
 												
 											</div>
 											<div>
@@ -310,25 +312,25 @@
 									<div class="col-lg-2 col-md-2">
 										<div class="recent-game-item">
 										<div class="rgi-content" style=" height: 105px; width: 596px; border: none;">
-												<h5 style="text-align: -webkit-center;"><%=rs.getString("nombre")%></h5>
+												<h5 style="text-align: -webkit-center;"><%=rs2.getString("nombre")%></h5>
 											</div>
 											<div class="rgi-thumb set-bg"
 												style="width: 656px;height: auto;background: white;margin-top: 25px;">
-												<p style="text-align: justify;"><%=rs.getString("caracteristicas")%></p>
+												<p style="text-align: justify;"><%=rs2.getString("caracteristicas")%></p>
 											</div>
 											
 											<div style="position: absolute;height: 50px;width: 545px; text-align: -webkit-right;">
 											
 											<span class="opcionAdmin">
-												<a href="pagina-juego-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;" id="editarButton">Editar</a>
-                                				<a href="pagina-juego-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+												<a href="pagina-juego-editar.jsp?id=<%= rs2.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;" id="editarButton">Editar</a>
+                                				<a href="pagina-juego-eliminar.jsp?id=<%= rs2.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
                                             </span>
                                             
-                                            <a href="pagina-juego-ver.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style="color: white; margin-bottom: 30px; background: #ffb320; border-color: #ffb320; width: 80px;">Ver</a>
+                                            <a href="pagina-juego-ver.jsp?id=<%= rs2.getInt("id")%>" class="btn btn-primary" style="color: white; margin-bottom: 30px; background: #ffb320; border-color: #ffb320; width: 80px;">Ver</a>
                                             
                                 
 											<form name="formdescargar" style="bottom: 0px;left: 549px;top: 0px; position: absolute;">
-											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs.getString("nombre")%>', <%= rs.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
+											<a id="descargar" href="" onclick="javascript:confirmarDescarga('<%= rs2.getString("nombre")%>', <%= rs2.getInt("id")%>)" class="btn btn-primary" style=" background: yellow;border-color: yellow;color: black;margin-bottom: 30px;width: 96px; font-weight: 600;">Descargar</a>
 											</form>
 											</div>
 	

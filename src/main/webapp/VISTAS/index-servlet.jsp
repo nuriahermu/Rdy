@@ -297,7 +297,7 @@
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="footer-widget mb-5 mb-md-0">
-						<h4 class="fw-title">Ãšltimos Posts</h4>
+						<h4 class="fw-title">&Uacute;šltimos Posts</h4>
 						<div class="latest-blog">
 							<div class="lb-item">
 								<div class="lb-thumb set-bg"
