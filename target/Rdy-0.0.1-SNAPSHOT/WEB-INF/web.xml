@@ -29,4 +29,9 @@
 		<servlet-class>Controlador.DescargaServlet</servlet-class>
 	</servlet>
 	
+	 <servlet>
+		<servlet-name>IndexServlet</servlet-name>
+		<servlet-class>Controlador.IndexServlet</servlet-class>
+	</servlet>
+	
 </web-app>

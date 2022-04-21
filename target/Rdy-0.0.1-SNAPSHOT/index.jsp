@@ -4,10 +4,9 @@
     Author     : Nuria
 --%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -31,11 +30,23 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script
 	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
 
 <script>
 	function verTerminos() {
 		$("#mostrarmodal").modal("show");
 	}
+	
+	 function confirmarUsuario() {	                    
+			$.post('../inicio', {
+				usuario : $("#usuario").val(),
+				clave: $("#clave").val()
+			}, function(responseText) {
+				  alertify.success('¡Bienvenido!');
+			});
+	}
+	 
 </script>
 
 </head>
@@ -66,15 +77,15 @@
 									<div class="form-group">
 										<label for="usuario" class="sr-only">Usuario</label> <input
 											type="text" name="usuario" id="usuario" class="form-control"
-											placeholder="Usuario" value="admin">
+											placeholder="Usuario" value="admin" required="required">
 									</div>
 									<div class="form-group mb-4">
 										<label for="clave" class="sr-only">Clave</label> <input
 											type="password" name="clave" id="clave" class="form-control"
-											placeholder="Clave" value="123">
+											placeholder="Clave" value="123" required="required">
 									</div>
-									<input name="login" id="login"
-										class="btn btn-block login-btn mb-4" type="submit"
+									<input name="login" id="login" onclick="javascript:confirmarUsuario()"
+										class="btn btn-block login-btn mb-4" type="button"
 										value="Acceder">
 								</form>
 								<p class="login-card-footer-text">
@@ -89,7 +100,7 @@
 
 								<div class="modal fade" id="mostrarmodal" tabindex="-1"
 									role="dialog"
-									style="height: 532px; display: block; padding-left: 17px; margin-top: 150px;"
+									style="height: 532px;  padding-left: 17px; margin-top: 150px;"
 									aria-labelledby="basicModal" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -165,7 +176,7 @@
 												usuario transmita a trav&eacute;s de este sitio web, ya sea
 												mediante correo electrónico, env&iacute;o de archivos o de
 												algún otro modo, se considerar&aacute; como no confidencial
-												y no reservado.<br>  3. CONTENIDOS Y GARANTIAS El usuario acepta
+												y no reservado. 3. CONTENIDOS Y GARANTIAS El usuario acepta
 												que el uso del sitio web debe hacerse bajo su propia cuenta
 												y riesgo. En la medida en que lo permita la ley, EDP,
 												est&aacute; exenta de cualquier garant&iacute;a, expresa o
@@ -198,7 +209,7 @@
 												los usuarios. EDP no asume responsabilidad u
 												obligaci&oacute;n por el contenido transmitido entre los
 												usuarios o entre estos y cualquier tercero fuera de este
-												sitio web.<br>  4. RESPONSABILIDAD, USO Y RIESGO En la medida en
+												sitio web. 4. RESPONSABILIDAD, USO Y RIESGO En la medida en
 												que sea permitido por la ley, EDP y todos sus representantes
 												legales, directores, empleados u otros que por cualquier
 												forma actúen en nombre y representaci&oacute;n de EDP,
@@ -244,7 +255,7 @@
 												uso en otros lugares. Quienes accedan o utilicen el sitio
 												web desde otras jurisdicciones lo hacen bajo su propia
 												iniciativa y son responsables por el cumplimiento de las
-												leyes locales.<br>  5. POLITICA DE PRIVACIDAD Y USO DE DATOS EDP
+												leyes locales. 5. POLITICA DE PRIVACIDAD Y USO DE DATOS EDP
 												es responsable por el uso de la informaci&oacute;n personal
 												de los usuarios recogida directamente a trav&eacute;s de
 												diversos medios. EDP se compromete a poner en
@@ -310,7 +321,7 @@
 												como: la direcci&oacute;n en Internet del sitio web que
 												trajo al usuario directamente al sitio web de EDP, las
 												p&aacute;ginas del sitio web m&aacute;s visitadas, el tipo
-												de navegador y el sistema operativo, entre otros.<br>  6.
+												de navegador y el sistema operativo, entre otros. 6.
 												CAPACIDAD PARA ACEPTAR LOS TÉRMINOS Y CONDICIONES DE USO El
 												usuario confirma ser mayor de 18 años de edad o que cuenta
 												con la autorizaci&oacute;n legal de sus padres o tutores y
@@ -329,7 +340,7 @@
 												recogidos a trav&eacute;s de una red abierta como Internet,
 												los mismos solamente podr&aacute;n circular en la red sin
 												condiciones de seguridad, corriendo el riesgo de ser vistos
-												y utilizados por terceros no autorizados.<br>  8.
+												y utilizados por terceros no autorizados. 8.
 												CONSERVACI&Oacute;N DE INFORMACI&Oacute;N PERSONAL
 
 												Despu&eacute;s de recoger la informaci&oacute;n de datos

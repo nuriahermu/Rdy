@@ -84,11 +84,11 @@
 								</form>
 
 								<div class="modal fade" id="mostrarmodal" tabindex="-1"
-										
+									style="height: 532px;  padding-left: 17px; margin-top: 150px;"
 									role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
-											<div class="modal-body" style="overflow-y: scroll;">
+											<div class="modal-body"  style="overflow-y: scroll;">
 												<h4>Pol&iacute;tica de cookies</h4>
 												RDY STORES IBERIA, S.L.U. (en adelante RDY) informa acerca
 												del uso de las cookies en sus páginas web. Las cookies son
@@ -119,7 +119,7 @@
 												y cookies de publicidad basada en comportamientos. Para más
 												información a este respecto puede consultar la Guía sobre el
 												uso de las cookies de la Agencia Española de Protección de
-												Datos.<br>  2. COOKIES UTILIZADAS EN LA WEB A continuación se
+												Datos. 2. COOKIES UTILIZADAS EN LA WEB A continuación se
 												identifican las cookies que están siendo utilizadas en este
 												portal así como su tipología y función: La página web
 												RDY.es utiliza herramientas de analítica web, servicios,
@@ -149,7 +149,7 @@
 												de recordar aquellos usuarios que las han aceptado y
 												aquellos que no, de modo que a los primeros no se les
 												muestre información en la parte inferior de la página al
-												respecto.<br>  3. AJUSTES DEL NAVEGADOR La mayoría de navegadores
+												respecto. 3. AJUSTES DEL NAVEGADOR La mayoría de navegadores
 												indican en la función ayuda cómo configurar su navegador
 												para que no acepte cookies, para ser notificado cada vez que
 												reciba una nueva cookie o para desactivarlas completamente.

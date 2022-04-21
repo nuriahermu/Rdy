@@ -1,5 +1,6 @@
 Controlador\DescargaServlet.class
 Modelo\Blog.class
+Controlador\IndexServlet.class
 ModeloBBDD\JuegosDAO.class
 Modelo\ComentarioJuego.class
 Controlador\Conexion.class
