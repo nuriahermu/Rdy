@@ -73,9 +73,6 @@ public class RdyController extends HttpServlet {
 			case "inicio":
 				goToInicio(request, response);
 				break;
-			case "nuevo":
-				nuevo(request, response);
-				break;
 			case "register":
 				registrarUsuario(request, response);
 				break;
@@ -111,12 +108,6 @@ public class RdyController extends HttpServlet {
 				break;
 			case "eliminarComentarioJuego":
 				eliminarComentarioJuego(request, response);
-				break;
-			case "editar":
-				editar(request, response);
-				break;
-			case "eliminar":
-				eliminar(request, response);
 				break;
 			default:
 				break;
@@ -169,11 +160,6 @@ public class RdyController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void nuevo(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/vista/register.jsp");
-		dispatcher.forward(request, response);
-	}
 	
 	private void borrarBlog(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
@@ -314,22 +300,5 @@ public class RdyController extends HttpServlet {
 		comentariosDao.eliminarComentarioJuego(Integer.parseInt(request.getParameter("id_comentario")));
 
 		request.getRequestDispatcher("/VISTAS/pagina-juego-editar-servlet.jsp?id="+Integer.parseInt(request.getParameter("id_juego"))).forward(request, response);
-	}
-
-	private void editar(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		Usuarios usuario = new Usuarios(Integer.parseInt(request.getParameter("id")), request.getParameter("usuario"),
-				request.getParameter("clave"), request.getParameter("rol"));
-		usuariosDao.actualizar(usuario);
-		index(request, response);
-	}
-
-	private void eliminar(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		Usuarios usuario = usuariosDao.obtenerPorId(Integer.parseInt(request.getParameter("id")));
-		usuariosDao.eliminar(usuario);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
-
 	}
 }

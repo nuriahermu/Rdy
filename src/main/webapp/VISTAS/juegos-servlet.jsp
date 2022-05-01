@@ -21,7 +21,7 @@
 	rel="stylesheet">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/bootstrap.min.css" />
+<link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/bootstrap.min2.css" />
 <link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/font-awesome.min.css" />
 <link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/owl.carousel.css" />
 <link rel="stylesheet" href="VISTAS/ESTILOS/principal/css/style.css" />

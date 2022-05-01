@@ -49,6 +49,7 @@
 		}else{
 			$("#noHay").hide();
 		}
+		
 	});
 
 
@@ -208,9 +209,10 @@
 							    	    format: "yyyy",
 							    	    viewMode: "years", 
 							    	    minViewMode: "years",
-							    	    autoclose:true //to close picker once year is selected
+							    	    autoclose:true 
 							    	   
 							    	});
+								
 								</script>
 							<br> 
 							Plataforma: <br> <select name="plataforma_id"

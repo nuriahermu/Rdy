@@ -69,12 +69,19 @@
 											placeholder="Contraseña" maxlength="15" required>
 									</div>
 									<div class="form-group mb-4">
+										<select class="browser-default custom-select" id="rol" name="rol">
+									        <option value="cliente" selected="selected">Cliente</option>
+									        <option value="admin">Administrador</option>
+									    </select>
+									
+									</div>
+									<div class="form-group mb-4">
 										<input type="checkbox" id="terminos" class="" required>
 										<label> <a href="javascript:verTerminos()">Acepto la
 												pol&iacute;tica de cookies</a>
 										</label>
 									</div>
-									<input hidden="rol" name="rol" id="rol" value="cliente" /> <input
+									<input
 										name="nuevoUsuario" id="nuevoUsuario"
 										class="btn btn-block login-btn mb-4" type="submit"
 										value="Aceptar"> <a href="../index.jsp"><input

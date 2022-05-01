@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<%@page import="javax.sql.rowset.serial.SerialBlob"%>
+<%@page import="java.util.Base64"%>
+<%@page import="java.util.Base64.Encoder"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.OutputStream"%>
+<%@page import="java.sql.*"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <html lang="es">
 <head>
 <title>RDY</title>
@@ -149,25 +159,63 @@
 	<!-- Recent game section  -->
 	<section class="recent-game-section spad set-bg"
 		data-setbg="VISTAS/ESTILOS/principal/img/recent-game-bg.png">
+		
+			<%
+					//CONECTANOD A LA BASE DE DATOS:
+					Connection con;
+					String url = "jdbc:mysql://localhost:3306/rdy";
+					String Driver = "com.mysql.cj.jdbc.Driver";
+					String user = "root";
+					String clave = "";
+					Class.forName(Driver);
+					con = DriverManager.getConnection(url, user, clave);
+					PreparedStatement ps;
+					Statement smt;
+					ResultSet rs;
+					OutputStream outs;
+					smt = con.createStatement();
+					rs = smt.executeQuery("select * from juegos order by id desc");
+					
+					ArrayList<String> ids = new ArrayList<String>();
+					ArrayList<String> titulos = new ArrayList<String>();
+					ArrayList<String> descripciones = new ArrayList<String>();
+					
+
+					while (rs.next()) { 
+						ids.add(rs.getString(1));
+						titulos.add(rs.getString(2));
+						descripciones.add(rs.getString(6));
+					}
+					
+					String[] idsArr = new String[ids.size()];
+					idsArr = ids.toArray(idsArr);
+					
+					String[] titulosArr = new String[titulos.size()];
+					titulosArr = titulos.toArray(titulosArr);
+					
+					String[] descripcionesArr = new String[descripciones.size()];
+					descripcionesArr = descripciones.toArray(descripcionesArr);					
+						
+				%>
 		<div class="container">
 			<div class="section-title">
-				<h2>&Uacute;ltimos Juegos</h2>
+				<h2 style="font-family: cursive;"><b></B>&Uacute;LTIMOS JUEGOS</b></h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-6">
 					<div class="recent-game-item">
 						<div class="rgi-thumb set-bg"
-							data-setbg="VISTAS/ESTILOS/principal/img/recent-game/1.jpg">
-							<div class="cata new">new</div>
+							data-setbg="VISTAS/ESTILOS/principal/img/novedad.png" style="height: 250px;">
 						</div>
+						
 						<div class="rgi-content">
-							<h5>Suspendisse ut justo tem por, rutrum</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit amet, consectetur elit.</p>
-							<a href="#" class="comment">3 Comments</a>
+							<h5><%= titulosArr[0] %></h5>
+							<p><%= descripcionesArr[0].substring(0, 20) %>...</p>
 							<div class="rgi-extra">
-								<div class="rgi-star">
-									<img src="VISTAS/ESTILOS/principal/img/icons/ver.png" alt="">
+								<div >
+									<a href="VISTAS/pagina-juego-ver.jsp?id=<%= idsArr[0] %>" style="cursor: pointer;" class="rgi-star">
+										<img src="VISTAS/ESTILOS/principal/img/icons/ver.png" alt="">
+									</a>
 								</div>
 							</div>
 						</div>
@@ -176,17 +224,16 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="recent-game-item">
 						<div class="rgi-thumb set-bg"
-							data-setbg="VISTAS/ESTILOS/principal/img/recent-game/2.jpg">
-							<div class="cata racing">racing</div>
+							data-setbg="VISTAS/ESTILOS/principal/img/novedad.png" style="height: 250px;">
 						</div>
 						<div class="rgi-content">
-							<h5>Susce pulvinar metus nulla, vel facilisis sem</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit amet, consectetur elit.</p>
-							<a href="#" class="comment">3 Comments</a>
+							<h5><%= titulosArr[1] %></h5>
+							<p><%= descripcionesArr[1].substring(0, 20) %>...</p>
 							<div class="rgi-extra">
-								<div class="rgi-star">
-									<img src="VISTAS/ESTILOS/principal/img/icons/ver.png" alt="">
+								<div >
+									<a href="VISTAS/pagina-juego-ver.jsp?id=<%= idsArr[1] %>" style="cursor: pointer;" class="rgi-star">
+										<img src="VISTAS/ESTILOS/principal/img/icons/ver.png" alt="">
+									</a>
 								</div>
 							</div>
 						</div>
@@ -195,17 +242,16 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="recent-game-item">
 						<div class="rgi-thumb set-bg"
-							data-setbg="VISTAS/ESTILOS/principal/img/recent-game/3.jpg">
-							<div class="cata adventure">Adventure</div>
+							data-setbg="VISTAS/ESTILOS/principal/img/novedad.png" style="height: 250px;">
 						</div>
 						<div class="rgi-content">
-							<h5>Suspendisse ut justo tem por, rutrum</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit amet, consectetur elit.</p>
-							<a href="#" class="comment">3 Comments</a>
+							<h5><%= titulosArr[2] %></h5>
+							<p><%= descripcionesArr[2].substring(0, 20) %>...</p>
 							<div class="rgi-extra">
-								<div class="rgi-star">
-									<img src="VISTAS/ESTILOS/principal/img/icons/ver.png" alt="">
+								<div >
+									<a href="VISTAS/pagina-juego-ver.jsp?id=<%= idsArr[2] %>" style="cursor: pointer;" class="rgi-star">
+										<img src="VISTAS/ESTILOS/principal/img/icons/ver.png" alt="">
+									</a>
 								</div>
 							</div>
 						</div>
@@ -213,6 +259,7 @@
 				</div>
 			</div>
 		</div>
+
 	</section>
 	<!-- Recent game section end -->
 
@@ -221,19 +268,42 @@
 		data-setbg="VISTAS/ESTILOS/principal/img/review-bg.png">
 		<div class="container">
 			<div class="section-title">
-				<h2>&Uacute;ltimas Noticias</h2>
+				<h2 style="font-family: cursive;">&Uacute;LTIMAS NOTICIAS</h2>
 			</div>
+			<%
+					smt = con.createStatement();
+					rs = smt.executeQuery("select * from blog order by id desc");
+					
+					ArrayList<String> idsNoticias = new ArrayList<String>();
+					ArrayList<String> titulosNoticias = new ArrayList<String>();
+					ArrayList<String> descripcionesNoticias = new ArrayList<String>();
+					
+
+					while (rs.next()) { 
+						idsNoticias.add(rs.getString(1));
+						titulosNoticias.add(rs.getString(2));
+						descripcionesNoticias.add(rs.getString(3));
+					}
+					
+					String[] idsArrNoticias = new String[idsNoticias.size()];
+					idsArrNoticias = idsNoticias.toArray(idsArrNoticias);
+					
+					String[] titulosArrNoticias = new String[titulosNoticias.size()];
+					titulosArrNoticias = titulosNoticias.toArray(titulosArrNoticias);
+					
+					String[] descripcionesArrNoticias = new String[descripcionesNoticias.size()];
+					descripcionesArrNoticias = descripcionesNoticias.toArray(descripcionesArrNoticias);					
+						
+				%>
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg"
 							data-setbg="VISTAS/ESTILOS/principal/img/review/1.jpg">
-							<div class="score yellow">9.3</div>
 						</div>
 						<div class="review-text">
-							<h5>Assasin’’s Creed</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit ame.</p>
+							<h5><%= titulosArrNoticias[0] %></h5>
+							<p><%= descripcionesArrNoticias[0].trim().substring(0, 50) %>...</p>
 						</div>
 					</div>
 				</div>
@@ -241,12 +311,10 @@
 					<div class="review-item">
 						<div class="review-cover set-bg"
 							data-setbg="VISTAS/ESTILOS/principal/img/review/2.jpg">
-							<div class="score purple">9.5</div>
 						</div>
 						<div class="review-text">
-							<h5>Doom</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit ame.</p>
+							<h5><%= titulosArrNoticias[1] %></h5>
+							<p><%=  descripcionesArrNoticias[1].trim().substring(0, 50) %>...</p>
 						</div>
 					</div>
 				</div>
@@ -254,29 +322,25 @@
 					<div class="review-item">
 						<div class="review-cover set-bg"
 							data-setbg="VISTAS/ESTILOS/principal/img/review/3.jpg">
-							<div class="score green">9.1</div>
 						</div>
 						<div class="review-text">
-							<h5>Overwatch</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit ame.</p>
+							<h5><%= titulosArrNoticias[2] %></h5>
+							<p><%= descripcionesArrNoticias[2].trim().substring(0, 50) %>...</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="review-item">
-						<div class="review-cover set-bg"
-							data-setbg="VISTAS/ESTILOS/principal/img/review/4.jpg">
-							<div class="score pink">9.7</div>
-						</div>
+				<div class="col-lg-3 col-md-6" style="background-color: white;">
+					
 						<div class="review-text">
-							<h5>GTA</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit ame.</p>
+							<h5><%= titulosArrNoticias[3] %></h5>
+							<p><%= descripcionesArrNoticias[3].trim().substring(0, 50) %>...</p>
 						</div>
 					</div>
 				</div>
 			</div>
+			<%
+				rs.close();
+			%>
 		</div>
 	</section>
 	<!-- Review section end -->
