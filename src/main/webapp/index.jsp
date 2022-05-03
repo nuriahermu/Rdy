@@ -26,8 +26,7 @@
 <link href="VISTAS/ESTILOS/principal/img/palanca-de-mando.png"
 	rel="shortcut icon" />
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script
 	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <link
@@ -42,6 +41,7 @@
 	}
 
 	function confirmarUsuario() {
+		console.log("Aqui llergooooo");
 		$.post('inicio', {
 			usuario : $("#usuario").val(),
 			clave : $("#clave").val()
@@ -400,7 +400,6 @@
 			</div>
 		</div>
 	</main>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script

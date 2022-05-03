@@ -28,6 +28,29 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+	//ocultar las opciones para usuario con perfil cliente
+	 if('${usuario.rol}' == 'cliente'){
+		 $('#insertarNoticia').hide();
+		 for (let el of document.querySelectorAll('.opcionAdmin')) el.style.display = 'none';
+		 $('#editarNoticia').hide();
+		 $('#eliminarNoticia').hide();
+	} 
+	
+});
+</script>
+
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -130,11 +153,11 @@
 									</button>
 								</form>
 							</div>
-							<div class="row" style="margin-right: 0px;">
+							<div class="row" style="margin-right: 0px;" name="insertarNoticia" id="insertarNoticia">
 								<div class="col-md-4" style="margin-bottom: 20px;">
 								 <a href="pagina-blog-insertar.jsp">
 									<div class="user-panel" style="background: #4ecf0c;">
-										<input name="inicio" id="inicio" type="button" value="INSERTAR NOTICIA"
+										<input  type="button" value="INSERTAR NOTICIA"
 										style="margin-top: 5px; border: none; background: none; color: black; font-family: 'Roboto', sans-serif;">
 									</div>
 									<a/>
@@ -166,9 +189,10 @@
 											<h5><%= rs.getString("titulo")%></h5>
 											<p><%= rs.getString("descripcion")%></p>
 											
-											
-											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px; width: 81px;">Editar</a>
-                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px;">Eliminar</a>
+											<span class="opcionAdmin">
+											<a href="pagina-blog-editar.jsp?id=<%= rs.getInt("id")%>" id="editarNoticia" class="btn btn-primary" style=" margin-bottom: 30px; width: 81px;">Editar</a>
+                                			<a href="pagina-blog-eliminar.jsp?id=<%= rs.getInt("id")%>" id="eliminarNoticia" class="btn btn-danger" style=" margin-bottom: 30px;">Eliminar</a>
+                                            </span>
                                             <a href="pagina-blog.jsp?id=<%= rs.getInt("id")%>" class="btn" style="color: white; margin-bottom: 30px; background: #ffb320">Leer más</a>
                                 
 											<hr>

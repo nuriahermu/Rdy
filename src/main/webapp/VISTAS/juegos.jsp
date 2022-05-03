@@ -52,6 +52,7 @@
 		 if('${usuario.rol}' == 'cliente'){
 			 $('#insertarJuegoButton').hide();
 			 for (let el of document.querySelectorAll('.opcionAdmin')) el.style.visibility = 'hidden';
+			 $('#eliminarJuego').hide();
 		} 
 		
 	});
@@ -323,7 +324,7 @@
 											
 											<span class="opcionAdmin">
 												<a href="pagina-juego-editar.jsp?id=<%= rs2.getInt("id")%>" class="btn btn-primary" style=" margin-bottom: 30px;width: 80px;" id="editarButton">Editar</a>
-                                				<a href="pagina-juego-eliminar.jsp?id=<%= rs2.getInt("id")%>" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
+                                				<a href="pagina-juego-eliminar.jsp?id=<%= rs2.getInt("id")%>" id="eliminarJuego" class="btn btn-danger" style=" margin-bottom: 30px; width: 80px;">Eliminar</a>
                                             </span>
                                             
                                             <a href="pagina-juego-ver.jsp?id=<%= rs2.getInt("id")%>" class="btn btn-primary" style="color: white; margin-bottom: 30px; background: #ffb320; border-color: #ffb320; width: 80px;">Ver</a>
