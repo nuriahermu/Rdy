@@ -162,7 +162,7 @@ $(document).ready(function () {
 							</div>
 							<div class="recent-game-item">
 								<div class="col-md-12">
-									<div class="recent-game-item">
+									<div class="recent-game-item" style="width: 1100px;">
 										<hr>
 										<div class="rgi-content">
 											<%
@@ -202,202 +202,19 @@ $(document).ready(function () {
 
 					</div>
 				</div>
-				<!-- sidebar -->
-				<div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0">
-					<!-- widget -->
-
-					<!-- widget -->
-					<div class="widget-item">
-						<h4 class="widget-title">Latest Posts</h4>
-						<div class="latest-blog">
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/1.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Ipsum dolor sit amet, consectetur adipisc ing consecips</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/2.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Ipsum dolor sit amet, consectetur adipisc ing consecips</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/3.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Ipsum dolor sit amet, consectetur adipisc ing consecips</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- widget -->
-					<div class="widget-item">
-						<h4 class="widget-title">Top Comments</h4>
-						<div class="top-comment">
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/authors/1.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">James Smith</a> <span>on</span> Lorem consec ipsum
-										dolor sit amet, co
-									</p>
-									<div class="tc-date">June 21, 2018</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/authors/2.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">Michael James</a> <span>on</span>Cras sit amet
-										sapien aliquam
-									</p>
-									<div class="tc-date">June 21, 2018</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/authors/3.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">Justin More</a> <span>on</span> Lorem ipsum dolor
-										consecsit amet, co
-									</p>
-									<div class="tc-date">June 21, 2018</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
 			</div>
 		</div>
 	</section>
 	<!-- Page section end -->
 
 
-	<!-- Footer top section -->
-	<section class="footer-top-section">
-		<div class="container">
-			<div class="footer-top-bg">
-				<img src="VISTAS/ESTILOS/principal/img/footer-top-bg.png" alt="">
-			</div>
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="footer-logo text-white">
-						<img src="VISTAS/ESTILOS/login/images/logo1blancosmall.png"
-							alt="logo RDY">
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="footer-widget mb-5 mb-md-0">
-						<h4 class="fw-title">Últimos Posts</h4>
-						<div class="latest-blog">
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/1.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
-										ipsum</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/2.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
-										ipsum</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/latest-blog/3.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
-										ipsum</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="footer-widget">
-						<h4 class="fw-title">Top Comentarios</h4>
-						<div class="top-comment">
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/authors/1.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">James Smith</a> <span>dice: </span> Todo perfecto,
-										muy recomendable
-									</p>
-									<div class="tc-date">Octubre 23, 2021</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/authors/2.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">Valentin Martinez</a> <span>dice: </span> Todos
-										las novedades están aquí!!
-									</p>
-									<div class="tc-date">Enero 7, 2020</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/authors/3.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">Jose Fernandez</a> <span>dice: </span> Sin duda
-										una de mis paginas favv
-									</p>
-									<div class="tc-date">Junio 15, 2021</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="VISTAS/ESTILOS/principal/img/authors/4.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">Julián Gonzalez</a> <span>dice: </span> Todos mis
-										amigos descargamos los juegos de aqui!
-									</p>
-									<div class="tc-date">Febrero 21, 2021</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Footer top section end -->
-
-
 	<!-- Footer section -->
 	<footer class="footer-section">
 		<div class="container">
+		<img src="VISTAS/ESTILOS/login/images/logo1blancosmall.png"
+							alt="logo RDY">
 			<ul class="footer-menu">
-				<p class="copyright">
+				<p class="copyright" style="font-variant-caps: all-small-caps;margin-top: 50px;">
 					Copyright &copy;
 					<script>
 						document.write(new Date().getFullYear());
@@ -405,10 +222,11 @@ $(document).ready(function () {
 					Todos los derechos reservados| Hecho con <i class="fa fa-heart-o"
 						aria-hidden="true"></i> by Nuria
 				</p>
-				</ul>
+			</ul>
 		</div>
 	</footer>
 	<!-- Footer section end -->
+
 
 
 	<!--====== Javascripts & Jquery ======-->
