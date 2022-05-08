@@ -181,7 +181,7 @@ $(document).ready(function () {
 									            Statement smt;
 									            ResultSet rs;
 									            smt = con.createStatement();
-									            rs = smt.executeQuery("select * from blog");
+									            rs = smt.executeQuery("select * from blog order by id DESC");
 												
 				                           		 while (rs.next()) {
 				                        	%>

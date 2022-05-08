@@ -294,42 +294,54 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg"
-							data-setbg="VISTAS/ESTILOS/principal/img/review/1.jpg">
+							data-setbg="VISTAS/ESTILOS/principal/img/nuevaNoticia.jpg" style="height: 250px;">
 						</div>
 						<div class="review-text">
 							<h5><%= titulosArrNoticias[0] %></h5>
-							<p><%= descripcionesArrNoticias[0].trim().substring(0, 50) %>...</p>
+							<p><%= descripcionesArrNoticias[0].trim().substring(0, 50) %>...
+								<a href="VISTAS/pagina-blog.jsp?id=<%= idsArrNoticias[0] %>" style="cursor: pointer;">Leer m&aacute;s</a>
+							</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg"
-							data-setbg="VISTAS/ESTILOS/principal/img/review/2.jpg">
+							data-setbg="VISTAS/ESTILOS/principal/img/nuevaNoticia.jpg" style="height: 250px;">
 						</div>
 						<div class="review-text">
 							<h5><%= titulosArrNoticias[1] %></h5>
-							<p><%=  descripcionesArrNoticias[1].trim().substring(0, 50) %>...</p>
+							<p><%=  descripcionesArrNoticias[1].trim().substring(0, 50) %>...
+								<a href="VISTAS/pagina-blog.jsp?id=<%= idsArrNoticias[1] %>" style="cursor: pointer;">Leer m&aacute;s</a>
+							</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg"
-							data-setbg="VISTAS/ESTILOS/principal/img/review/3.jpg">
+							data-setbg="VISTAS/ESTILOS/principal/img/nuevaNoticia.jpg" style="height: 250px;">
 						</div>
 						<div class="review-text">
 							<h5><%= titulosArrNoticias[2] %></h5>
-							<p><%= descripcionesArrNoticias[2].trim().substring(0, 50) %>...</p>
+							<p><%= descripcionesArrNoticias[2].trim().substring(0, 50) %>...
+								<a href="VISTAS/pagina-blog.jsp?id=<%= idsArrNoticias[2] %>" style="cursor: pointer;">Leer m&aacute;s</a>
+							</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6" style="background-color: white;">
-					
+				<div class="review-item">
+						<div class="review-cover set-bg"
+							data-setbg="VISTAS/ESTILOS/principal/img/nuevaNoticia.jpg" style="height: 250px;">
+						</div>
 						<div class="review-text">
 							<h5><%= titulosArrNoticias[3] %></h5>
-							<p><%= descripcionesArrNoticias[3].trim().substring(0, 50) %>...</p>
+							<p><%= descripcionesArrNoticias[3].trim().substring(0, 50) %>... 
+								<a href="VISTAS/pagina-blog.jsp?id=<%= idsArrNoticias[3] %>" style="cursor: pointer;">Leer m&aacute;s</a>
+							</p>
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>

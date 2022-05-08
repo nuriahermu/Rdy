@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<%@page import="javax.sql.rowset.serial.SerialBlob"%>
+<%@page import="java.util.Base64"%>
+<%@page import="java.util.Base64.Encoder"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.OutputStream"%>
+<%@page import="java.sql.*"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <html lang="es">
 <head>
 <title>RDY</title>
@@ -24,7 +34,6 @@
 	href="ESTILOS/principal/css/owl.carousel.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -73,13 +82,11 @@
 				<div class="hs-text">
 					<div class="container">
 						<h2>
-							La mejor plataforma de juegos
+							La mejor plataforma de videojuegos
 						</h2>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-							malesuada <br> lorem maximus mauris scelerisque, at rutrum
-							nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus
-							faucibus finibus.
+							Descubre las &uacute;ltimas novedades y los mejores juegos del momento. <br>
+							Todos a un solo clic!!
 						</p>
 						<a href="juegos.jsp" class="site-btn">Ver</a>
 					</div>
@@ -93,10 +100,8 @@
 							Enterate de todas las noticias antes que nadie
 						</h2>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-							malesuada <br> lorem maximus mauris scelerisque, at rutrum
-							nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus
-							faucibus finibus.
+							&Uacute;ltimas noticias que seguro que te interesar&aacute;n. <br>
+							No te las pierdas
 						</p>
 						<a href="noticias.jsp" class="site-btn">Ver</a>
 					</div>
@@ -110,10 +115,7 @@
 							&iquest;Tienes alguna duda?
 						</h2>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-							malesuada <br> lorem maximus mauris scelerisque, at rutrum
-							nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus
-							faucibus finibus.
+							No te quedes con las ganas de saber algo nuevo.
 						</p>
 						<a href="contacto.jsp" class="site-btn">Ver</a>
 					</div>
@@ -126,20 +128,22 @@
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">Latest News</div>
+		<div class="ln-title">&iexcl;&Uacute;LTIMAS NOTICIAS!</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
 				<div class="nt-item">
-					<span class="new">new</span>Lorem ipsum dolor sit amet, consectetur
-					adipiscing elit.
+					<span class="new">Noticias</span>Qu&eacute; queda por comprar en la
+					industria del videojuego: así está el panorama tras la ola de
+					adquisiciones.
 				</div>
 				<div class="nt-item">
-					<span class="strategy">strategy</span>Isum dolor sit amet,
-					consectetur adipiscing elit.
+					<span class="strategy">Estrategia</span>Gwent, el juego de cartas
+					de The Witcher, recibir&aacute; a finales de 2022 una nueva entrega
+					independiente para un solo jugador.
 				</div>
 				<div class="nt-item">
-					<span class="racing">racing</span>Isum dolor sit amet, consectetur
-					adipiscing elit.
+					<span class="racing">Racing</span>Playstation mantiene la esperanza
+					de Gran Turismo 7, &iquest;necesitar&eacute; dar el salto a la nueva generaci&oacute;n?
 				</div>
 			</div>
 		</div>
@@ -150,25 +154,63 @@
 	<!-- Recent game section  -->
 	<section class="recent-game-section spad set-bg"
 		data-setbg="ESTILOS/principal/img/recent-game-bg.png">
+		
+			<%
+					//CONECTANOD A LA BASE DE DATOS:
+					Connection con;
+					String url = "jdbc:mysql://localhost:3306/rdy";
+					String Driver = "com.mysql.cj.jdbc.Driver";
+					String user = "root";
+					String clave = "";
+					Class.forName(Driver);
+					con = DriverManager.getConnection(url, user, clave);
+					PreparedStatement ps;
+					Statement smt;
+					ResultSet rs;
+					OutputStream outs;
+					smt = con.createStatement();
+					rs = smt.executeQuery("select * from juegos order by id desc");
+					
+					ArrayList<String> ids = new ArrayList<String>();
+					ArrayList<String> titulos = new ArrayList<String>();
+					ArrayList<String> descripciones = new ArrayList<String>();
+					
+
+					while (rs.next()) { 
+						ids.add(rs.getString(1));
+						titulos.add(rs.getString(2));
+						descripciones.add(rs.getString(6));
+					}
+					
+					String[] idsArr = new String[ids.size()];
+					idsArr = ids.toArray(idsArr);
+					
+					String[] titulosArr = new String[titulos.size()];
+					titulosArr = titulos.toArray(titulosArr);
+					
+					String[] descripcionesArr = new String[descripciones.size()];
+					descripcionesArr = descripciones.toArray(descripcionesArr);					
+						
+				%>
 		<div class="container">
 			<div class="section-title">
-				<h2>&Uacute;ltimos Juegos</h2>
+				<h2 style="font-family: cursive;"><b></B>&Uacute;LTIMOS JUEGOS</b></h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-6">
 					<div class="recent-game-item">
 						<div class="rgi-thumb set-bg"
-							data-setbg="ESTILOS/principal/img/recent-game/1.jpg">
-							<div class="cata new">new</div>
+							data-setbg="ESTILOS/principal/img/novedad.png" style="height: 250px;">
 						</div>
+						
 						<div class="rgi-content">
-							<h5>Suspendisse ut justo tem por, rutrum</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit amet, consectetur elit.</p>
-							<a href="#" class="comment">3 Comments</a>
+							<h5><%= titulosArr[0] %></h5>
+							<p><%= descripcionesArr[0].substring(0, 20) %>...</p>
 							<div class="rgi-extra">
-								<div class="rgi-star">
-									<img src="ESTILOS/principal/img/icons/ver.png" alt="">
+								<div >
+									<a href="pagina-juego-ver.jsp?id=<%= idsArr[0] %>" style="cursor: pointer;" class="rgi-star">
+										<img src="ESTILOS/principal/img/icons/ver.png" alt="">
+									</a>
 								</div>
 							</div>
 						</div>
@@ -177,17 +219,16 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="recent-game-item">
 						<div class="rgi-thumb set-bg"
-							data-setbg="ESTILOS/principal/img/recent-game/2.jpg">
-							<div class="cata racing">racing</div>
+							data-setbg="ESTILOS/principal/img/novedad.png" style="height: 250px;">
 						</div>
 						<div class="rgi-content">
-							<h5>Susce pulvinar metus nulla, vel facilisis sem</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit amet, consectetur elit.</p>
-							<a href="#" class="comment">3 Comments</a>
+							<h5><%= titulosArr[1] %></h5>
+							<p><%= descripcionesArr[1].substring(0, 20) %>...</p>
 							<div class="rgi-extra">
-								<div class="rgi-star">
-									<img src="ESTILOS/principal/img/icons/ver.png" alt="">
+								<div >
+									<a href="pagina-juego-ver.jsp?id=<%= idsArr[1] %>" style="cursor: pointer;" class="rgi-star">
+										<img src="ESTILOS/principal/img/icons/ver.png" alt="">
+									</a>
 								</div>
 							</div>
 						</div>
@@ -196,17 +237,16 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="recent-game-item">
 						<div class="rgi-thumb set-bg"
-							data-setbg="ESTILOS/principal/img/recent-game/3.jpg">
-							<div class="cata adventure">Adventure</div>
+							data-setbg="ESTILOS/principal/img/novedad.png" style="height: 250px;">
 						</div>
 						<div class="rgi-content">
-							<h5>Suspendisse ut justo tem por, rutrum</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit amet, consectetur elit.</p>
-							<a href="#" class="comment">3 Comments</a>
+							<h5><%= titulosArr[2] %></h5>
+							<p><%= descripcionesArr[2].substring(0, 20) %>...</p>
 							<div class="rgi-extra">
-								<div class="rgi-star">
-									<img src="ESTILOS/principal/img/icons/ver.png" alt="">
+								<div >
+									<a href="pagina-juego-ver.jsp?id=<%= idsArr[2] %>" style="cursor: pointer;" class="rgi-star">
+										<img src="ESTILOS/principal/img/icons/ver.png" alt="">
+									</a>
 								</div>
 							</div>
 						</div>
@@ -214,6 +254,7 @@
 				</div>
 			</div>
 		</div>
+
 	</section>
 	<!-- Recent game section end -->
 
@@ -222,179 +263,103 @@
 		data-setbg="ESTILOS/principal/img/review-bg.png">
 		<div class="container">
 			<div class="section-title">
-				<h2>&Uacute;ltimas Noticias</h2>
+				<h2 style="font-family: cursive;">&Uacute;LTIMAS NOTICIAS</h2>
 			</div>
+			<%
+					smt = con.createStatement();
+					rs = smt.executeQuery("select * from blog order by id desc");
+					
+					ArrayList<String> idsNoticias = new ArrayList<String>();
+					ArrayList<String> titulosNoticias = new ArrayList<String>();
+					ArrayList<String> descripcionesNoticias = new ArrayList<String>();
+					
+
+					while (rs.next()) { 
+						idsNoticias.add(rs.getString(1));
+						titulosNoticias.add(rs.getString(2));
+						descripcionesNoticias.add(rs.getString(3));
+					}
+					
+					String[] idsArrNoticias = new String[idsNoticias.size()];
+					idsArrNoticias = idsNoticias.toArray(idsArrNoticias);
+					
+					String[] titulosArrNoticias = new String[titulosNoticias.size()];
+					titulosArrNoticias = titulosNoticias.toArray(titulosArrNoticias);
+					
+					String[] descripcionesArrNoticias = new String[descripcionesNoticias.size()];
+					descripcionesArrNoticias = descripcionesNoticias.toArray(descripcionesArrNoticias);					
+						
+				%>
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg"
-							data-setbg="ESTILOS/principal/img/review/1.jpg">
-							<div class="score yellow">9.3</div>
+							data-setbg="ESTILOS/principal/img/nuevaNoticia.jpg" style="height: 250px;">
 						</div>
 						<div class="review-text">
-							<h5>Assasinâ€™â€™s Creed</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit ame.</p>
+							<h5><%= titulosArrNoticias[0] %></h5>
+							<p><%= descripcionesArrNoticias[0].trim().substring(0, 50) %>...
+								<a href="pagina-blog.jsp?id=<%= idsArrNoticias[0] %>" style="cursor: pointer;">Leer m&aacute;s</a>
+							</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg"
-							data-setbg="ESTILOS/principal/img/review/2.jpg">
-							<div class="score purple">9.5</div>
+							data-setbg="ESTILOS/principal/img/nuevaNoticia.jpg" style="height: 250px;">
 						</div>
 						<div class="review-text">
-							<h5>Doom</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit ame.</p>
+							<h5><%= titulosArrNoticias[1] %></h5>
+							<p><%=  descripcionesArrNoticias[1].trim().substring(0, 50) %>...
+								<a href="pagina-blog.jsp?id=<%= idsArrNoticias[1] %>" style="cursor: pointer;">Leer m&aacute;s</a>
+							</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg"
-							data-setbg="ESTILOS/principal/img/review/3.jpg">
-							<div class="score green">9.1</div>
+							data-setbg="ESTILOS/principal/img/nuevaNoticia.jpg" style="height: 250px;">
 						</div>
 						<div class="review-text">
-							<h5>Overwatch</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit ame.</p>
+							<h5><%= titulosArrNoticias[2] %></h5>
+							<p><%= descripcionesArrNoticias[2].trim().substring(0, 50) %>...
+								<a href="pagina-blog.jsp?id=<%= idsArrNoticias[2] %>" style="cursor: pointer;">Leer m&aacute;s</a>
+							</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="review-item">
+				<div class="col-lg-3 col-md-6" style="background-color: white;">
+				<div class="review-item">
 						<div class="review-cover set-bg"
-							data-setbg="ESTILOS/principal/img/review/4.jpg">
-							<div class="score pink">9.7</div>
+							data-setbg="ESTILOS/principal/img/nuevaNoticia.jpg" style="height: 250px;">
 						</div>
 						<div class="review-text">
-							<h5>GTA</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
-								dolor sit ame.</p>
+							<h5><%= titulosArrNoticias[3] %></h5>
+							<p><%= descripcionesArrNoticias[3].trim().substring(0, 50) %>... 
+								<a href="pagina-blog.jsp?id=<%= idsArrNoticias[3] %>" style="cursor: pointer;">Leer m&aacute;s</a>
+							</p>
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>
+			<%
+				rs.close();
+			%>
 		</div>
 	</section>
 	<!-- Review section end -->
 
 
-	<!-- Footer top section -->
-	<section class="footer-top-section">
-		<div class="container">
-			<div class="footer-top-bg">
-				<img src="ESTILOS/principal/img/footer-top-bg.png" alt="">
-			</div>
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="footer-logo text-white">
-						<img src="ESTILOS/login/images/logo1blancosmall.png"
-							alt="logo RDY">
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="footer-widget mb-5 mb-md-0">
-						<h4 class="fw-title">&Uacute;šltimos Posts</h4>
-						<div class="latest-blog">
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/1.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
-										ipsum</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/2.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
-										ipsum</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-							<div class="lb-item">
-								<div class="lb-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/latest-blog/3.jpg"></div>
-								<div class="lb-content">
-									<div class="lb-date">June 21, 2018</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing
-										ipsum</p>
-									<a href="#" class="lb-author">By Admin</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="footer-widget">
-						<h4 class="fw-title">Top Comentarios</h4>
-						<div class="top-comment">
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/1.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">James Smith</a> <span>dice: </span> Todo perfecto,
-										muy recomendable
-									</p>
-									<div class="tc-date">Octubre 23, 2021</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/2.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">Valentin Martinez</a> <span>dice: </span> Todos
-										las novedades estÃ¡n aquÃ­!!
-									</p>
-									<div class="tc-date">Enero 7, 2020</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/3.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">Jose Fernandez</a> <span>dice: </span> Sin duda
-										una de mis paginas favv
-									</p>
-									<div class="tc-date">Junio 15, 2021</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg"
-									data-setbg="ESTILOS/principal/img/authors/4.jpg"></div>
-								<div class="tc-content">
-									<p>
-										<a href="#">JuliÃ¡n Gonzalez</a> <span>dice: </span> Todos mis
-										amigos descargamos los juegos de aqui!
-									</p>
-									<div class="tc-date">Febrero 21, 2021</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Footer top section end -->
-
-
 	<!-- Footer section -->
 	<footer class="footer-section">
 		<div class="container">
+		<img src="ESTILOS/login/images/logo1blancosmall.png"
+							alt="logo RDY">
 			<ul class="footer-menu">
-				<p class="copyright">
+				<p class="copyright" style="font-variant-caps: all-small-caps;margin-top: 50px;">
 					Copyright &copy;
 					<script>
 						document.write(new Date().getFullYear());

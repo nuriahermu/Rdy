@@ -143,7 +143,7 @@
 				           
 						%>
 						<h2 style="margin-bottom: 50px;"><%=rs.getString("nombre")%></h2>
-						<img src="data:image/jpeg;base64,${imgBase}" alt="<%=rs.getString("nombre")%>" />
+						<img src="data:image/jpeg;base64,${imgBase}" alt="<%=rs.getString("nombre")%>"  style="WIDTH: 550PX;"/>
 						<textarea
 							style="overflow: hidden; margin-top: 50px; height: 320px; width: 750px; border: none; display: block; resize: none; background-color: white;"
 							disabled><%=rs.getString("caracteristicas")%></textarea>
@@ -161,7 +161,7 @@
 									<img src="data:image/jpeg;base64,${imgBase2}" alt="<%=rs.getString("nombre")%>" style="width: 300px;height: 250px;margin-bottom: 60px;"/>
 								<%
 								}
-								 if(imgData3 != null){
+								 if(imgData3 != null ){
 						           	 	String encode3 = Base64.getEncoder().encodeToString(imgData3);
 						            	request.setAttribute("imgBase3", encode3);
 						           

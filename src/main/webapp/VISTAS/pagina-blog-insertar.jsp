@@ -46,7 +46,7 @@
          alertify.error('¡Por favor seleccione una imágen de portada!');
          return false; 
          
-     }else if($('#caracteristicas').val().length < 20){
+     }else if($('#caracteristicas').val().length < 50){
     	 alertify.error('¡Por favor defina las caracteristicas con más detalle!');
          return false; 
     	 
@@ -157,7 +157,7 @@
 								required /> 
 							Descripción:
 							<textarea class="form-control" maxlength="1000" minlength="50"
-								name="descripcion" id="descripcion"
+								name="descripcion" id="caracteristicas"
 								style="overflow: hidden; height: 260px; resize: none" required></textarea>
 								<br>
 							URL youtube: <input

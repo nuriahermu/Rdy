@@ -41,7 +41,6 @@
 	}
 
 	function confirmarUsuario() {
-		console.log("Aqui llergooooo");
 		$.post('inicio', {
 			usuario : $("#usuario").val(),
 			clave : $("#clave").val()

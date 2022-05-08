@@ -54,6 +54,12 @@
 	
 	function aceptarCambios() {
 		event.preventDefault();
+		
+		if($('#caracteristicas').val().length < 50){
+	    	 alertify.error('¡Por favor defina las caracteristicas con más detalle!');
+	         return false; 
+	    	 
+	    }else{
 		alertify.confirm("¿Estás seguro que quiere realizar estos cambios?",
 				function() {
 					event.preventDefault();
@@ -63,6 +69,7 @@
 					event.preventDefault();
 					alertify.error('¡Cancelado!');
 				});
+	    }
 	}
 	
 	function eliminarComentario(autor, id) {
@@ -189,8 +196,8 @@
                  	URL Youtube:
                  	<input type="text" name="youtube" class="form-control" style="margin-bottom: 20px;" value="<%= rs.getString("youtube")%>" required/>
                  	Descripción:	
-                 	<textarea class="form-control" maxlength="1000" name="descripcion" style="overflow: hidden; height: 260px; resize: none" required>
-                 	<%= rs.getString("descripcion")%>
+                 	<textarea class="form-control" id="caracteristicas" maxlength="1000" name="descripcion" style="overflow: hidden; height: 260px; resize: none" required>
+                 	<%= rs.getString("descripcion").trim()%>
                  	</textarea>
                  	<br>
 					Cambiar imágen de la noticia:
