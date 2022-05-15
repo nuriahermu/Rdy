@@ -25,6 +25,25 @@
 <link rel="stylesheet" href="ESTILOS/principal/css/style.css" />
 <link rel="stylesheet" href="ESTILOS/principal/css/animate.css" />
 
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/css/alertify.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.0/build/alertify.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+		//ocultar las opciones para usuario con perfil cliente
+		 if('${usuario.rol}' == 'cliente'){
+			 $('#espacioBuscar').hide();
+		} 
+		
+	});
+	
+</script>
+
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -139,8 +158,54 @@
 						</ul>
 					</div>
 				</div>
-			</div>
-		
+				
+				
+				<div class="widget-item" id="espacioBuscar">
+						<%
+							//CONECTANOD A LA BASE DE DATOS:
+							Connection con5;
+							String url5 = "jdbc:mysql://localhost:3306/rdy";
+							String Driver5 = "com.mysql.cj.jdbc.Driver";
+							String user5 = "root";
+							String clave5 = "";
+							Class.forName(Driver5);
+							con5 = DriverManager.getConnection(url5, user5, clave5);
+							PreparedStatement ps5;
+							ResultSet rs5;
+							String textoBuscado = request.getParameter("textoBuscar");
+							
+						 %>
+								 <form class="search-widget" id="formBuscar">
+									<input type="text" name="idUsuario" id="idUsuario" hidden="true" value="${usuario.id}"></input>
+									<input type="text" placeholder="Buscar..." id="textoBuscar"  name="textoBuscar" style="width: 300px;">
+									<button type="submit"  style="margin-right: 120px;">
+										<i class="fa fa-search"></i>
+									</button>
+								</form>								
+							<%
+							
+							if( textoBuscado != null){
+																
+								ps5 = con5.prepareStatement("select * from usuarios where usuario LIKE '%" +textoBuscado+"%'");
+								rs5 = ps5.executeQuery();
+								
+								
+									while (rs5.next()) {
+										
+										%>
+										
+										<p><%=rs5.getString("usuario")%> - <%=rs5.getString("clave")%> - <%=rs5.getString("rol")%> </p>
+										
+										<%
+										
+								}
+										}
+							
+							%>
+				</div>
+				
+				
+			</div>		
 	<!-- Page section end -->
 					<div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0" style="margin-top: 50px;">
 

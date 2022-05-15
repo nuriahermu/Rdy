@@ -48,7 +48,15 @@ $(document).ready(function () {
 		 $('#eliminarNoticia').hide();
 	} 
 	
+	 window.addEventListener("keypress", function(event){
+		    if (event.keyCode == 13){
+		        event.preventDefault();
+		    }
+		}, false);
+		
+	
 });
+
 </script>
 
 </head>
@@ -145,14 +153,6 @@ $(document).ready(function () {
 				<div class="col-lg-8">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="widget-item">
-								<form class="search-widget">
-									<input type="text" placeholder="Buscar...">
-									<button>
-										<i class="fa fa-search"></i>
-									</button>
-								</form>
-							</div>
 							<div class="row" style="margin-right: 0px;" name="insertarNoticia" id="insertarNoticia">
 								<div class="col-md-4" style="margin-bottom: 20px;">
 								 <a href="pagina-blog-insertar.jsp">
@@ -163,7 +163,7 @@ $(document).ready(function () {
 									<a/>
 								</div>
 							</div>
-							<div class="recent-game-item" style="width: 1100px;">
+							<div class="recent-game-item" style="width: 1100px;" id="todos">
 								<div class="col-md-12">
 									<div class="recent-game-item">
 										<hr>

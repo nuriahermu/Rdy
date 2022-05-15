@@ -91,6 +91,9 @@ public class RdyController extends HttpServlet {
 			case "mostrarBlog":
 				mostrarBlog(request, response);
 				break;
+			case "buscarBlog":
+				buscarBlog(request, response);
+				break;
 			case "insertarBlog":
 				insertarBlog(request, response);
 				break;
@@ -226,7 +229,8 @@ public class RdyController extends HttpServlet {
 	private void insertarJuego(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		
-		Juego juego = new Juego("0", request.getParameter("nombre"), request.getParameter("anio"), request.getParameter("plataforma_id"), request.getParameter("caracteristicas"), 
+		Juego juego = new Juego("0", request.getParameter("nombre"), request.getParameter("anio"), request.getParameter("plataforma_id"), 
+				request.getParameter("caracteristicas"), 
 				request.getParameter("exclusivo"));
 		
 		Part part = request.getPart("foto_portada");
@@ -253,7 +257,8 @@ public class RdyController extends HttpServlet {
 	
 	private void editarJuego(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		Juego juego = new Juego(request.getParameter("id"), request.getParameter("nombre"), request.getParameter("anio"), request.getParameter("plataforma_id"), request.getParameter("caracteristicas"), 
+		Juego juego = new Juego(request.getParameter("id"), request.getParameter("nombre"), request.getParameter("anio"), request.getParameter("plataforma_id"), 
+				request.getParameter("caracteristicas"), 
 				request.getParameter("exclusivo"));
 		
 		Part part = request.getPart("foto_portada_mod");
@@ -295,6 +300,15 @@ public class RdyController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+	private void buscarBlog(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+		String texto = request.getParameter("texto");
+		noticiasDao.buscar(texto);
+				
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/VISTAS/noticias_servlet.jsp");
+		dispatcher.forward(request, response);
+	}
+	
 	private void eliminarComentarioJuego(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		comentariosDao.eliminarComentarioJuego(Integer.parseInt(request.getParameter("id_comentario")));

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import Controlador.Conexion;
 import Modelo.Blog;
-import Modelo.Juego;
 
 public class NoticiasDAO {
 
@@ -23,7 +22,7 @@ public class NoticiasDAO {
 		con = new Conexion(jdbcURL, jdbcUsername, jdbcPassword);
 	}
 	
-	//Insertar juego nuevo
+	//Insertar noticia nueva
 	public void insertarNoticia(Blog j) throws SQLException {
 
 		String sql = "insert into blog values(?,?,?,?,?)";
@@ -39,5 +38,15 @@ public class NoticiasDAO {
 		statement.executeUpdate();
 		statement.close();
 		con.desconectar();
+	}
+	
+	public void buscar (String texto)  throws SQLException {
+		String sql = "select * from blog where titulo like '%"+texto+"%'";
+		con.conectar();
+		connection = con.getJdbcConnection();
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.executeUpdate();
+		statement.close();
+		con.desconectar();		
 	}
 }

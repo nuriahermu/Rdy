@@ -28,21 +28,16 @@ public class JuegosDAO {
 	public void modificar(Juego juego) throws SQLException, IOException {
 		String modImagenPortada="";
 		String modImagenFoto1="";
-		String modImagenFoto2="";
-		
+		String modImagenFoto2="";		
 		if(juego.getFoto_portada2() != null) {
 			modImagenPortada = ", foto_portada = ? ";
-		}
-		
+		}	
 		if(juego.getFoto_juego11() != null) {
 			modImagenFoto1= ", foto_juego1 = ? ";
-		}
-		
+		}	
 		if(juego.getFoto_juego22() != null) {
 			modImagenFoto2= ", foto_juego2= ? ";
-		}
-		
-		
+		}	
 		String sql = "UPDATE juegos SET nombre = ? , anio = ?, caracteristicas = ?, plataforma_id = ?, exclusivo = ?"+ 
 						modImagenPortada + modImagenFoto1+ modImagenFoto2+ " where id=" + juego.getId();
 		con.conectar();
@@ -60,22 +55,18 @@ public class JuegosDAO {
 		
 		if(modImagenPortada != "" && modImagenFoto1 != "" ) {
 			statement.setBlob(7, juego.getFoto_juego11());
-		}
-		
+		}		
 		if(modImagenPortada == "" && modImagenFoto1 != "" ) {
 			statement.setBlob(6, juego.getFoto_juego11());
 		}
-
 		if(modImagenPortada != "" && modImagenFoto1 != "" && modImagenFoto2 != "" ) {
 			statement.setBlob(8, juego.getFoto_juego22());
 		}else if((modImagenPortada != "" || modImagenFoto1 != "") && modImagenFoto2 != "" ) {
 			statement.setBlob(7, juego.getFoto_juego22());
-		}
-		
+		}	
 		if(modImagenPortada == "" && modImagenFoto1 == "" && modImagenFoto2 != "") {
 			statement.setBlob(6, juego.getFoto_juego22());
-		}
-		
+		}		
 		statement.executeUpdate();
 		statement.close();
 		con.desconectar();

@@ -142,14 +142,6 @@ $(document).ready(function () {
 				<div class="col-lg-8">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="widget-item">
-								<form class="search-widget">
-									<input type="text" placeholder="Buscar...">
-									<button>
-										<i class="fa fa-search"></i>
-									</button>
-								</form>
-							</div>
 							<div class="row" style="margin-right: 0px;" name="insertarNoticia" id="insertarNoticia">
 								<div class="col-md-4" style="margin-bottom: 20px;">
 								 <a href="pagina-blog-insertar.jsp">
