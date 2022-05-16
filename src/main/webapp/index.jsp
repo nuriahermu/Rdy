@@ -84,12 +84,12 @@
 									<div class="form-group">
 										<label for="usuario" class="sr-only">Usuario</label> <input
 											type="text" name="usuario" id="usuario" class="form-control"
-											placeholder="Usuario" value="admin" required="required">
+											placeholder="Usuario" required="required">
 									</div>
 									<div class="form-group mb-4">
 										<label for="clave" class="sr-only">Clave</label> <input
 											type="password" name="clave" id="clave" class="form-control"
-											placeholder="Clave" value="123" required="required">
+											placeholder="Clave" required="required">
 									</div>
 									<input name="login" id="login"
 										onclick="javascript:confirmarUsuario()"

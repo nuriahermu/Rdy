@@ -177,8 +177,8 @@
 						 %>
 								 <form class="search-widget" id="formBuscar">
 									<input type="text" name="idUsuario" id="idUsuario" hidden="true" value="${usuario.id}"></input>
-									<input type="text" placeholder="Buscar..." id="textoBuscar"  name="textoBuscar" style="width: 300px;">
-									<button type="submit"  style="margin-right: 120px;">
+									<input type="text" placeholder="Buscar..." id="textoBuscar"  name="textoBuscar">
+									<button type="submit"  >
 										<i class="fa fa-search"></i>
 									</button>
 								</form>								
