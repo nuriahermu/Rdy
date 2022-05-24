@@ -223,7 +223,7 @@
 			</div>
 		</div>
 	</section>
-	<section style="padding-left: 370px; margin-top: auto;">
+	<section style="padding-left: 120px; margin-top: auto;">
 	<form enctype='multipart/form-data' id="formEliminarComentario" action="rdyController?action=eliminarComentarioBlog" method="post">
 		<div class="col-lg-12">
 			<!-- COMENTARIOS -->

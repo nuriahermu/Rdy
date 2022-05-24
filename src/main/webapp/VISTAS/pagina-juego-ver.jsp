@@ -149,25 +149,29 @@
 							disabled><%=rs.getString("caracteristicas")%></textarea>
 						
 							<%
-							if(imgData2 != null || imgData3 != null){
+							if(imgData2 != null && imgData3 != null){
 							%>	
 							<h3 style="margin-bottom: 20px;">Capturas del juego</h3>
 								<%
-								if(imgData2 != null){
+								if(imgData2.length > 0){
 					           	 	String encode2 = Base64.getEncoder().encodeToString(imgData2);
 					            	request.setAttribute("imgBase2", encode2);
 					         
 								%>
 									<img src="data:image/jpeg;base64,${imgBase2}" alt="<%=rs.getString("nombre")%>" style="width: 300px;height: 250px;margin-bottom: 60px;"/>
 								<%
-								}
-								 if(imgData3 != null ){
+								}else
+								 if(imgData3.length > 0){
 						           	 	String encode3 = Base64.getEncoder().encodeToString(imgData3);
 						            	request.setAttribute("imgBase3", encode3);
 						           
 								%>
 								<img src="data:image/jpeg;base64,${imgBase3}" alt="<%=rs.getString("nombre")%>" style="width: 300px;height: 250px;margin-bottom: 60px;"/>
-								<%} %>
+								<%}else{
+								%>
+								<p>No hay imagenes</p>
+								<%}
+								%>
 							<%
 							}
 							%>

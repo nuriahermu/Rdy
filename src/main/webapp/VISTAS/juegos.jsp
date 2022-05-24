@@ -280,7 +280,7 @@
 					ResultSet rs2;
 					OutputStream outs;
 					smt = con.createStatement();
-					rs2 = smt.executeQuery("select * from juegos where id IS NOT NULL");
+					rs2 = smt.executeQuery("select * from juegos where id IS NOT NULL order by id DESC");
 					OutputStream oImage;
 					OutputStream oImage2;
 					while (rs2.next()) {

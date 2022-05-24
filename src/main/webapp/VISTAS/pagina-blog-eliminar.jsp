@@ -138,9 +138,13 @@ function alerta(){
 						%>
 						 <input hidden="id" name="id" id="id" value='<%=rs.getInt("id")%>'/>
 						<h2 id="titulo" style="margin-bottom: 50px;"><%=rs.getString("titulo")%></h2>
+						
+						<%if(rs.getString("youtube")!= null && !rs.getString("youtube").equals("")){ %>
 						<iframe width="640" height="360" 
 							src="<%=rs.getString("youtube")%>" frameborder="0"
 							allowfullscreen></iframe>
+							
+						<%} %>
 						<textarea
 							style="margin-top: 50px; height: 320px; width: 750px; border: none; display: block; resize: none; background-color: white;"
 							disabled="true"><%=rs.getString("descripcion")%></textarea>

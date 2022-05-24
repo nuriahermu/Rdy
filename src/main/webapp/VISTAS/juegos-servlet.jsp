@@ -267,7 +267,7 @@
 					ResultSet rs;
 					OutputStream outs;
 					smt = con.createStatement();
-					rs = smt.executeQuery("select * from juegos");
+					rs = smt.executeQuery("select * from juegos order by id DESC");
 					OutputStream oImage;
 					while (rs.next()) {
 						

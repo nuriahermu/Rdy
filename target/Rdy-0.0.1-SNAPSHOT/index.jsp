@@ -26,12 +26,7 @@
 <link href="VISTAS/ESTILOS/principal/img/palanca-de-mando.png"
 	rel="shortcut icon" />
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script
 	src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <link
@@ -46,7 +41,6 @@
 	}
 
 	function confirmarUsuario() {
-		console.log("Aqui llergooooo");
 		$.post('inicio', {
 			usuario : $("#usuario").val(),
 			clave : $("#clave").val()
@@ -90,12 +84,12 @@
 									<div class="form-group">
 										<label for="usuario" class="sr-only">Usuario</label> <input
 											type="text" name="usuario" id="usuario" class="form-control"
-											placeholder="Usuario" value="admin" required="required">
+											placeholder="Usuario" required="required">
 									</div>
 									<div class="form-group mb-4">
 										<label for="clave" class="sr-only">Clave</label> <input
 											type="password" name="clave" id="clave" class="form-control"
-											placeholder="Clave" value="123" required="required">
+											placeholder="Clave" required="required">
 									</div>
 									<input name="login" id="login"
 										onclick="javascript:confirmarUsuario()"
@@ -405,7 +399,6 @@
 			</div>
 		</div>
 	</main>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script
